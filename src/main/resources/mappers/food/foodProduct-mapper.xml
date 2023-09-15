@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FoodProductMapper">
+	
+	<insert id="insertProductInfo">
+		INSERT INTO F_PRODUCT_TBL VALUES(SEQ_F_PRODUCT_ID.NEXTVAL, #{fProductName}, #{fProductCompany}, #{fProductPrice}, #{fProductSimple}, #{fProductDetail}, #{fProductType}, #{fProductInfo}, DEFAULT, 0)
+	</insert>
+		
+	<insert id="insertProductFiles" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="file" separator=" ">
+		  INTO F_PRODUCT_FILE_TBL (REF_F_PRODUCT_ID, F_PRODUCT_FILEORDER, F_PRODUCT_FILENAME, F_PRODUCT_FILERENAME, F_PRODUCT_FILEPATH)
+		  VALUES (#{file.refFProductId}, #{file.fProductFileorder}, #{file.fProductFilename}, #{file.fProductFilerename}, #{file.fProductFilepath})
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+	
+</mapper>  

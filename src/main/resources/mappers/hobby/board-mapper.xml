@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+
+  <resultMap type="Board" id="boardResultMap">
+  	<id 	property="hBoardNo" 		column="H_BOARD_NO" />
+  	<result property="refCategoryName" 	column="REF_CATEGORY_NAME" />
+  	<result property="hBoardCategory" 	column="H_BOARD_CATEGORY" />
+  	<result property="hBoardWriter" 	column="H_BOARD_WRITER" />
+  	<result property="hBoardTitle" 		column="H_BOARD_TITLE" />
+  	<result property="hBoardContent" 	column="H_BOARD_CONTENT" />
+  	<result property="hBoardReplyNum" 	column="H_BOARD_REPLY_NUM" />
+  	<result property="hGroupTime" 		column="H_GROUP_TIME" />
+  	<result property="hGroupPlace" 		column="H_GROUP_PLACE" />
+  	<result property="hGroupPersonNum" 	column="H_GROUP_PERSON_NUM" />
+  	<result property="hBoardCreateDate" column="H_BOARD_CREATE_DATE" />
+  	<result property="hBoardUpdateDate" column="H_BOARD_UPDATE_DATE" />
+  	<result property="hBoardStatus" 	column="H_BOARD_STATUS" />
+  	<result property="hBoardFilename" 	column="H_BOARD_FILENAME" />
+  	<result property="hBoardFilerename" column="H_BOARD_FILERENAME" />
+  	<result property="hBoardFilepath" 	column="H_BOARD_FILEPATH" />
+  	<result property="hBoardFilelength" column="H_BOARD_FILELENGTH" />
+  </resultMap>
+
+  <select id="getListCount" resultType="_int">
+  	SELECT COUNT(*) FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' AND REF_CATEGORY_NAME = #{ refCategoryName }
+  </select>
+  
+  <select id="selectBoardList" resultMap="boardResultMap">
+  	SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' AND REF_CATEGORY_NAME = #{ refCategoryName } ORDER BY H_BOARD_NO DESC
+  </select>
+  
+  <insert id="insertBoard">
+  	INSERT INTO H_BOARD_TBL VALUES
+  	(SEQ_H_BOARD_NO.NEXTVAL, #{ refCategoryName }, #{ hBoardCategory }, 'admin', #{ hBoardTitle }, #{ hBoardContent }, 
+  	#{ hBoardReplyNum }, #{ hGroupTime }, #{ hGroupPlace }, #{ hGroupPersonNum }, DEFAULT, DEFAULT, 
+  	DEFAULT, #{ hBoardFilename }, #{ hBoardFilerename }, #{ hBoardFilepath }, #{ hBoardFilelength })
+  </insert>
+  
+  <select id="selectBoardByNo" resultMap="boardResultMap">
+  	SELECT * FROM H_BOARD_TBL WHERE H_BOARD_NO = #{ hBoardNo } AND H_BOARD_STATUS = 'Y'
+  </select>
+  
+  <update id="updateBoard">
+  	UPDATE H_BOARD_TBL SET H_BOARD_TITLE = #{ hBoardTitle }, H_BOARD_CONTENT = #{ hBoardContent }, H_GROUP_TIME = #{hGroupTime}, H_GROUP_PLACE = #{hGroupPlace}, H_GROUP_PERSON_NUM = #{hGroupPersonNum}, H_BOARD_FILENAME = #{ hBoardFilename }, H_BOARD_FILERENAME = #{ hBoardFilerename }, H_BOARD_FILEPATH = #{ hBoardFilepath }, H_BOARD_FILELENGTH = #{ hBoardFilelength }, H_BOARD_UPDATE_DATE = DEFAULT WHERE H_BOARD_NO = #{ hBoardNo }
+  </update>
+  
+  <update id="deleteBoard">
+  	UPDATE H_BOARD_TBL SET H_BOARD_STATUS = 'N' WHERE H_BOARD_NO = #{ hBoardNo }
+  	<!-- AND H_BOARD_WRITER = #{ hBoardWriter } -->
+  </update>
+  
+</mapper>

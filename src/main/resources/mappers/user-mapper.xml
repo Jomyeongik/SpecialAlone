@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<resultMap type="User" id="userResultMap">
+		<id 	property="userNo" 		column="USER_NO"/>
+		<result property="userId" 		column="USER_ID"/>
+		<result property="userPw" 		column="USER_PW"/>
+		<result property="userName" 	column="USER_NAME"/>
+		<result property="userGender" 	column="USER_GENDER"/>
+		<result property="userEmail" 	column="USER_EMAIL"/>
+		<result property="userPhone" 	column="USER_PHONE"/>
+		<result property="userAddr" 	column="USER_ADDR"/>
+		<result property="userHobby" 	column="USER_HOBBY"/>
+		<result property="createDate" 	column="CREATE_DATE"/>
+		<result property="userGrade" 	column="USER_GRADE"/>
+	</resultMap>
+	
+	<insert id="insertUser">
+		INSERT INTO USER_TBL VALUES(USER_NO_SEQ.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userGender}, #{userEmail}, #{userPhone}, #{userAddr}, #{userHobby}, DEFAULT, DEFAULT)
+	</insert>
+	
+	<update id="updateUser">
+		UPDATE USER_TBL SET USER_PW = #{userPw}, USER_EMAIL = #{userEmail}, USER_PHONE = #{userPhone}, USER_ADDR = #{userAddr}, USER_HOBBY = #{userHobby} WHERE USER_ID = #{userId}
+	</update>
+	
+	<select id="loginUser" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+	</select>
+</mapper>

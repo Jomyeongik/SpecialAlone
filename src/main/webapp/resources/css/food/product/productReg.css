@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+label {
+	display: block;
+}
+
+.image_thumbnail {
+	border: 1px solid black;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	/* display: inline-block; */
+}
+
+h1 {
+	text-align: center;
+	font-size: 2em;
+}
+
+main {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
