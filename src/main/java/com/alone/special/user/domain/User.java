@@ -15,6 +15,10 @@ public class User {
 	private Date createDate;
 	private char userGrade;
 	
+	public User() {
+		super();
+	}
+	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -85,7 +89,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "회원 [회원번호=" + userNo + ", 회원아이디=" + userId + ", 회원비밀번호=" + userPw + ", 회원이름=" + userName
-				+ ", 회원성별=" + userGender + ", 회워이메일=" + userEmail + ", 회원전화번호=" + userPhone + ", 회원주소="
+				+ ", 회원성별=" + userGender + ", 회원이메일=" + userEmail + ", 회원전화번호=" + userPhone + ", 회원주소="
 				+ userAddr + ", 회원취미=" + userHobby + ", 회원가입일=" + createDate + ", 회원등급=" + userGrade
 				+ "]";
 	}

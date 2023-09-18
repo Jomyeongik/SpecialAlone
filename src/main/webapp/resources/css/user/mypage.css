@@ -22,30 +22,9 @@ main section {
 	margin: 5px;
 }
 
-#userId {
-	width: 200px;
-	height: 30px;
-	padding: 5px;
-	margin: 5px;
-}
-
-#userEmail {
-	width: 200px;
-	height: 30px;
-	padding: 5px;
-	margin: 5px;
-}
-
 #userAddr {
 	width: 200px;
 	height: 30px;
 	padding: 5px;
 	margin: 5px;
-}
-
-.valid {
-	color: green;
-}
-.invalid {
-	color: red;
 }

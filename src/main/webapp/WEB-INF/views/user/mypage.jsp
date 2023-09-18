@@ -9,7 +9,7 @@
       	<link rel="stylesheet" href="/resources/css/reset.css">
       	<link rel="stylesheet" href="/resources/css/header.css">
       	<link rel="stylesheet" href="/resources/css/footer.css">
-      	<link rel="stylesheet" href="/resources/css/mypage.css">
+      	<link rel="stylesheet" href="/resources/css/user/mypage.css">
 		<title>SpecialAlone 마이페이지</title>
 	</head>
 	<body>
@@ -20,16 +20,15 @@
 		<!-- main -->
 		<main>
 			<section>
-<!-- 				<form action="/user/register.do" method="post"> -->
 					<h1>Special Alone</h1>
 					<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
-					<form action="/user/mypage.do" method="post">
+					<form action="/user/update.do" method="post">
 					<fieldset id="registerbox">
 						<legend>마이페이지</legend><br>
 						<ul>
 							<li>
 								<label>아이디 : </label>
-								<span>${user.userId }</span>
+								<input id="textbox" type="text" name="userId" value="${user.userId }" readonly>
 							</li>
 							<li>
 								<label>비밀번호 : </label>
@@ -47,11 +46,11 @@
 							</li>
 							<li>
 								<label>이메일 : </label>
-								<input id="textbox" type="text" name="userEmail" placeholder="이메일을 입력하세요">
+								<input id="textbox" type="text" name="userEmail" value="${user.userEmail }">
 							</li>
 							<li>
 								<label>전화번호 : </label>
-								<input id="textbox" type="text" name="userPhone" placeholder="전화번호를 입력하세요">
+								<input id="textbox" type="text" name="userPhone" value="${user.userPhone }">
 							</li>
 							<li>
 								<label>주소 : </label>
@@ -67,37 +66,23 @@
 							</li>
 						</ul>
 					</fieldset><br>
-					<input type="submit" value="회원가입">
-					<input type="reset" value="취소">
+					<input type="submit" value="수정하기">
+<!-- 					<input type="reset" value="탈퇴하기"> -->
+				</form>
+				<form action="/user/delete.do" method="get">
+					<input type="hidden" name="userId" value="${user.userId }">
+					<input type="submit" value="탈퇴" onclick="return confirm('정말 탈퇴하시겠습니까?');">
 				</form>
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				<script>
-				function sample4_execDaumPostcode() {
-					var themeObj = {
-						searchBgColor: "#0B65C8", //검색창 배경색
-						queryTextColor: "#FFFFFF" //검색창 글자색
-					};
-					var width = 500; //팝업의 너비
-	                var height = 600; //팝업의 높이
-			        new daum.Postcode({
-			        	width: width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
-			            height: height,
-			            theme: themeObj,
-			            oncomplete: function(data) {
-			                var addr = data.address; // 최종 주소 변수
-
-			                // 주소 정보를 해당 필드에 넣는다.
-// 			                document.getElementById("userAddr").value = addr;
-			                document.querySelector("#userAddr").value= data.address
-			                // 주소로 상세 정보를 검색
-			                geocoder.addressSearch(data.address, function(results, status) {
-			                });
-			            }
-			        }).open({
-			        	autoClose: true
-			        });
-			    }
-			</script>
+				function sample4_execDaumPostcode(){
+					new daum.Postcode({
+						oncomplete : function(data){
+							document.querySelector("#userAddr").value=data.roadAddress
+						}
+					}).open();
+				}
+				</script>
 			</section>
 		</main>
 			

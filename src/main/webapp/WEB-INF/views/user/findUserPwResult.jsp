@@ -10,7 +10,7 @@
       	<link rel="stylesheet" href="/resources/css/header.css">
       	<link rel="stylesheet" href="/resources/css/footer.css">
       	<link rel="stylesheet" href="/resources/css/user/login.css">
-		<title>SpecialAlone 회원가입</title>
+		<title>SpecialAlone 비밀번호 찾기 결과</title>
 	</head>
 	<body>
 		<div class="container">
@@ -22,16 +22,11 @@
 			<section>
 				<h1>Special Alone</h1><br>
 				<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
-				<h1>로그인</h1>
-				<div class="loginArea">
-					<form action="/user/login.do" method="post">
-						<input type="text" name="userId" placeholder="아이디를 입력하세요">
-						<input type="password" name="userPw" placeholder="비밀번호를 입력하세요">
-						<button type="submit">Login</button>
-					</form>
-					<a href="/user/findUserId.do">아이디찾기</a><br>
-					<a href="/user/findUserPw.do">비밀번호찾기</a><br>
-					<a href="/user/register.do">회원가입</a>
+				<%-- Debugging code to display user object contents --%>
+				<h1>비밀번호 찾기 결과</h1><br>
+				<div class="findUserPwArea">
+					<p>회원 비밀번호: ${userPw}</p><br>
+					<a href="/user/login.do">로그인</a>
 				</div>
 			</section>
 		</main>
