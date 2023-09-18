@@ -25,7 +25,7 @@
 				<%-- Debugging code to display user object contents --%>
 				<h1>비밀번호 찾기 결과</h1><br>
 				<div class="findUserPwArea">
-					<p>회원 비밀번호: ${userPw}</p><br>
+					<p>회원 비밀번호 : ${userPw} 입니다.</p><br>
 					<a href="/user/login.do">로그인</a>
 				</div>
 			</section>
