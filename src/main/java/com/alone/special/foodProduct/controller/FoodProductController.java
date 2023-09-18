@@ -61,7 +61,7 @@ public class FoodProductController {
 				//실패
 				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다");
 				mv.addObject("error", "게시글 등록 실패");
-				mv.addObject("url", "dd");
+				mv.addObject("url", "ddㅇㅇ");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
