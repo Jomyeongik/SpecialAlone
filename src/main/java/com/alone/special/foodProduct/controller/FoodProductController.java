@@ -34,7 +34,7 @@ public class FoodProductController {
 	
 	@RequestMapping(value="/foodProduct/register.do", method=RequestMethod.GET)
 	public ModelAndView showRegisterForm(ModelAndView mv) {		
-		// 추천상품 정보등록 페이지 이동
+		// 추천상품 정보등록 페이지 DD이동
 		mv.setViewName("food/foodRecommend/productReg");
 		return mv;
 	}
