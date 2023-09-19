@@ -13,7 +13,6 @@ public class FoodProduct {
 	private String fProductType;
 	private String fProductInfo;
 	private Timestamp fProductDate;
-	private int fProductStar;
 	public int getfProductId() {
 		return fProductId;
 	}
@@ -68,18 +67,12 @@ public class FoodProduct {
 	public void setfProductDate(Timestamp fProductDate) {
 		this.fProductDate = fProductDate;
 	}
-	public int getfProductStar() {
-		return fProductStar;
-	}
-	public void setfProductStar(int fProductStar) {
-		this.fProductStar = fProductStar;
-	}
 	@Override
 	public String toString() {
 		return "추천상품 [상품ID=" + fProductId + ", 상품명=" + fProductName + ", 기업명="
 				+ fProductCompany + ", 상품가격=" + fProductPrice + ", 상품간단설명=" + fProductSimple
 				+ ", 상품상세설명=" + fProductDetail + ", 상품종류=" + fProductType + ", 상품영양정보="
-				+ fProductInfo + ", 상품등록일=" + fProductDate + ", 상품별점=" + fProductStar + "]";
+				+ fProductInfo + ", 상품등록일=" + fProductDate + "]";
 	}
 	
 	

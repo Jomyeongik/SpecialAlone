@@ -27,7 +27,8 @@
                         <select name="fProductType" id="fProductType">
                             <option value="koreanfood">한식</option>
                             <option value="chinesefood">중식</option>
-                            <option value="japaneseood">일식</option>
+                            <option value="japanesefood">일식</option>
+                            <option value="westernfood">양식</option>
                             <option value="snackfood">분식</option>
                         </select>
                         <label>기업명</label> 
