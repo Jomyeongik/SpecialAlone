@@ -1,167 +1,95 @@
 /* header */
+
 header {
+
    width: 100%;
+
    height: 60px;
-<<<<<<< HEAD
-}
-.nav_left {
-   width: 10%;
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   float: left;
-   border: 1px solid black;
-=======
->>>>>>> refs/remotes/origin/ki
-}
-<<<<<<< HEAD
 
-.nav_center {
-   width: 60%;
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   float: left;
-   display: flex;
-   border: 1px solid black;
-}
-.nav_center ul {
-   list-style-type: none;
-   display: flex;
-   flex-direction: row;
-}
-.nav_center li {
-   padding: 10px;
-}
-.nav_right {
-   width: 30%;
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   float: left;
-   border: 1px solid black;
-}
-.nav_right ul {
-   list-style-type: none;
-   display: flex;
-   flex-direction: row;
-}
-.nav_right li {
-   padding: 10px;
 }
 
-
-/* 기본 스타일 */
-.navbar {
-   background-color: #333;
-   color: #fff;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding: 15px 20px;
-}
-
-.logo {
-   font-size: 24px;
-   text-decoration: none;
-   color: #fff;
-}
-
-.nav-links {
-   list-style: none;
-   padding: 0;
-   display: flex;
-   align-items: center;
-}
-
-.nav-links li {
-   margin-right: 20px;
-}
-
-.nav-links a {
-   color: #fff;
-   text-decoration: none;
-}
-
-/* 미디어 쿼리를 사용한 반응형 스타일 */
-@media (max-width: 768px) {
-   .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-=======
    .nav_left {
+
       width: 25%;
+
       height: 100%;
+
       display: flex;
+
       justify-content: center;
+
       align-items: center;
+
       float: left;
+
       border: 1px solid black;
+
    }
+
    .nav_center {
+
       width: 50%;
+
       height: 100%;
+
       display: flex;
+
       justify-content: center;
+
       align-items: center;
+
       float: left;
+
       display: flex;
+
       border: 1px solid black;
+
    }
+
       .nav_center ul {
+
          list-style-type: none;
+
          display: flex;
+
          flex-direction: row;
+
       }
+
          .nav_center li {
+
             padding: 10px;
+
          }
+
    .nav_right {
+
       width: 25%;
+
       height: 100%;
+
       display: flex;
+
       justify-content: center;
+
       align-items: center;
+
       float: left;
+
       border: 1px solid black;
->>>>>>> refs/remotes/origin/ki
+
    }
-<<<<<<< HEAD
-
-   .nav-links {
-      margin-top: 10px;
-      flex-direction: column;
-   }
-
-   .nav-links li {
-      margin: 10px 0;
-   }
-}
-
-/* 기본 스타일 */
-.custom-button {
-   display: inline-flex; /* 수평 정렬을 위해 flex 사용 */
-   align-items: center;
-   padding: 0px 20px;
-   background-color: #333;
-   color: #fff;
-   text-decoration: none;
-   border: none;
-   cursor: pointer;
-   border-radius: 4px;
-}
-
 
       .nav_right ul {
-         list-style-type: none;
-         display: flex;
-         flex-direction: row;
-      }
-         .nav_right li {
-            padding: 10px;
-            
-         }
 
+         list-style-type: none;
+
+         display: flex;
+
+         flex-direction: row;
+
+      }
+
+         .nav_right li {
+
+            padding: 10px;
