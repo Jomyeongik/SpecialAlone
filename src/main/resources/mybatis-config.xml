@@ -10,14 +10,14 @@
 	
 	<typeAliases>
 		<typeAlias type="com.alone.special.noticeEvent.domain.NoticeEvent" alias="NoticeEvent"/>
-		<typeAlias type="com.alone.special.user.domain.User" alias="User"/>
+		<typeAlias type="com.alone.special.user.domain.User" 			   alias="User"/>
 		<typeAlias type="com.alone.special.foodProduct.domain.FoodProduct" alias="FoodProduct"/>
-		<typeAlias type="com.alone.special.hobby.domain.Category" alias="Category"/>
-  		<typeAlias type="com.alone.special.hobby.domain.Board" alias="Board"/>
-  		<typeAlias type="com.alone.special.hobby.domain.Reply" alias="Reply"/>
-		<typeAlias type="com.alone.special.product.domain.Product" alias="Product"/>
-		<typeAlias type="com.alone.special.review.domain.Review" alias="Review"/>
-		<typeAlias type="com.alone.special.admin.domain.Singo" alias="Singo"/>
+		<typeAlias type="com.alone.special.hobby.domain.Category" 		   alias="Category"/>
+  		<typeAlias type="com.alone.special.hobby.domain.Board" 			   alias="Board"/>
+  		<typeAlias type="com.alone.special.hobby.domain.Reply" 			   alias="Reply"/>
+		<typeAlias type="com.alone.special.product.domain.Product" 		   alias="Product"/>
+		<typeAlias type="com.alone.special.review.domain.Review" 		   alias="Review"/>
+		<typeAlias type="com.alone.special.admin.domain.Singo" 			   alias="Singo"/>
 		<typeAlias type="com.alone.special.securitycomment.domain.Comment" alias="Comment" />
 	</typeAliases>
 	

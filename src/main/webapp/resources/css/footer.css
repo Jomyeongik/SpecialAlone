@@ -4,6 +4,7 @@ footer {
    height: 60px;
 }
    .footer_left {
+<<<<<<< HEAD
       width: 50%;
       height: 100%;
       border: 1px solid black;
@@ -14,4 +15,17 @@ footer {
       height: 100%;
       border: 1px solid black;
       float: left;
+=======
+      float: left;
+      width: 25%;
+      height: 100%;
+      border: 1px solid black;
+   }
+   .footer_right {
+      float: left;
+      width: 75%;
+      height: 100%;
+      border: 1px solid black;
+      
+>>>>>>> refs/remotes/origin/ki
    }
