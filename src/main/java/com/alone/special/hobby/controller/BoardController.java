@@ -25,7 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alone.special.hobby.domain.Board;
 import com.alone.special.hobby.domain.PageInfo;
+import com.alone.special.hobby.domain.Reply;
 import com.alone.special.hobby.service.BoardService;
+import com.alone.special.hobby.service.ReplyService;
 
 @Controller
 @RequestMapping("/hobby/board")
@@ -33,6 +35,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService bService;
+	
+	@Autowired
+	private ReplyService rService;
 	
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	private ModelAndView showBoardListForm(ModelAndView mv
@@ -48,6 +53,7 @@ public class BoardController {
 			getListMap.put("pInfo", pInfo);
 	        
 			List<Board> bList = bService.selectBoardList(getListMap);
+			
 //			if(!bList.isEmpty()) {
 				mv.addObject("bList", bList);
 				mv.addObject("pInfo", pInfo);
@@ -83,19 +89,18 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value="insert.do", method=RequestMethod.POST)
+	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
 	public ModelAndView insertBoard(ModelAndView mv
 			, @ModelAttribute Board board
 			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
-			, @RequestParam(value="category") String refCategoryName
 			, @RequestParam("setTime") String setTime
 			, HttpSession session
 			, HttpServletRequest request) {
 		
 		try {
-//			String boardWriter = (String)session.getAttribute("memberId");
-//			if(boardWriter != null && !boardWriter.equals("")) {
-//				board.sethBoardWriter(boardWriter);
+			String boardWriter = (String)session.getAttribute("userId");
+			if(boardWriter != null && !boardWriter.equals("")) {
+				board.sethBoardWriter(boardWriter);
 				
 				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 					Map<String, Object> bMap = this.saveFile(request, uploadFile);				// long이 들어가서 object임
@@ -116,7 +121,6 @@ public class BoardController {
 				} else {
 					board.sethGroupTime(null);
 				}
-				board.setRefCategoryName(refCategoryName);
 				
 				String encodedCategory = URLEncoder.encode(board.getRefCategoryName(), "UTF-8");
 				String url = "hobby/board/list.do?category=" + encodedCategory;
@@ -130,8 +134,12 @@ public class BoardController {
 					mv.addObject("url", "/index.jsp");
 					mv.setViewName("common/errorPage");
 				}
-//			} else {
-//			}
+			} else {
+				mv.addObject("msg", "게시글 등록 권한이 없습니다.");
+				mv.addObject("error", "로그인이 필요합니다.");
+				mv.addObject("url", "/index.jsp");
+				mv.setViewName("common/errorPage");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,9 +153,9 @@ public class BoardController {
 	
 	public Map<String, Object> saveFile(HttpServletRequest request, MultipartFile uploadFile) throws Exception {
 		Map<String, Object> fileMap = new HashMap<String, Object>();
-		String root = request.getSession().getServletContext().getRealPath("resources");	// 파일 넣을 resources 경로
-		String savePath = root + "//hbuploadFiles";											// 파일 저장 경로
 		String fileName = uploadFile.getOriginalFilename();
+		String root = request.getSession().getServletContext().getRealPath("resources//hobby");	// 파일 넣을 resources 경로
+		String savePath = root + "//bUploadFiles";											// 파일 저장 경로
 		String extension = fileName.substring(fileName.lastIndexOf(".")+1);					// 확장자 가져오기
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");						// 시간 가져오기
 		String fileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+extension;	// 시간 형식 바꾸꿔서 리네임에 넣기
@@ -161,7 +169,7 @@ public class BoardController {
 		
 		fileMap.put("fileName", fileName);													// 해쉬맵에 넣어주기
 		fileMap.put("fileRename", fileRename);
-		fileMap.put("filePath", "../resources/hbuploadFiles/"+fileRename);
+		fileMap.put("filePath", "../resources/hobby/bUploadFiles/"+fileRename);
 		fileMap.put("fileLength", fileLength);
 		
 		return fileMap;
@@ -187,7 +195,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/board/update.kh", method = RequestMethod.POST)
+	@RequestMapping(value="/update.do", method = RequestMethod.POST)
 	public ModelAndView boardUpdate(ModelAndView mv
 			, @ModelAttribute Board board
 			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
@@ -196,9 +204,9 @@ public class BoardController {
 			, HttpServletRequest request) {
 		
 		try {
-//			String memberId = (String)session.getAttribute("memberId");
-//			String boardWriter = board.getBoardWriter();
-//			if(boardWriter != null & boardWriter.equals(memberId)) {
+			String userId = (String)session.getAttribute("userId");
+			String boardWriter = board.gethBoardWriter();
+			if(boardWriter != null & boardWriter.equals(userId)) {
 				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 					String fileRename = board.gethBoardFilerename();
 					if(fileRename != null) {
@@ -210,7 +218,6 @@ public class BoardController {
 					board.sethBoardFilepath((String)bFileMap.get("filePath"));
 					board.sethBoardFilelength((long)bFileMap.get("fileLength"));
 				}
-				
 				if(setTime != null && !setTime.equals("")) {
 					String dateTimeString = setTime.replace("T", " ");
 					
@@ -219,8 +226,6 @@ public class BoardController {
 					Timestamp examDateTime = Timestamp.valueOf(dateTime);
 					
 					board.sethGroupTime(examDateTime);
-				} else {
-					board.sethGroupTime(null);
 				}
 				
 				String encodedCategory = URLEncoder.encode(board.getRefCategoryName(), "UTF-8");
@@ -235,12 +240,12 @@ public class BoardController {
 					mv.addObject("url", "/"+url);
 					mv.setViewName("common/errorPage");
 				}
-//			} else {
-//				mv.addObject("msg", "자신의 게시글만 삭제 가능합니다.");
-//				mv.addObject("error", "게시글 삭제 불가");
-//				mv.addObject("url", "/board/update.kh?boardNo="+board.getBoardNo());
-//				mv.setViewName("common/errorPage");
-//			}
+			} else {
+				mv.addObject("msg", "자신의 게시글만 삭제 가능합니다.");
+				mv.addObject("error", "게시글 삭제 불가");
+				mv.addObject("url", "/board/update.kh?boardNo="+board.gethBoardNo());
+				mv.setViewName("common/errorPage");
+			}
 			
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의하세요.");
@@ -266,10 +271,10 @@ public class BoardController {
 			, HttpSession session) {
 		String url = "";
 		try {
-//			String memberId = (String)session.getAttribute("memberId");
-//			String boardWriter = board.getBoardWriter();
 			url = "/hobby/board/list.do?category="+board.getRefCategoryName();
-//			if(boardWriter != null && boardWriter.equals(memberId)) {	// 세션 아이디, 작성자 비교
+			String userId = (String)session.getAttribute("userId");
+			String boardWriter = board.gethBoardWriter();
+			if(boardWriter != null && boardWriter.equals(userId)) {	// 세션 아이디, 작성자 비교
 				int result = bService.deleteBoard(board);
 				if(result > 0) {
 					mv.setViewName("redirect:"+url);
@@ -279,12 +284,12 @@ public class BoardController {
 					mv.addObject("url", url);
 					mv.setViewName("common/errorPage");
 				}
-//			} else {
-//				mv.addObject("msg", "자신의 댓글만 삭제 가능합니다.");
-//				mv.addObject("error", "댓글 삭제 불가");
-//				mv.addObject("url", url);
-//				mv.setViewName("common/errorPage");
-//			}
+			} else {
+				mv.addObject("msg", "자신의 댓글만 삭제 가능합니다.");
+				mv.addObject("error", "댓글 삭제 불가");
+				mv.addObject("url", url);
+				mv.setViewName("common/errorPage");
+			}
 				
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의하세요.");
@@ -298,22 +303,257 @@ public class BoardController {
 	@RequestMapping(value="/detail.do", method=RequestMethod.GET)
 	public ModelAndView showBoardDetail(ModelAndView mv
 			, @RequestParam("hBoardNo") Integer hBoardNo
-			, @RequestParam("category") String refCategoryName ) {
+			, @RequestParam("category") String refCategoryName
+			, HttpSession session) {
 		
 		try {
 			Board boardOne = bService.selectBoardByNo(hBoardNo);
 			if(boardOne != null) {
-//				List<Reply> replyList = rService.selectReplyList(boardNo);
-//				if(replyList.size() > 0) {
-//					mv.addObject("rList", replyList);
-//				}
-				mv.addObject("board", boardOne);
+				String userId = (String)session.getAttribute("userId");
+				String hGroupApplyPerson = boardOne.gethGroupApplyPerson();
+				String hBoardCategory = boardOne.gethBoardCategory();
+				if(hBoardCategory.equals("소모임")) {		// 소모임일 경우
+					if((hGroupApplyPerson != null && hGroupApplyPerson.contains(userId)) || userId.equals("admin") || userId.equals(boardOne.gethBoardWriter())) {	// 아이디가 포함되어있으면
+						List<Reply> replyList = rService.selectReplyList(hBoardNo);
+						if(replyList.size() > 0) {
+							mv.addObject("rList", replyList);
+						}
+						mv.addObject("board", boardOne);
+						mv.addObject("refCategoryName", refCategoryName);
+						mv.setViewName("hobby/detail");
+					} else {	// 아이디가 포함되어있지 않으면
+						mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+						mv.addObject("error", "소모임 신청자가 아닙니다.");
+						mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+						mv.setViewName("common/errorPage");
+					}
+				} else {
+					List<Reply> replyList = rService.selectReplyList(hBoardNo);
+					if(replyList.size() > 0) {
+						mv.addObject("rList", replyList);
+					}
+					mv.addObject("board", boardOne);
+					mv.addObject("refCategoryName", refCategoryName);
+					mv.setViewName("hobby/detail");
+				}
+			} else {
+				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 조회 실패");
+				mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/searchBySession.do", method=RequestMethod.GET)
+	public ModelAndView searchBySession(ModelAndView mv
+			, @RequestParam(value="category") String refCategoryName
+			, @RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage
+			, HttpSession session) {
+		
+		try {
+			String hBoardWriter = (String)session.getAttribute("userId");
+			
+			Map<String, String> paramMap = new HashMap<String, String>();
+			paramMap.put("hBoardWriter", hBoardWriter);
+			paramMap.put("refCategoryName", refCategoryName);
+			
+			int totalCount = bService.getListCountBySession(paramMap);
+			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+			String result = this.getSearchBySessionNaviInfo(pInfo, paramMap);
+			
+			List<Board> searchList = bService.searchBoardsBySession(pInfo, paramMap);		
+			
+			mv.addObject("hBoardWriter", hBoardWriter);
+			mv.addObject("refCategoryName", refCategoryName);
+			mv.addObject("pInfo", pInfo);
+			mv.addObject("sList", searchList);
+			mv.addObject("navi", result);
+			mv.setViewName("hobby/board-search");
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	public String getSearchBySessionNaviInfo(PageInfo pInfo, Map<String, String> paramMap) {
+		boolean needPrev = true;
+		boolean needNext = true;
+		
+		if(pInfo.getStartNavi() == 1) {
+			needPrev = false;
+		}
+		if(pInfo.getEndNavi() == pInfo.getNaviTotalCount()) {
+			needNext = false;
+		}
+		StringBuilder result = new StringBuilder();
+		if(needPrev) {
+			result.append("<a href='/hobby/board/searchBySession.do?currentPage="+(pInfo.getStartNavi()-1)+"&category="+paramMap.get("refCategoryName")+"&hBoardWriter="+paramMap.get("hBoardWriter")+"'> < </a>");
+		}
+		for(int i = pInfo.getStartNavi(); i <= pInfo.getEndNavi(); i++) {
+			result.append("<a href='/hobby/board/searchBySession.do?currentPage="+i+"&category="+paramMap.get("refCategoryName")+"&hBoardWriter="+paramMap.get("hBoardWriter")+"'>" +i+ "</a>");
+		}
+		if(needNext) {
+			result.append("<a href='/hobby/board/searchBySession.do?currentPage="+(pInfo.getEndNavi()+1)+"&category="+paramMap.get("refCategoryName")+"&hBoardWriter="+paramMap.get("hBoardWriter")+"'> > </a>");
+		}
+		return result.toString();
+	}
+	
+	@RequestMapping(value="/searchByCategoryBar.do", method=RequestMethod.GET)
+	public ModelAndView searchByCategoryBar(ModelAndView mv
+			, @RequestParam(value="category") String refCategoryName
+			, @RequestParam("searchCondition1") String searchCondition1
+			, @RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
+		
+		try {
+			Map<String, String> paramMap = new HashMap<String, String>();
+			paramMap.put("searchCondition1", searchCondition1);
+			paramMap.put("refCategoryName", refCategoryName);
+			
+			int totalCount = bService.getListCountByCondition(paramMap);
+			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+			String result = this.getSearchByBarNaviInfo(pInfo, paramMap);
+			
+			List<Board> searchList = bService.searchBoardsByCondition(pInfo, paramMap);		
+			
+			if(!searchList.isEmpty()) {
 				mv.addObject("refCategoryName", refCategoryName);
-				mv.setViewName("hobby/detail");
+				mv.addObject("pInfo", pInfo);
+				mv.addObject("sList", searchList);
+				mv.addObject("navi", result);
+				mv.setViewName("hobby/board-search");
 			} else {
 				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
 				mv.addObject("error", "게시글 상세조회 실패");
-				mv.addObject("url", "/hobby/board/list.do");
+				mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+				mv.setViewName("common/errorPage");
+			}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	public String getSearchByBarNaviInfo(PageInfo pInfo, Map<String, String> paramMap) {
+		boolean needPrev = true;
+		boolean needNext = true;
+		
+		if(pInfo.getStartNavi() == 1) {
+			needPrev = false;
+		}
+		if(pInfo.getEndNavi() == pInfo.getNaviTotalCount()) {
+			needNext = false;
+		}
+		StringBuilder result = new StringBuilder();
+		if(needPrev) {
+			result.append("<a href='/hobby/board/searchByCategoryBar.do?currentPage="+(pInfo.getStartNavi()-1)+"&category="+paramMap.get("refCategoryName")+"&searchCondition1="+paramMap.get("searchCondition1")+"'> < </a>");
+		}
+		for(int i = pInfo.getStartNavi(); i <= pInfo.getEndNavi(); i++) {
+			result.append("<a href='/hobby/board/searchByCategoryBar.do?currentPage="+i+"&category="+paramMap.get("refCategoryName")+"&searchCondition1="+paramMap.get("searchCondition1")+"'>" +i+ "</a>");
+		}
+		if(needNext) {
+			result.append("<a href='/hobby/board/searchByCategoryBar.do?currentPage="+(pInfo.getEndNavi()+1)+"&category="+paramMap.get("refCategoryName")+"&searchCondition1="+paramMap.get("searchCondition1")+"'> > </a>");
+		}
+		return result.toString();
+	}
+	
+	@RequestMapping(value="/search.do", method=RequestMethod.GET)
+	public ModelAndView searchBoardList(ModelAndView mv
+			, @RequestParam(value="category") String refCategoryName
+			, @RequestParam("searchCondition1") String searchCondition1
+			, @RequestParam("searchCondition2") String searchCondition2
+			, @RequestParam("searchKeyword") String searchKeyword
+			, @RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
+		
+		try {
+			Map<String, String> paramMap = new HashMap<String, String>();
+			mv.addObject("refCategoryName", refCategoryName);
+			paramMap.put("searchCondition1", searchCondition1);
+			paramMap.put("searchCondition2", searchCondition2);
+			paramMap.put("searchKeyword", searchKeyword);
+			paramMap.put("refCategoryName", refCategoryName);
+			
+			int totalCount = bService.getListCountByKeyword(paramMap);
+			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+			String result = this.getSearchNaviInfo(pInfo, paramMap);
+			
+			List<Board> searchList = bService.searchBoardsByKeyword(pInfo, paramMap);		
+			
+			if(!searchList.isEmpty()) {
+				mv.addObject("searchCondition1", searchCondition1);
+				mv.addObject("searchCondition2", searchCondition2);
+				mv.addObject("searchKeyword", searchKeyword);
+				mv.addObject("pInfo", pInfo);
+				mv.addObject("sList", searchList);
+				mv.addObject("navi", result);
+				mv.setViewName("hobby/board-search");
+			} else {
+				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 상세조회 실패");
+				mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+				mv.setViewName("common/errorPage");
+			}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	public String getSearchNaviInfo(PageInfo pInfo, Map<String, String> paramMap) {
+		boolean needPrev = true;
+		boolean needNext = true;
+		
+		if(pInfo.getStartNavi() == 1) {
+			needPrev = false;
+		}
+		if(pInfo.getEndNavi() == pInfo.getNaviTotalCount()) {
+			needNext = false;
+		}
+		StringBuilder result = new StringBuilder();
+		if(needPrev) {
+			result.append("<a href='/hobby/board/search.do?currentPage="+(pInfo.getStartNavi()-1)+"&category="+paramMap.get("refCategoryName")+"&searchCondition1="+paramMap.get("searchCondition1")+"&searchCondition2="+paramMap.get("searchCondition2")+"&searchKeyword="+paramMap.get("searchKeyword")+"'> < </a>");
+		}
+		for(int i = pInfo.getStartNavi(); i <= pInfo.getEndNavi(); i++) {
+			result.append("<a href='/hobby/board/search.do?currentPage="+i+"&category="+paramMap.get("refCategoryName")+"&searchCondition1="+paramMap.get("searchCondition1")+"&searchCondition2="+paramMap.get("searchCondition2")+"&searchKeyword="+paramMap.get("searchKeyword")+"'>" +i+ "</a>");
+		}
+		if(needNext) {
+			result.append("<a href='/hobby/board/search.do?currentPage="+(pInfo.getEndNavi()+1)+"&category="+paramMap.get("refCategoryName")+"&searchCondition1="+paramMap.get("searchCondition1")+"&searchCondition2="+paramMap.get("searchCondition2")+"&searchKeyword="+paramMap.get("searchKeyword")+"'> > </a>");
+		}
+		return result.toString();
+	}
+	
+	@RequestMapping(value="/popup.do", method=RequestMethod.GET)
+	public ModelAndView showPopupForm(ModelAndView mv
+			, @RequestParam("hBoardNo") Integer hBoardNo
+			, @RequestParam(value="category") String refCategoryName) {
+		
+		try {
+			Board boardOne = bService.selectBoardByNo(hBoardNo);
+			if(boardOne != null) {
+				mv.addObject("board", boardOne);
+				mv.setViewName("hobby/groupPopupForm");
+			} else {
+				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 상세조회 실패");
+				mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
@@ -324,4 +564,146 @@ public class BoardController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/doApply.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView groupDoApply(ModelAndView mv
+			, @ModelAttribute Board board
+			, @RequestParam(value="category") String refCategoryName
+			, HttpSession session) {
+				
+		try {
+			Board boardOne = bService.selectBoardByNo(board.gethBoardNo());
+			if(boardOne != null) {
+				int addPersonNum = boardOne.gethGroupApplyPersonNum()+1;
+				board.sethGroupApplyPersonNum(addPersonNum);
+				
+				String userId = (String)session.getAttribute("userId");
+				String existingValue = board.gethGroupApplyPerson();
+				if (existingValue == null || existingValue.isEmpty()) {
+				    board.sethGroupApplyPerson(userId);
+				} else {
+				    String updatedValue = existingValue + ", " + userId;
+				    board.sethGroupApplyPerson(updatedValue);
+				}
+				
+				int result = bService.updateApplyInfo(board);
+				
+				if(result > 0) {
+					mv.setViewName("redirect:/hobby/board/popup.do?category="+refCategoryName+"&hBoardNo="+board.gethBoardNo());
+				} else {
+					mv.addObject("msg", "게시글 수정이 완료되지 않았습니다.");
+					mv.addObject("error", "게시글 수정 실패");
+					mv.addObject("url", "/hobby/board/list.do");
+					mv.setViewName("common/errorPage");
+				}
+			} else {
+				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 상세조회 실패");
+				mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+				mv.setViewName("common/errorPage");
+			}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/undoApply.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView groupUndoApply(ModelAndView mv
+			, @ModelAttribute Board board
+			, @RequestParam(value="category") String refCategoryName
+			, HttpSession session) {
+		
+		Board boardOne = bService.selectBoardByNo(board.gethBoardNo());
+		
+		try {
+			if(boardOne != null) {
+				int minusPersonNum = boardOne.gethGroupApplyPersonNum()-1;
+				board.sethGroupApplyPersonNum(minusPersonNum);
+
+				String userId = (String)session.getAttribute("userId");
+				String hGroupApplyPerson = board.gethGroupApplyPerson();
+				if (hGroupApplyPerson != null && !hGroupApplyPerson.isEmpty()) {
+				    String updatedValue = hGroupApplyPerson.replace(userId + ", ", "").replace(", " + userId, "");
+				    updatedValue = updatedValue.replace(userId, "");
+				    board.sethGroupApplyPerson(updatedValue);
+				}
+				
+				int result = bService.updateApplyInfo(board);
+				
+				if(result > 0) {
+					mv.setViewName("redirect:/hobby/board/popup.do?category="+refCategoryName+"&hBoardNo="+board.gethBoardNo());
+				} else {
+					mv.addObject("msg", "게시글 수정이 완료되지 않았습니다.");
+					mv.addObject("error", "게시글 수정 실패");
+					mv.addObject("url", "/hobby/board/list.do");
+					mv.setViewName("common/errorPage");
+				}
+			} else {
+				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 상세조회 실패");
+				mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
+				mv.setViewName("common/errorPage");
+			}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/autoCreateBoard.do", method=RequestMethod.GET)
+	public ModelAndView showAutoCreatedBoard(ModelAndView mv
+			, @RequestParam(value="category") String refCategoryName
+			, @RequestParam("hBoardNo") Integer hBoardNo) {
+		
+		try {
+			Board boardOne = bService.selectBoardByNo(hBoardNo);
+			
+			String encodedCategory = URLEncoder.encode(boardOne.getRefCategoryName(), "UTF-8");
+			String url = "hobby/board/list.do?category=" + encodedCategory;
+			
+			int result = bService.createAutoBoard(boardOne);
+			if(result > 0) {
+				mv.addObject("board", boardOne);
+				mv.setViewName("redirect:/"+url);
+			} else {
+				mv.addObject("msg", "게시글 수정이 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 수정 실패");
+				mv.addObject("url", "/hobby/board/list.do");
+				mv.setViewName("common/errorPage");
+			}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/hobby/board/list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

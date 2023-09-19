@@ -42,4 +42,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return keyList;
 	}
 
+	@Override
+	public int deleteCategory(Category category) {
+		int result = cStore.deleteCategory(session, category);
+		return result;
+	}
+
 }

@@ -31,4 +31,8 @@
   	SELECT * FROM H_CATEGORY_TBL WHERE H_CATEGORY_NAME LIKE '%' || #{ hCategoryName } || '%'
   </select>
   
+  <delete id="deleteCategory">
+  	DELETE FROM H_CATEGORY_TBL WHERE H_CATEGORY_NAME = #{ hCategoryName}
+  </delete>
+  
 </mapper>
