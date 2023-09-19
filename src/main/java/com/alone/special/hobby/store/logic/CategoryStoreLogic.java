@@ -35,4 +35,10 @@ public class CategoryStoreLogic implements CategoryStore {
 		return keyList;
 	}
 
+	@Override
+	public int deleteCategory(SqlSession session, Category category) {
+		int result = session.delete("CategoryMapper.deleteCategory", category);
+		return result;
+	}
+
 }

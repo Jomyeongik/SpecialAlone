@@ -14,4 +14,6 @@ public interface CategoryService {
 
 	public List<Category> searchByKeyword(String searchKeyword);
 
+	public int deleteCategory(Category category);
+
 }

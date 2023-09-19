@@ -1,6 +1,7 @@
 package com.alone.special.product.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +39,25 @@ public Product selectProductById(Integer sProductId) {
 	return productOne;
 }
 @Override
-public String[] recentProducts(String[] productIdArray) {
-	String[] productsel =  store.productsel(session,productIdArray);
-	return productsel;
-}
-@Override
 public int updateProduct(Product product) {
 	int result = store.updateproduct(session,product);
 	return result;
 	
+}
+@Override
+public int deleteProduct(Integer sProductId) {
+	int result = store.deleteproduct(session,sProductId);
+	return result;
+}
+@Override
+public int getProductListCount(Map<String, String> paramMap) {
+	int result = store.selectProductListCount(session, paramMap);
+	return result;
+}
+@Override
+public List<Product> searchNoticesByKeyword(ProductPageInfo pInfo, Map<String, String> paramMap) {
+	List<Product> searchList  = store.selectNoticesByKeyword(session, pInfo, paramMap);
+	return searchList;
 }
 
 }

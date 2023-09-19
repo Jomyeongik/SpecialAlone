@@ -16,4 +16,6 @@ public interface CategoryStore {
 
 	public List<Category> searchByKeyword(SqlSession session, String searchKeyword);
 
+	public int deleteCategory(SqlSession session, Category category);
+
 }

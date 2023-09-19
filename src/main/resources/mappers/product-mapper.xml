@@ -38,9 +38,31 @@
     	SELECT * FROM S_PRODUCT ORDER BY S_PRODUCT_AVERAGE_RATING DESC
     </select>
     
-    <!-- ProductMapper.xml -->
-	<select id="getRecentProducts" parameterType="list" resultMap="productResultMap">
-    	SELECT * FROM S_PRODUCT WHERE S_PRODUCT_ID IN <foreach collection="list" item="productId" open="(" separator="," close=")"> #{productId} </foreach>
+	
+	<select id="selectProductByKeyword" resultMap="productResultMap">
+	SELECT * FROM S_PRODUCT
+	<if test="searchCondition == 'all'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }'%' OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
+	<if test="searchCondition == 'title'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' </if>
+	<if test="searchCondition == 'content'">WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
 	</select>
+
+<select id="selectProductsByAll" resultMap="productResultMap">SELECT * FROM S_PRODUCT WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </select>
+
+<select id="selectProductsByTitle" resultMap="productResultMap">SELECT * FROM S_PRODUCT WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' </select>
+
+<select id="selectProductsByContent" resultMap="productResultMap">SELECT * FROM S_PRODUCT WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </select>
+
+
+
+<select id="selectListByKeywordCount" resultType="_int">
+SELECT COUNT(*) FROM S_PRODUCT 
+<if test="searchCondition == 'all'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%'  OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
+
+<if test="searchCondition == 'title'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' </if>
+
+<if test="searchCondition == 'content'">WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
+
+</select>
+
 	
 </mapper>

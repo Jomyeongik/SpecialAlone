@@ -1,21 +1,25 @@
 package com.alone.special.review.domain;
 
-import java.sql.Date;
+
+
+import java.sql.Timestamp;
+
+import oracle.sql.TIMESTAMP;
 
 public class Review {
 	private int sReviewId;
-	private int sProductId;
-	private int sUserNo;
+	private Integer sProductId;
+	private Integer sUserNo;
 	private String sUserId;
 	private String sReviewContent;
 	private int sReviewReCommend;
-	private int sReviewDeRecommend;
+	private String sFileName;
 	private int sRating;
-	private String sFilerename;
+	private String sFileReName;
 	private String sFilePath;
-	private int sfileLength;
-	private Date sCreateDate;
-	private Date sUpdateDate;
+	private long sFileLength;
+	private Timestamp sCreateDate;
+	private  Timestamp sUpdateDate;
 	
 	public int getsReviewReCommend() {
 		return sReviewReCommend;
@@ -23,11 +27,11 @@ public class Review {
 	public void setsReviewReCommend(int sReviewReCommend) {
 		this.sReviewReCommend = sReviewReCommend;
 	}
-	public int getsReviewDeRecommend() {
-		return sReviewDeRecommend;
+	public String getsFileName() {
+		return sFileName;
 	}
-	public void setsReviewDeRecommend(int sReviewDeRecommend) {
-		this.sReviewDeRecommend = sReviewDeRecommend;
+	public void setsFileName(String sFileName) {
+		this.sFileName = sFileName;
 	}
 	public String getsUserId() {
 		return sUserId;
@@ -38,19 +42,19 @@ public class Review {
 	public int getsReviewId() {
 		return this.sReviewId;
 	}
-	public void setsReviewId(int sReviewId) {
+	public void setsReviewId(Integer sReviewId) {
 		this.sReviewId = sReviewId;
 	}
-	public int getsProductId() {
+	public Integer getsProductId() {
 		return sProductId;
 	}
 	public void setsProductId(int sProductId) {
 		this.sProductId = sProductId;
 	}
-	public int getsUserNo() {
+	public Integer getsUserNo() {
 		return sUserNo;
 	}
-	public void setsUserNo(int sUserNo) {
+	public void setsUserNo(Integer sUserNo) {
 		this.sUserNo = sUserNo;
 	}
 	public String getsReviewContent() {
@@ -65,11 +69,11 @@ public class Review {
 	public void setsRating(int sRating) {
 		this.sRating = sRating;
 	}
-	public String getsFilerename() {
-		return sFilerename;
+	public String getsFileReName() {
+		return sFileReName;
 	}
-	public void setsFilename(String sFilerename) {
-		this.sFilerename = sFilerename;
+	public void setsFileReName(String sFileReName) {
+		this.sFileReName = sFileReName;
 	}
 	public String getsFilePath() {
 		return sFilePath;
@@ -77,30 +81,30 @@ public class Review {
 	public void setsFilePath(String sFilePath) {
 		this.sFilePath = sFilePath;
 	}
-	public int getSfileLength() {
-		return sfileLength;
+	public long getsFileLength() {
+		return sFileLength;
 	}
-	public void setSfileLength(int sfileLength) {
-		this.sfileLength = sfileLength;
+	public void setsFileLength(long sFileLength) {
+		this.sFileLength = sFileLength;
 	}
-	public Date getsCreateDate() {
+	public Timestamp getsCreateDate() {
 		return sCreateDate;
 	}
-	public void setsCreateDate(Date sCreateDate) {
+	public void setsCreateDate(Timestamp sCreateDate) {
 		this.sCreateDate = sCreateDate;
 	}
-	public Date getsUpdateDate() {
+	public Timestamp getsUpdateDate() {
 		return sUpdateDate;
 	}
-	public void setsUpdateDate(Date sUpdateDate) {
+	public void setsUpdateDate(Timestamp sUpdateDate) {
 		this.sUpdateDate = sUpdateDate;
 	}
 	@Override
 	public String toString() {
 		return "Review [리뷰번호=" + sReviewId + ", 상품아이디=" + sProductId + ", 유저번호=" + sUserNo + ", 유저아이디="
 				+ sUserId + ", 리뷰내용=" + sReviewContent + ", 리뷰추천=" + sReviewReCommend
-				+ ", 리뷰비추천=" + sReviewDeRecommend + ", 별점=" + sRating + ", 첨부파일이름=" + sFilerename
-				+ ", 첨부파일경로=" + sFilePath + ", 첨부파일길이=" + sfileLength + ", 생성일자=" + sCreateDate
+				+ ", 리뷰비추천=" + sFileName + ", 별점=" + sRating + ", 첨부파일이름=" + sFileReName
+				+ ", 첨부파일경로=" + sFilePath + ", 첨부파일길이=" + sFileLength + ", 생성일자=" + sCreateDate
 				+ ", 수정일자=" + sUpdateDate + "]";
 	}
 	

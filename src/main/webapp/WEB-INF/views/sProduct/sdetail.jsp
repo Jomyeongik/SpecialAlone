@@ -1,46 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+   <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 상세 조회</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/reset.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/header.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/footer.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/index.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/plugins/sortable.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>
+
 <style>
   .star-rating {
-    font-size: 18px;
-    color: #ffcc00; 
-  }
- @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-       .rate { display: inline-block;border: 0;margin-right: 15px;}
-.rate > input {display: none;}
-.rate > label {float: right;color: #ddd}
-.rate > label:before {display: inline-block;font-size: 1rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
-.rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
-.rate input:checked ~ label, 
-.rate label:hover,.rate label:hover ~ la
-.rate input input:checked ~ label:hover,
-.rate input:checked ~ .rate label:hover ~ label,  
-.rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
-#starcontainer{
-  top: -100%;
-  
-  }
+  margin-bottom:-20px;
+  margin-top:-20px;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
+
+
+
   main{
   overflow:clip;
   height:auto;
@@ -48,10 +61,17 @@
   }
 .recently-viewed-products{
 width:15%;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+text-align: center;
 }
- .recentProductsList{
-    align-items: center; /* Vertically center images */
-   
+.card{
+width:200px;
+}
+.card-img-top{
+width:100%;
+height:180px;
 }
 .imagination{
     display: flex;
@@ -60,28 +80,65 @@ width:15%;
     padding-left: 20px;
 }
  .image img {
-    width:     width: 400px;
+    width:      800px;	
     object-fit: cover; /* Maintain aspect ratio and cover the entire container */
 }
 
 .middle{
 margin-top:50px;
 float:left;
-width:75%;
+width:70%;
 display:flex;
 margin-right:300px;
+margin-left:200px;
 }
 .right{
 width:15%;
 }
-
-
+#bottom{
+margin-top :10%;
+}
+#review-commit{
+    position: relative	;
+    top: -75px;
+    right: -400px;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    margin: 0;
+    padding: 0;
+    left:300px;
+}
+.imagedetail{
+position:absolute;
+margin-left:800px;
+margin-top:0%;
+}
+#fileup{
+    position: relative;
+    right :-200px;
+	top:60px;
+	left:50px	;
+}
+#reviewcontents{
+	position: relative;
+	right:-100px;
+	left:20px;
+}
+#userId{
+padding-left :20px;
+right:25%;
+}
+.recent{
+top:50px;
+}
 </style>
 </head>
 <body>
-	<main>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+	<main>
     <div class="recently-viewed-products">
+    <br><br>
     <h3>최근 본 상품</h3>
     <div class="row-container">
     <div id="recentProductsList">
@@ -89,90 +146,140 @@ width:15%;
 	</div>
 	</div>
 	</div>
-	<div class="middle col-md-7">
-	<section>
-	<div class="image">
-	<img alt="방호상품" src="${pageContext.request.contextPath}/resources/image/${Product.sFileReName}">
+	<div class="middle row">
+	<div class="image col-md-6">
+	<img alt="방호상품" src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}">
 	</div>
 	<hr>
-	<div class="imagedetail">
+	<div class="imagedetail col-md-6">
 	<ol>
-	<li>${Product.sProductName }</li>
-	<li>${Product.sPrice }</li>
+	<li><h1>${Product.sProductName }</h1></li>
+	<li><strong>${Product.sPrice }</strong></li>
 	<li>${Product.sDescription }</li>
+	<li>
+	<c:if test="${User.userGrade eq '2' }">
+		<a href="/product/update.do?sproductId="${Product.sProductId } class="btn btn-light">수정</a>
+		<a href="/product/delete.do?sproductId="${Product.sProductId } class="btn btn-light">삭제</a>		
+	</c:if>
+	</li>
 	</ol>
 	</div>
-	<h3>리뷰 쓰기</h3>
-	<div class="form-group">
-	<form action="/product/insertReview.do" method="post" name="reviewform" enctype="multipart/form-data">
-		<table class="table table-striped" style="text-align: center; border: 1px #dddddd">
-		<tr>
-		<td style="border-bottom:none;" valign="middle"> <br><br>${review.sUserid }</td>
-		<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
-		<td>   <div class="raiting_div " id="starcontainer">
-        <fieldset class="rate">
-        <input type="radio" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>
-        <input type="radio" id="rating9" name="rating" value="9"><label class="half" for="rating9" title="4.5점"></label>
-        <input type="radio" id="rating8" name="rating" value="8"><label for="rating8" title="4점"></label>
-        <input type="radio" id="rating7" name="rating" value="7"><label class="half" for="rating7" title="3.5점"></label>
-        <input type="radio" id="rating6" name="rating" value="6"><label for="rating6" title="3점"></label>
-        <input type="radio" id="rating5" name="rating" value="5"><label class="half" for="rating5" title="2.5점"></label>
-        <input type="radio" id="rating4" name="rating" value="4"><label for="rating4" title="2점"></label>
-        <input type="radio" id="rating3" name="rating" value="3"><label class="half" for="rating3" title="1.5점"></label>
-        <input type="radio" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>
-        <input type="radio" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>
-		</fieldset>
-		</div>
-			</td>
-			<td><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
-			<td>	
-	    <button class="btn btn-primary like-button" data-comment-id="comment123">추천</button>
-		<a href="/review/singo.do?sReviewId=${Review.sReviewId }" id="reportButton">신고하기</a>
-		<a href="/review/delete.do">삭제하기</a>
-		</td>
-			<tr>
-				<td colspan="3"><input type="file" name="fileName"></td>
-			</tr>
-	</table>
-	</form>
-	<div class="row">
+	<div class="row form-group ">
+	<div class="col-md-12">
+<strong><h3>리뷰 쓰기</h3></strong>
+<form action="/review/insertReview.do" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="sProductId" value="${Product.sProductId}">
+    <input type="hidden" name="sUserNo" value="${User.userNo}">
+    <table id="reviewtable" class="table table-striped" style="text-align: center; border: 1px #dddddd">
+        <tr>
+            <td style="border-bottom:none;" valign="middle" id="userId"><br><br>${User.userId}</td>
+            <td>  <div class="star-rating">
+                    <input type="radio" id="5-stars" name="sRating" value=5 />
+                    <label for="5-stars" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars" name="sRating" value=4 />
+                    <label for="4-stars" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars" name="sRating" value=3 />
+                    <label for="3-stars" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars" name="sRating" value=2 />
+                    <label for="2-stars" class="star">&#9733;</label>
+                    <input type="radio" id="1-star" name="sRating" value=1 />
+                    <label for="1-star" class="star">&#9733;</label>
+                </div>
+                <br>
+                <textarea id="reviewcontents" rows="3" cols="55" placeholder="리뷰를 남겨주세요." name="sReviewContent"></textarea>
+                	<br>
+                <input type="submit" class="bd_btn keyup_alt" id="review-commit"value="등록"></td>               
+            <td ><br><br>
+            
+            <input type="file" name="uploadFile" id="fileup"class="file" data-show-upload="false" data-show-caption="true">
+            </td>
+            
+        </tr>
+    </table>
+</form>
+	<div class="row" id="bottom">
+	<c:choose>
+    <c:when test="${not empty Reviews}">
+    <c:forEach var="Review" items="${Reviews}">
+    	<div class="col-md-12">
 		<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>
 				<tr>
-					<td align="left" bgcolor="beige">댓글</td>
+					<td align="left" bgcolor="beige">Review</td>
 				</tr>
 				<tr>
-					<div class="container">		
-							<div class="row">
-								<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<div class="container">
+			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 									<tbody>
-										<tr>						
-											<td align="left"></td>		
-											<td colspan="2"></td>
+										<tr>
+											<td>${Review.sUserId } <input type="hidden" id="sReviewNo_${Review.sReviewId}" value="${Review.sReviewId }"></td>	
+											<td align="left">
+											<td colspan="2"><td>${Review.sReviewContent }</td>
 											<td align="right">
-												
+												<td>${Review.sCreateDate }</td>
+												<td class="fdv_nav img_tx">	
+	   										<a class="fa fa-thumbs-o-up like-button" onclick="return confirm('추천하시겠습니까?')" data-reviews="${Review.sReviewId}"><span class="vote-count">${Review.sReviewReCommend }</span></a>
+											<a class="fa fa-exclamation-triangle" onclick="openSingoPopup(${Review.sReviewId});">신고</a>
+											<c:if test="${Review.sUserId eq sessionScope.userId or User.userNo eq 2}">
+											<a class="fa fa-pencil edit-button" id="sReviewId" data-sreviewid="${Review.sReviewId}" data-target="#editModal">수정</a>
+											<a class="fa fa-eraser" onclick="return confirm('삭제하시겠습니까?')" href="/review/deleteReview.do?sReviewId=${Review.sReviewId }&sProductId=${Review.sProductId}">삭제</a>
+											</c:if>
 											</td>
 										</tr>
 										<tr>
 											<td colspan="5" align="left">
 											
-											<br><br><img src = "commentUpload/ border="300px" width="300px" height="300px"><br><br></td>
+											<br><br><img src = "${pageContext.request.contextPath}/resources/images/${Review.sFileReName}" width="300px" height="300px"><br><br></td>
 										</tr>
 									</tbody>
 								</table>			
-							</div>
-					</div>		
 				</tr>
-		</table>
+						</table>
+					</div>
+				</c:forEach>
+		 </c:when>
+    <c:otherwise>
+        <p>리뷰가 없습니다.</p>
+    </c:otherwise>
+</c:choose>
+				</div>
 		
 	</div>
 	</div>
- </section>
-	
 	</div>
-	  <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+	<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">리뷰 수정</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+	          <form id="editReviewForm"action="/review/editReview.do" method="POST" enctype="multipart/form-data">
+	          	<input type="hidden" name="sReviewId" id="sReviewIdInput" value="${Review.sReviewId }">
+	          	<input type="hidden" name="sProductId" value="${Product.sProductId }">
+                <textarea id="editReviewContent" name="editReviewContent" class="form-control" rows="3"></textarea>
+            	<input type="file" id="imageInput" name="uploadFile" accept="image/*">
+            	<img id="imagePreview" src="" alt="이미지 미리보기" style="max-width: 100%; max-height: 200px;">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeEditButton"data-dismiss="modal">닫기</button>
+                <button type="submit" class="btn btn-primary" id="saveEditButton" data-review-id="${Review.sReviewId }">저장</button>
+            </div>
+        </div>
+    </div>
+</div>
+	
+	<div class="right"></div>
 	</main>
+	  <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+	
 	<script>
+	
+	
 	var product = {
 		    sProductId: ${Product.sProductId},
 		    sProductName: "${Product.sProductName}",
@@ -201,12 +308,12 @@ width:15%;
 // 		    	let fileName = 11;
 // 		    	productListHTML += `<div class='col-md-3'>${fileName}</div>` 
 		        productListHTML += 
-		            '<div class="col-md-4">\
+		            '<div class="col-md-8 recent">\
 		                <div class="card">\
-		                   <a href="/product/sdetail.do?sProductId='+item.sProductId+'"> <img class="card-img-top" src="${pageContext.request.contextPath}/resources/image/'+item.sFileReName+'" alt="${product.sProductName}"></a>\
+		                   <a href="/product/sdetail.do?sProductId='+item.sProductId+'"> <img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/'+item.sFileReName+'" alt="${product.sProductName}"></a>\
 		                    <div class="card-body">\
-		                        <h5 class="card-title">'+item.sProductName+'</h5>\
-		                        <p class="card-text">평균평점: <span class="star-rating" data-rating="'+item.sProductAverageRating+'"></span></p>\
+		                        <strong><p class="card-title">'+item.sProductName+'</p></strong>\
+		                        <p class="card-text">평균평점: <span class="star" data-rating="'+item.sProductAverageRating+'"></span></p>\
 		                    </div>\
 		                </div>\
 		            </div>';
@@ -215,43 +322,97 @@ width:15%;
 		    recentProductsList.innerHTML = productListHTML;
 		}
 
+		 
+		
+	
 		window.addEventListener('load', function () {
 		    displayRecentlyViewedProducts();
 		    addToRecentlyViewedProducts(product);	
 		});
 
 
- 		 $(document).ready(function() {
-			  $("#reportButton").click(function() {
-			    var popup = window.open("/review/singo.do", "singo", "width=500,height=400");
-			  })});
+		function openSingoPopup(reviewId) {
+		    var url = "/review/singo.do?sReviewId=" + reviewId;
+		    var popup = window.open(url, "singo", "width=500,height=400");
+		    if (popup) {
+		        popup.focus(); 
+		    } else {
+		        alert("팝업 창이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요.");
+		    }
+		}
 
 			
- 		$(document).ready(function() {
- 		    $(".like-button").on("click", function() {
- 		        var commentId = $(this).data("comment-id");
+		$(document).ready(function() {
+		    $(".fa.fa-thumbs-o-up.like-button").on("click", function() {
+		        var reviewId = $(this).data("reviews");
+		        var voteCountElement = $(this).find(".vote-count");
+		        if (localStorage.getItem('recommendedReview' + reviewId)) {
+		            alert('이미 추천하셨습니다.');
+		            return; 
+		        }
 
- 		        $.ajax({
- 		            type: "POST",
- 		            url: "/your-server-endpoint", 
- 		            data: {
- 		                commentId: commentId 
- 		            },
- 		            success: function(response) {
- 		                var likeCount = response.likeCount; 
- 		                $("#like-count-" + commentId).text(likeCount); 
- 		            },
- 		            error: function(xhr, status, error) {
- 		                alert("추천 중 오류가 발생했습니다.");
- 		                console.error(error);
- 		            }
- 		        });
- 		    });
- 		});
+		        $.ajax({
+		            type: "POST",
+		            url: "/review/insertrecommend.do",
+		            data: {
+		                reviewId: reviewId
+		            },
+		            success: function(response) {
+		                var updatedVoteCount = response;
+
+		                localStorage.setItem('recommendedReview' + reviewId, 'true');
+
+		                voteCountElement.text(updatedVoteCount);
+		            },
+		            error: function(xhr, status, error) {
+		                alert("추천 중 오류가 발생했습니다.");
+		                console.error(error);
+		            }
+		        });
+		    });
+		});
  		
+ 		$('#editModal').on('show.bs.modal', function (event) {
+ 		    var reviewId = $("#sReviewId").data('sreviewid'); 
+ 		    $('#sReviewIdInput').val(reviewId); 
+ 		});
+ 		$(".edit-button").on("click", function() {
+ 		    var reviewId = $(this).data("sreviewid"); 
+ 		    var reviewContent = $(this).closest("tr").find(".review-content").text();
+ 		    $("#editReviewContent").val(reviewContent);
+ 		    $("#saveEditButton").data("review-id", reviewId); 
+ 		    $("#editModal").modal("show");
+ 		    
+ 		    console.log("ReviewId in modal:", reviewId); 
+ 		});
+ 	
+        $("#saveEditButton").on("click", function() {
+        	  var reviewId = $(this).data("review-id");            
+        	  $("#editReviewForm").submit();
+
+        });
+        $("#closeEditButton").on("click", function() {
+            $("#editModal").modal("hide");
+        });
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            var imagePreview = document.getElementById('imagePreview');
+            var fileInput = event.target;
+
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block'; 
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                imagePreview.src = ''; 
+                imagePreview.style.display = 'none';
+            }
+        });
  		</script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>	
 </body>
 </html>

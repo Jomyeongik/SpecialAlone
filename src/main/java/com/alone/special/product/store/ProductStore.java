@@ -1,6 +1,7 @@
 package com.alone.special.product.store;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,13 @@ public interface ProductStore {
 
 	Product selectOne(SqlSession session, Integer sProductId);
 
-	String[] productsel(SqlSession session, String[] productIdArray);
 
 	int updateproduct(SqlSession session, Product product);
+
+	int deleteproduct(SqlSession session, Integer sProductId);
+
+	int selectProductListCount(SqlSession session, Map<String, String> paramMap);
+
+	List<Product> selectNoticesByKeyword(SqlSession session, ProductPageInfo pInfo, Map<String, String> paramMap);
 	
 }

@@ -64,6 +64,7 @@ main {
       width: 60%;
       height: 100%;
       border: 1px solid black;
+      position: relative;
    }
       .hobby_board_center_top {
          width: 100%;
@@ -83,15 +84,10 @@ main {
          height: 100%;
          border: 1px solid black;
       }
-         .hobby_board_listBTN {
-            display: flex;
-            justify-content: center;
-            margin: 30px;
-         }
          .hobby_board_listNav {
             display: flex;
             justify-content: center;
-            padding-bottom: 30px;
+            padding: 30px;
          }
             .hobby_board_listNav input {
                margin: 5px;

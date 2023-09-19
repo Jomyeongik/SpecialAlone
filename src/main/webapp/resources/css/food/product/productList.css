@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+label {
+	display: block; /* 블록 요소로 설정하여 한 줄에 하나의 요소만 표시됩니다. */
+}
+
+h1 {
+	text-align: center;
+	font-size: 2em;
+}
+
+main {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.btn1 {
+	padding: 10px;
+}
+
+#btn-delete {
+	float: right;
+}
+
+.nav_category {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	float: left;
+	border: 1px solid black;
+}
+
+.nav_category ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	margin: 5px;
+}
+
+.nav_category li {
+	margin: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#product_sort {
+	float: right;
+}
+
+.product_list {
+	display: flex;
+    flex-wrap: wrap; /* 상품이 넘칠 경우 다음 줄로 줄 바꿈되도록 설정 */
+    justify-content: space-between; /* 가로로 균등하게 배치 */
+}
+
+.product_item {
+	width: calc(33.33% - 20px); /* 한 줄에 3개의 상품이 오도록 너비 설정 */
+    margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.image_thumbnail {
+	/* border: 1px solid black; */
+	width: 100%;
+	height: 60%;
+	padding: 15px;
+	/* margin: 30px; */
+	/* display: inline-block; */
+}
+
+.product_info {
+	/* margin: 10px; */
+	padding: 15px;
+	height: 40%;
+	/* border: 1px solid black; */
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+
+.pagination {
+    text-align: center; /* 텍스트를 가운데로 정렬 */
+}
+
+.pagination ul {
+    display: inline-block; /* ul 요소를 가로로 정렬 */
+    padding: 0; /* 기본 패딩 제거 */
+}
+
+.pagination ul li {
+    display: inline; /* 리스트 항목을 가로로 정렬 */
+    margin-right: 10px; /* 각 항목 사이의 오른쪽 여백 설정 */
+}
+
+.pagination ul li:last-child {
+    margin-right: 0; /* 마지막 항목에 오른쪽 여백 제거 */
+}
