@@ -16,6 +16,7 @@
 		<typeAlias type="com.alone.special.hobby.domain.Board" alias="Board"/>
 		<typeAlias type="com.alone.special.product.domain.Product" alias="Product"/>
 		<typeAlias type="com.alone.special.review.domain.Review" alias="Review"/>
+		<typeAlias alias="Comment" type="com.alone.special.securitycomment.domain.Comment"/>
 	</typeAliases>
 	
 	<mappers>
@@ -26,6 +27,7 @@
 		<mapper resource="mappers/hobby/board-mapper.xml"/>
 		<mapper resource="mappers/product-mapper.xml"/>
 		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/comment-mapper.xml"/>
 	</mappers>
 	
 </configuration>

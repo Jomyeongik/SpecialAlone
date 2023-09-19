@@ -9,40 +9,29 @@
 <body>
 	
 	
-	<div id="reportPopup" >
-    <select id="categorySelect">
-        <option value="카테고리1">카테고리1</option>
-        <option value="카테고리2">카테고리2</option>
-        <option value="카테고리3">카테고리3</option>
+	<form id="reportPopup" action="/admin/singo.do" method="POST" >
+    <select name="reason" id="categorySelect">
+        <option value="폭력적인언어">폭력적인 언어</option>
+        <option value="비적절한 내용">비적절한 내용</option>
+        <option value="광고">광고</option>
     </select>
-    <p>${Review. }</p>
+    <input type="hidden" name="productTitle" value="${Product.sProductName }">
+    <input type="hidden" name="name" value="${rv.sUserId }">
+    <input type="hidden" name="url" value="/product/sdetail.do?sProductId=${rv.sProductId }">
+    <input type="hidden" name="content" value="${rv.sReviewContent }">
+    <hr>
+    <br>
+   	<p>사유</p>
+    <textarea rows="3"cols="50" name="singocontents"></textarea>
     
-    <button id="submitReport">보내기</button>
+    <button id="submit">보내기</button>
     <button id="closePopup">닫기</button>
     
-</div>
+</form>
 </body>
 <script >
-$("#submitReport").click(function() {
-    var selectedCategory = $("#categorySelect").val();
-    var reportContent = ""; 
-    $.ajax({
-      type: "POST", 
-      url: "/admin/singo.do", 
-      data: {
-        sDescription: reportContent,
-        category: selectedCategory
-      },
-      success: function(response) {
-        alert("신고가 성공적으로 접수되었습니다.");
-        $("#reportPopup").hide(); 
-      },
-      error: function(xhr, status, error) {
-        alert("신고 제출 중 오류가 발생했습니다.");
-        console.error(error);
-      }
-    });
-  });
+
+$("#closePopup").click(function() {
     $("#reportPopup").hide();
 });
 </script>

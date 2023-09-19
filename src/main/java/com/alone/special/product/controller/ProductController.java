@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,27 +24,70 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alone.special.product.domain.Product;
 import com.alone.special.product.domain.ProductPageInfo;
 import com.alone.special.product.service.ProductService;
+import com.alone.special.review.domain.Review;
+import com.alone.special.review.domain.ReviewPageInfo;
+import com.alone.special.review.service.ReviewService;
+import com.alone.special.user.domain.User;
+import com.alone.special.user.service.UserService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 	 @Autowired
 	    private ProductService productservice;
-	 
+	 @Autowired
+	 	private ReviewService reviewservice;
+	 @Autowired
+		private UserService userservice;
 	 @RequestMapping(value="/sdetail.do", method=RequestMethod.GET)
 		public ModelAndView showNoticeDetail(
-				@RequestParam("sProductId") Integer sProductId
-				,ModelAndView mv,HttpServletRequest request,HttpServletResponse response ) {
-		 Product ProductOne = productservice.selectProductById(sProductId);
-		    mv.addObject("Product", ProductOne).setViewName("sProduct/sdetail");
-		    
+				@RequestParam("sProductId") Integer sProductId,@RequestParam(value="page",required=false,defaultValue="1") Integer currentPage
+				,ModelAndView mv,HttpServletRequest request,HttpServletResponse response,HttpSession session ) {
+		 try {
+			 	String sReviewUserId = (String) session.getAttribute("userId");
+			 	User user = userservice.selectOneById(sReviewUserId);
+		 		int totalCount = reviewservice.getListCount();
+		 		Product ProductOne = productservice.selectProductById(sProductId);
+		 		ReviewPageInfo rInfo = this.getReviewPageInfo(currentPage,totalCount);
+		        List<Review> reviews = reviewservice.getProductReviews(sProductId,rInfo);
+				if(reviews.size()>0) {
+				     mv.addObject("rInfo", rInfo);
+				     mv.addObject("Product", ProductOne);
+				     mv.addObject("Reviews", reviews);
+				     mv.addObject("UserId",sReviewUserId);
+				     mv.addObject("User", user);
+				     mv.setViewName("sProduct/sdetail");
+				     
+				}else {
+					mv.addObject("Product",ProductOne).addObject("Reviews", reviews).addObject("rInfo",rInfo).addObject("UserId", sReviewUserId).setViewName("sProduct/sdetail");
+				}
+				}
 		
-		    
-		    return mv;
-		}
+		 catch (Exception e) {
+			 e.printStackTrace();
+				mv.setViewName("sProduct/slistproduct");
+			}
+	    	return mv;
+	    }
 	 
 	  
-	 
+private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
+	   ReviewPageInfo rpi =null;
+ 	int recordCountPerPage = 10;
+ 	int naviCountPerPage = 20;
+ 	int naviTotalCount;
+ 	int startNavi;
+ 	int endNavi;
+ 	naviTotalCount =(int)((double)totalCount/recordCountPerPage+0.9);
+ 	startNavi = (((int)((double)currentPage/naviCountPerPage+0.9))-1)*naviCountPerPage+1;
+ 	endNavi = startNavi + naviCountPerPage-1;
+ 	if(endNavi>naviTotalCount) {
+ 		endNavi = naviTotalCount;
+ 	}
+ 	rpi = new ReviewPageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, totalCount, naviTotalCount);
+ 	
+ 	return rpi;
+	}
 	
 
 		@RequestMapping(value = "/insertproduct.do", method = RequestMethod.GET)
@@ -90,7 +134,7 @@ public class ProductController {
 	    @RequestMapping(value="/update.do",method=RequestMethod.GET)
 	    public ModelAndView updateProduct(ModelAndView mv,@RequestParam("sProductId") Integer sProductId) {
 	    	Product productOne = productservice.selectProductById(sProductId);
-	    	mv.addObject("Product",productOne).setViewName("sProduct/slistproduct");;
+	    	mv.addObject("Product",productOne).setViewName("sProduct/modifyproduct");;
 	    	return mv;
 	    }
 	    @RequestMapping(value="/update.do",method=RequestMethod.POST)
@@ -115,16 +159,27 @@ public class ProductController {
 		    	if(result>0) {
 		    		
 		    		mv.setViewName("redirect:/sProduct/sdetail.do?sProductId="+product.getsProductId()); 
-		    		return mv;
 		    			
 		    	}else {
 		    		mv.setViewName("sProduct/insertproduct");
-		    		return mv;
 		    	}
 			} catch (Exception e) {
 	    		mv.setViewName("sProduct/insertproduct");
 	    		return mv;
 			}
+	    	return mv;
+	    }
+	    @RequestMapping(value="/delete.do",method=RequestMethod.GET)
+	    public ModelAndView deleteProduct(ModelAndView mv,@RequestParam("sProductId") Integer sProductId) {
+	    		int result = productservice.deleteProduct(sProductId);
+	    		if(result>0) {
+	    			mv.setViewName("sProduct/slistproduct");
+	    		}
+	    		return mv;
+	    	
+	    	
+	    	
+	    	
 	    	
 	    }
 	    @RequestMapping(value="/slistproduct.do",method=RequestMethod.GET)
@@ -175,7 +230,7 @@ public class ProductController {
 			String root = 
 					request.getSession().getServletContext()
 						.getRealPath("resources");
-			String saveFolder = root + "\\image";
+			String saveFolder = root + "\\images";
 			File folder = new File(saveFolder);
 			if(!folder.exists()) {
 				folder.mkdir();
@@ -195,7 +250,30 @@ public class ProductController {
 			return infoMap;
 		}
 		
-
+		@RequestMapping(value="/search.do", method=RequestMethod.GET)
+		public ModelAndView searchProductList(
+				@RequestParam("searchCondition") String searchCondition
+				,@RequestParam("searchKeyword") String searchKeyword
+				,@RequestParam(value="page", required=false, defaultValue="1") Integer currentPage
+				, ModelAndView mv) {
+			Map<String, String> paramMap = new HashMap<String, String>();
+			paramMap.put("searchCondition", searchCondition);
+			paramMap.put("searchKeyword", searchKeyword);
+			int totalCount = productservice.getProductListCount(paramMap);
+			ProductPageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+			List<Product> searchList = productservice.searchNoticesByKeyword(pInfo, paramMap);
+			
+			if(!searchList.isEmpty()) {
+				mv.addObject("searchCondition", searchCondition);
+				mv.addObject("searchKeyword", searchKeyword);
+				mv.addObject("pInfo", pInfo);
+				mv.addObject("pList", searchList);
+				mv.setViewName("sProduct/slistproduct"); 
+			}else {
+				mv.setViewName("redirect:/index.jsp");
+			}
+			return mv;
+		}
 
 		
 
