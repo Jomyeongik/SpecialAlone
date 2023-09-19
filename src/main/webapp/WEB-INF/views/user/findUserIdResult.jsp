@@ -9,7 +9,7 @@
       	<link rel="stylesheet" href="/resources/css/reset.css">
       	<link rel="stylesheet" href="/resources/css/header.css">
       	<link rel="stylesheet" href="/resources/css/footer.css">
-      	<link rel="stylesheet" href="/resources/css/user/login.css">
+      	<link rel="stylesheet" href="/resources/css/user/findUserIdResult.css">
 		<title>SpecialAlone 아이디 찾기 결과</title>
 	</head>
 	<body>
@@ -19,16 +19,22 @@
 			
 		<!-- main -->
 		<main>
-			<section>
-				<h1>Special Alone</h1><br>
-				<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
-				<%-- Debugging code to display user object contents --%>
-				<h1>아이디 찾기 결과</h1><br>
-				<div class="findUserIdArea">
-					<p>회원 아이디: ${userId}</p><br>
-					<a href="/user/login.do">로그인</a>
-				</div>
-			</section>
+			<div class="container-main">
+				<section>
+					<h1>Special Alone</h1><br>
+					<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
+					<h2>아이디 찾기 결과</h2><br><br><br>
+					<div class="findUserIdArea">
+						<c:if test="${not empty userId}">
+							<p>회원 아이디: ${userId}</p><br><br><br>
+						</c:if>
+						<c:if test="${empty userId}">
+       						<p>입력하신 이메일로 가입된 아이디는 없습니다</p><br><br><br>
+    					</c:if>
+						<a href="/user/login.do" class="button">로그인 하러가기</a>
+					</div>
+				</section>
+			</div>
 		</main>
 			
 		<!-- footer -->
