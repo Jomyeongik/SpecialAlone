@@ -45,65 +45,66 @@
                 <hr>
                 <div class="search">
                 	<select id="boardType">
-                		<option value="notice" selected>공지사항</option>
+                		<option value="notice">공지사항</option>
                 		<option value="event">행사</option>
                 		<option value="sProduct">안전 상품</option>
-                		<option value="sReview">안전 리뷰</option>
+                		<option value="sReview" selected>안전 리뷰</option>
                 		<option value="hBoard">취미 게시글</option>
                 		<option value="fBoard">음식 추천</option>
                 		<option value="fReview">음식 포토 리뷰</option>
                 	</select>
                 	<br>
-                    <form action="/manageBoard/search.do" method="get">
-                    	<input type="hidden" name="selectedValue" value="notice">
-						<input type="text" name="searchKeyword" placeholder="공지사항 제목을 입력하세요." style="width:30%">
+                    <form action="/singo/search.do" method="get">
+						<input type="text" name="searchKeyword" placeholder="상품명을 입력하세요." style="width:30%">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
 	            <table class="table table-striped table-hover">
 	            		<colgroup>
 							<col width="10%"></col>
-							<col width="40%"></col>
+							<col width="30%"></col>
 							<col width="20%"></col>
+							<col width="10%"></col>
 							<col width="10%"></col>
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
-	                            <th>번호</th>
-	                            <th>제목</th>
-	                            <th>작성일</th>
+	                            <th>리뷰번호</th>
+	                            <th>상품ID</th>
+	                            <th>작성자</th>
+	                            <th>리뷰추천수</th>
 	                            <th>관리</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody class="table-group-divider">
-							<c:forEach var="notice" items="${nList}">
+							<c:forEach var="review" items="${sList}">
 								<tr>
-									<td style="text-align:center">${notice.boardNo }</td>
-									<td><a href="/noticeEvent/detail.do?boardNo=${notice.boardNo }">${notice.boardTitle }</a></td>
-									<td style="text-align:center"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${notice.bCreateDate }"/></td>
+									<td style="text-align:center">${review.sReviewId }</td>
+									<td style="text-align:center"><a href="/noticeEvent/detail.do?boardNo=${review.sProductId }">${review.sProductId }</a></td>
+									<td>${review.sUserId }</td>
+									<td style="text-align:center">${review.sReviewReCommend }</td>
 									<td style="text-align:center">
-										<button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'">수정</button>
-										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">삭제</button>
+										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/noticeEvent/delete.do?boardNo=${product.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr align="center">
-								<td colspan="4">
+								<td colspan="5">
 								<c:if test="${pInfo.currentPage != 1 }">
-									<a href="/manageBoard.do?selectedValue=notice&currentPage=${pInfo.currentPage - 1 }">&lt;</a>&nbsp;
+									<a href="/manageBoard.do?selectedValue=sReview&currentPage=${pInfo.currentPage - 1 }">&lt;</a>&nbsp;
 								</c:if>
 								<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
 									<c:url var="pageUrl" value="/manageBoard.do">
-										<c:param name="selectedValue" value="notice"></c:param>
+										<c:param name="selectedValue" value="sReview"></c:param>
 										<c:param name="currentPage" value="${p }"></c:param>
 									</c:url>
 									<c:if test="${pInfo.currentPage == p }"><a href="${pageUrl }" style="color:black;">${p }</a>&nbsp;</c:if>
 									<c:if test="${pInfo.currentPage != p }"><a href="${pageUrl }">${p }</a>&nbsp;</c:if>
 								</c:forEach>
 								<c:if test="${pInfo.currentPage ne pInfo.naviTotalCount }">
-									<a href="/manageBoard.do?selectedValue=notice&currentPage=${pInfo.currentPage + 1 }">&gt;</a>
+									<a href="/manageBoard.do?selectedValue=sReview&currentPage=${pInfo.currentPage + 1 }">&gt;</a>
 								</c:if>
 								</td>
 							</tr>

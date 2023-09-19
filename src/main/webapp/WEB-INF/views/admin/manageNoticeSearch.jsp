@@ -56,7 +56,7 @@
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="notice">
-						<input type="text" name="searchKeyword" placeholder="공지사항 제목을 입력하세요." style="width:30%">
+						<input type="text" name="searchKeyword" placeholder="공지사항 제목을 입력하세요." style="width:30%" value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -76,7 +76,7 @@
 	                        </tr>
 	                    </thead>
 	                    <tbody class="table-group-divider">
-							<c:forEach var="notice" items="${nList}">
+							<c:forEach var="notice" items="${sList}">
 								<tr>
 									<td style="text-align:center">${notice.boardNo }</td>
 									<td><a href="/noticeEvent/detail.do?boardNo=${notice.boardNo }">${notice.boardTitle }</a></td>
@@ -92,18 +92,21 @@
 							<tr align="center">
 								<td colspan="4">
 								<c:if test="${pInfo.currentPage != 1 }">
-									<a href="/manageBoard.do?selectedValue=notice&currentPage=${pInfo.currentPage - 1 }">&lt;</a>&nbsp;
+									<a href="/manageBoard/search.do?selectedValue=notice&currentPage=${pInfo.currentPage - 1 }&
+										searchKeyword=${searchKeyword}">&lt;</a>&nbsp;
 								</c:if>
 								<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-									<c:url var="pageUrl" value="/manageBoard.do">
+									<c:url var="pageUrl" value="/manageBoard/search.do">
 										<c:param name="selectedValue" value="notice"></c:param>
 										<c:param name="currentPage" value="${p }"></c:param>
+										<c:param name="searchKeyword" value="${searchKeyword }"></c:param>
 									</c:url>
 									<c:if test="${pInfo.currentPage == p }"><a href="${pageUrl }" style="color:black;">${p }</a>&nbsp;</c:if>
 									<c:if test="${pInfo.currentPage != p }"><a href="${pageUrl }">${p }</a>&nbsp;</c:if>
 								</c:forEach>
 								<c:if test="${pInfo.currentPage ne pInfo.naviTotalCount }">
-									<a href="/manageBoard.do?selectedValue=notice&currentPage=${pInfo.currentPage + 1 }">&gt;</a>
+									<a href="/manageBoard/search.do?selectedValue=notice&currentPage=${pInfo.currentPage + 1 }&
+										searchKeyword=${searchKeyword}">&gt;</a>
 								</c:if>
 								</td>
 							</tr>

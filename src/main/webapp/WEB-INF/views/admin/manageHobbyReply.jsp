@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<title>게시글/리뷰 관리</title>
+		<title>댓글 관리</title>
 	</head>
 	<body>
 		<!-- header -->
@@ -33,30 +33,25 @@
                         <td><a href="/singo/list.do">신고회원</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: black;"><a href="/manageBoard.do?selectedValue=notice" style="color:white;">게시글/리뷰 관리</a></td>
+                        <td><a href="/manageBoard.do?selectedValue=notice">게시글/리뷰 관리</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/manageReply.do?selectedValue=hobby">댓글 관리</a></td>
+                        <td style="background-color: black;"><a href="/manageReply.do?selectedValue=hobby" style="color:white;">댓글 관리</a></td>
                     </tr>
                 </table>
             </div>
             <div id="main_middle">
-            	<h2><b>게시글/리뷰 관리</b></h2>
+            	<h2><b>댓글 관리</b></h2>
                 <hr>
                 <div class="search">
                 	<select id="boardType">
-                		<option value="notice" selected>공지사항</option>
-                		<option value="event">행사</option>
-                		<option value="sProduct">안전 상품</option>
-                		<option value="sReview">안전 리뷰</option>
-                		<option value="hBoard">취미 게시글</option>
-                		<option value="fBoard">음식 추천</option>
-                		<option value="fReview">음식 포토 리뷰</option>
+                		<option value="hobby" selected>취미 댓글</option>
+                		<option value="security">안전 댓글</option>
                 	</select>
                 	<br>
-                    <form action="/manageBoard/search.do" method="get">
-                    	<input type="hidden" name="selectedValue" value="notice">
-						<input type="text" name="searchKeyword" placeholder="공지사항 제목을 입력하세요." style="width:30%">
+                    <form action="/manageReply/search.do" method="get">
+                    	<input type="hidden" name="selectedValue" value="hobby">
+						<input type="text" name="searchKeyword" placeholder="작성자를 입력하세요." style="width:30%">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -70,20 +65,19 @@
 	                    <thead>
 	                        <tr style="text-align:center">
 	                            <th>번호</th>
-	                            <th>제목</th>
-	                            <th>작성일</th>
+	                            <th>내용</th>
+	                            <th>작성자</th>
 	                            <th>관리</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody class="table-group-divider">
-							<c:forEach var="notice" items="${nList}">
+							<c:forEach var="reply" items="${hList}">
 								<tr>
-									<td style="text-align:center">${notice.boardNo }</td>
-									<td><a href="/noticeEvent/detail.do?boardNo=${notice.boardNo }">${notice.boardTitle }</a></td>
-									<td style="text-align:center"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${notice.bCreateDate }"/></td>
+									<td style="text-align:center">${reply.hReplyNo }</td>
+									<td><a href="/noticeEvent/detail.do?boardNo=${reply.refBoardNo }">${reply.hReplyContent }</a></td>
+									<td style="text-align:center">${reply.hReplyWriter }</td>
 									<td style="text-align:center">
-										<button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'">수정</button>
-										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">삭제</button>
+										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/noticeEvent/delete.do?boardNo=${reply.hReplyNo }'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -92,18 +86,18 @@
 							<tr align="center">
 								<td colspan="4">
 								<c:if test="${pInfo.currentPage != 1 }">
-									<a href="/manageBoard.do?selectedValue=notice&currentPage=${pInfo.currentPage - 1 }">&lt;</a>&nbsp;
+									<a href="/manageReply.do?selectedValue=hobby&currentPage=${pInfo.currentPage - 1 }">&lt;</a>&nbsp;
 								</c:if>
 								<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-									<c:url var="pageUrl" value="/manageBoard.do">
-										<c:param name="selectedValue" value="notice"></c:param>
+									<c:url var="pageUrl" value="/manageReply.do">
+										<c:param name="selectedValue" value="hobby"></c:param>
 										<c:param name="currentPage" value="${p }"></c:param>
 									</c:url>
 									<c:if test="${pInfo.currentPage == p }"><a href="${pageUrl }" style="color:black;">${p }</a>&nbsp;</c:if>
 									<c:if test="${pInfo.currentPage != p }"><a href="${pageUrl }">${p }</a>&nbsp;</c:if>
 								</c:forEach>
 								<c:if test="${pInfo.currentPage ne pInfo.naviTotalCount }">
-									<a href="/manageBoard.do?selectedValue=notice&currentPage=${pInfo.currentPage + 1 }">&gt;</a>
+									<a href="/manageReply.do?selectedValue=hobby&currentPage=${pInfo.currentPage + 1 }">&gt;</a>
 								</c:if>
 								</td>
 							</tr>
@@ -118,7 +112,7 @@
         	const selectElement = document.getElementById("boardType");
         	selectElement.addEventListener("change", function() {
         		const selectedValue = selectElement.value;
-				location.href="/manageBoard.do?selectedValue="+selectedValue;
+				location.href="/manageReply.do?selectedValue="+selectedValue;
         	});
         	
         </script>
