@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/reset.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/footer.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/index.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -19,18 +19,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
 		integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
 <style>
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
+
 
 </style>
 </head>
 <body>
-<div class="container">
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<div class="container">
+	<main>
 		<h2>상품 등록</h2>
 		<form action="/product/insertproduct.do" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
@@ -45,13 +40,13 @@
 			</div>
 			<div class="form-group">
 				<label for="productImage">상품 이미지:</label> <input id="productImage" type="file" name="uploadFile" class="file" data-show-upload="false" data-show-caption="true" >
+				<img id="imagePreview" src="" alt="이미지 미리보기" style="max-width: 100%; max-height: 200px;">			
 			</div>
 			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="reset" class="btn btn-warning">리셋</button>
 		</form>
-	</div>
+	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
-	</div>
 	<script>
 		$(document).ready(function() {
 			$("#productImage").fileinput({
@@ -74,6 +69,25 @@
 		          
 			});
 		});
+		
+		 document.getElementById('productImage').addEventListener('change', function(event) {
+	            var imagePreview = document.getElementById('imagePreview');
+	            var fileInput = event.target;
+
+	            if (fileInput.files && fileInput.files[0]) {
+	                var reader = new FileReader();
+
+	                reader.onload = function(e) {
+	                    imagePreview.src = e.target.result;
+	                    imagePreview.style.display = 'block'; 
+	                };
+
+	                reader.readAsDataURL(fileInput.files[0]);
+	            } else {
+	                imagePreview.src = ''; 
+	                imagePreview.style.display = 'none';
+	            }
+	        });
 	</script>
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"
 			integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
