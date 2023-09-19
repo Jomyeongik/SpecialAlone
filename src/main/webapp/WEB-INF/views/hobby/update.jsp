@@ -19,7 +19,8 @@
 
          <!-- main -->
             <main>
-               <form action="/hobby/board/insert.do?category=${ refCategoryName }" method="post" enctype="multipart/form-data">
+               <form action="/hobby/board/update.do" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="refCategoryName" value="${refCategoryName }">
                   <input type="hidden" name="hBoardNo" value="${ board.hBoardNo }">
                   <input type="hidden" name="hBoardFilename" value="${ board.hBoardFilename }">
                   <input type="hidden" name="hBoardFilerename" value="${ board.hBoardFilerename }">
@@ -33,7 +34,7 @@
                         일시 : <input type="datetime-local" name="setTime" id="" value="${ board.hGroupTime }">
                         장소 : <input type="text" name="hGroupPlace" id="" value="${ board.hGroupPlace }">
                         인원 : <input type="number" name="hGroupPersonNum" id="insertForm-personNum" value="${ board.hGroupPersonNum }">
-                        신청인 : ${ memberId }
+                        신청인 : ${ userId }
                      </section>
                   </section>
                   <section class="hobby_insert_center">
@@ -43,8 +44,9 @@
                            <tr>
                               <td class="hobby_insert_table_category">
                                  <select name="hBoardCategory" id="categoryValue" onchange="openInsertForm(value);">
-                                    <option value="후기">후기</option>
                                     <option value="카테고리">카테고리</option>
+                                    <option value="후기">후기</option>
+                                    <option value="질문">질문</option>
                                     <option value="소모임모집">소모임 모집</option>
                                  </select>
                               </td>

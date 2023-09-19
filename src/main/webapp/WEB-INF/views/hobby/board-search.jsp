@@ -31,7 +31,7 @@
                   </section>
                   <section class="hobby_board_bigNav">
                      <div class="hobby_board_memberInfo">
-                        <a href="#">Today 200회</a>
+                        <a href="">Today 200회</a>
                         <br>
                         <a href="/hobby/board/searchBySession.do?category=${ refCategoryName }&hBoardWriter=${ hBoardWriter }">내가 쓴 글 보기</a>
                         <br>
@@ -104,7 +104,7 @@
                         </tr>
                      </thead>
                      <tbody>
-                        <c:forEach var="board" items="${ bList }">
+                        <c:forEach var="board" items="${ sList }">
                            <tr>
                               <input type="hidden" name="hBoardNo" value="${ board.hBoardNo }">
                               <td>${ board.hBoardCategory }</td>
@@ -119,7 +119,8 @@
                               </td>
                               <td>
                                  <c:if test="${ board.hBoardCategory != '소모임' && board.hBoardCategory != '소모임모집' }">${ board.hBoardReplyNum }</c:if>
-                                 <c:if test="${ board.hBoardCategory == '소모임' || board.hBoardCategory == '소모임모집' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
+                                 <c:if test="${ board.hBoardCategory == '소모임' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
+                                 <c:if test="${ board.hBoardCategory == '소모임모집' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
                               </td>
                            </tr>
                         </c:forEach>
@@ -127,7 +128,8 @@
                   </table>
                   <section class="hobby_board_center_bottom">
                      <section class="hobby_board_listNav">
-                        <c:if test="${ pInfo.startNavi != 1 }">
+                        ${ navi }
+                        <!-- <c:if test="${ pInfo.startNavi != 1 }">
                            <c:url var="prevUrl" value="/hobby/board/list.do?category=${ refCategoryName }">
                               <c:param name="page" value="${ pInfo.startNavi -1 }"></c:param>
                            </c:url>
@@ -144,7 +146,7 @@
                               <c:param name="page" value="${ pInfo.endNavi +1 }"></c:param>
                            </c:url>
                            <a href="${ nextUrl }">[다음]</a>
-                        </c:if>
+                        </c:if> -->
                      </section>
                   </section>
                </section>

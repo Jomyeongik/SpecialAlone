@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alone.special.hobby.domain.Category;
+import com.alone.special.hobby.service.BoardService;
 import com.alone.special.hobby.service.CategoryService;
 
 @Controller
@@ -26,6 +27,9 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryService cService;
+	
+	@Autowired
+	private BoardService bService;
 	
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView showCategoryListForm(ModelAndView mv) {
@@ -91,6 +95,7 @@ public class CategoryController {
 			}
 			int result = cService.insertCategory(category);
 			if(result > 0) {
+				mv.addObject("hCategoryFilename", category.gethCategoryFilename());
 				mv.setViewName("redirect:/hobby/category/list.do");
 			} else {
 			}
@@ -104,8 +109,8 @@ public class CategoryController {
 		Map<String, Object> infoMap = new HashMap<String, Object>();
 		
 		String fileName = uploadFile.getOriginalFilename();
-		String root = request.getSession().getServletContext().getRealPath("resources/hobby");
-		String saveFolder = root + "//hUploadFiles";
+		String root = request.getSession().getServletContext().getRealPath("resources//hobby");
+		String saveFolder = root + "//cUploadFiles";
 		File folder = new File(saveFolder);
 		if(!folder.exists()) {
 			folder.mkdir();
@@ -120,6 +125,40 @@ public class CategoryController {
 		infoMap.put("fileLength", fileLength);
 		
 		return infoMap;
+	}
+	
+	@RequestMapping(value="/delete.do", method = RequestMethod.POST)
+	public ModelAndView deleteCategory(ModelAndView mv
+			, @ModelAttribute Category category
+			, HttpSession session) {
+		try {
+//			String memberId = (String)session.getAttribute("memberId");
+//			String noticeWriter = notice.getNoticeWriter();
+//			if(noticeWriter != null && noticeWriter.equals(memberId)) {	// 세션 아이디, 작성자 비교
+				int result = bService.deleteBoardByCategoryDelete(category);
+					result = cService.deleteCategory(category);
+				if(result > 0) {
+					mv.setViewName("redirect:/hobby/category/list.do");
+				} else {
+					mv.addObject("msg", "게시글 수정이 완료되지 않았습니다.");
+					mv.addObject("error", "게시글 수정 실패");
+					mv.addObject("url", "/hobby/category/list.do");
+					mv.setViewName("common/errorPage");
+				}
+//			} else {
+//				mv.addObject("msg", "자신의 댓글만 삭제 가능합니다.");
+//				mv.addObject("error", "댓글 삭제 불가");
+//				mv.addObject("url", "/notice/list.do");
+//				mv.setViewName("common/errorPage");
+//			}
+				
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의하세요.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/index.jsp");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
 	
 }

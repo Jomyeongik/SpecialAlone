@@ -14,6 +14,8 @@ public class Board {
 	private Timestamp hGroupTime;
 	private String hGroupPlace;
 	private int hGroupPersonNum;
+	private String hGroupApplyPerson;
+	private int hGroupApplyPersonNum;
 	private Timestamp hBoardCreateDate;
 	private Timestamp hBoardUpdateDate;
 	private char hBoardStatus;
@@ -82,6 +84,18 @@ public class Board {
 	public void sethGroupPersonNum(int hGroupPersonNum) {
 		this.hGroupPersonNum = hGroupPersonNum;
 	}
+	public String gethGroupApplyPerson() {
+		return hGroupApplyPerson;
+	}
+	public void sethGroupApplyPerson(String hGroupApplyPerson) {
+		this.hGroupApplyPerson = hGroupApplyPerson;
+	}
+	public int gethGroupApplyPersonNum() {
+		return hGroupApplyPersonNum;
+	}
+	public void sethGroupApplyPersonNum(int hGroupApplyPersonNum) {
+		this.hGroupApplyPersonNum = hGroupApplyPersonNum;
+	}
 	public Timestamp gethBoardCreateDate() {
 		return hBoardCreateDate;
 	}
@@ -131,7 +145,8 @@ public class Board {
 				+ hBoardCategory + ", 취미 게시글 작성자=" + hBoardWriter + ", 취미 게시글 제목=" + hBoardTitle
 				+ ", 취미 게시글 내용=" + hBoardContent + ", 취미 게시글 댓글수=" + hBoardReplyNum + ", 취미 게시글 소모임 일정="
 				+ hGroupTime + ", 취미 게시글 소모임 장소=" + hGroupPlace + ", 취미 게시글 소모임 모집인원수=" + hGroupPersonNum
-				+ ", 취미 게시글 생성일=" + hBoardCreateDate + ", 취미 게시글 수정일=" + hBoardUpdateDate
+				+ ", 취미 게시글 소모임 지원자=" + hGroupApplyPerson + ", 취미 게시글 소모임 지원자수=" + hGroupApplyPersonNum + ", 취미 게시글 생성일="
+				+ hBoardCreateDate + ", 취미 게시글 수정일=" + hBoardUpdateDate
 				+ ", 취미 게시글 상태=" + hBoardStatus + ", 취미 게시글 파일이름=" + hBoardFilename + ", 취미 게시글 파일리네임="
 				+ hBoardFilerename + ", 취미 게시글 파일경로=" + hBoardFilepath + ", 취미 게시글 파일길이=" + hBoardFilelength
 				+ "]";

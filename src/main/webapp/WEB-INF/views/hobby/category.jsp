@@ -46,16 +46,18 @@
                               <li>
                                  <input type="submit" name="searchCondition" value="art">
                               </li>
-                              <!-- <c:forEach var="category" items="${ cList }" begin="0" end="5">
-                                 <li><input type="button" value="" name="searchCondition"></li>
-                              </c:forEach> -->
                            </ul>
                         </form>
                      </div>
-                     <div class="hobby_category_functionBTN">
-                        <input type="button" value="등록" onclick="openInsertForm();" id="openInsertFormBTN">
-                        <input type="button" value="삭제">
-                     </div>
+                     <c:if test= "${ userId eq 'admin' }">
+                        <div class="hobby_category_functionBTN">
+                           <input type="button" value="등록" onclick="openInsertForm();">
+                           <input type="button" value="삭제" onclick="openDeleteBTN();">
+                        </div>
+                     </c:if>
+                     <c:if test= "${ userId ne 'admin' }">
+                        <div class="hobby_category_functionBTN"></div>
+                     </c:if>
                      <form action="/hobby/category/searchByKeyword.do" method="get">
                         <div class="hobby_category_searchBar">
                            <input type="text" name="searchKeyword" id="" placeholder="Search">
@@ -91,48 +93,30 @@
                         </div>
                         <div class="hobby_category_row"></div>
                      </div>
-                     <div class="hobby_category_col">
-                        <c:forEach var="category" items="${ cList }" begin="0" end="2">
-                           <div class="hobby_category_row">
+
+                     <c:forEach var="category" items="${cList}" varStatus="loop">
+                        <c:if test="${loop.index % 3 == 0}">
+                           <div class="hobby_category_col">
+                        </c:if>
+                        <div class="hobby_category_row">
+                           <form action="/hobby/category/delete.do" method="post">
+                              <input type="hidden" name="hCategoryName" value="${category.hCategoryName}">
                               <div class="hobby_category_image">
-                                 <a href="/hobby/board/list.do?category=${ category.hCategoryName }">
-                                    <img src="#" alt="" width="300px" height="300px">
-                                 </a>
+                              <a href="/hobby/board/list.do?category=${category.hCategoryName}">
+                                 <img src="../../../resources/hobby/cUploadFiles/${category.hCategoryFilename}" alt="" width="300px" height="300px">
+                              </a>
                               </div>
                               <div class="hobby_category_title">
-                                 ${ category.hCategoryName }
+                              ${category.hCategoryName}
                               </div>
+                              <input type="submit" value="X" class="deleteBTN">
+                           </form>
+                        </div>
+                        <c:if test="${loop.index % 3 == 2 or loop.last}">
                            </div>
-                        </c:forEach>
-                     </div>
-                     <div class="hobby_category_col">
-                        <c:forEach var="category" items="${ cList }" begin="3" end="5">
-                           <div class="hobby_category_row">
-                              <div class="hobby_category_image">
-                                 <a href="/hobby/board/list.do">
-                                    <img src="/resources/image/Forester-MultiCloner-forest-750x750.jpg" alt="" width="300px" height="300px">
-                                 </a>
-                              </div>
-                              <div class="hobby_category_title">
-                                 ${ category.hCategoryName }
-                              </div>
-                           </div>
-                        </c:forEach>
-                     </div>
-                     <div class="hobby_category_col">
-                        <c:forEach var="category" items="${ cList }" begin="6" end="8">
-                           <div class="hobby_category_row">
-                              <div class="hobby_category_image">
-                                 <a href="/hobby/board/list.do">
-                                    <img src="/resources/image/Forester-MultiCloner-forest-750x750.jpg" alt="" width="300px" height="300px">
-                                 </a>
-                              </div>
-                              <div class="hobby_category_title">
-                                 ${ category.hCategoryName }
-                              </div>
-                           </div>
-                        </c:forEach>
-                     </div>
+                        </c:if>
+                     </c:forEach>
+                     
                   </div>
                </section>
                <section class="hobby_category_right"></section>
@@ -144,6 +128,14 @@
       <script>
          function openInsertForm() {
             document.querySelector("#insertForm").style.display = "flex";
+         }
+         function openDeleteBTN() {
+            var deleteButtons = document.querySelectorAll(".deleteBTN");
+
+            // NodeList의 각 요소에 대한 루프
+            deleteButtons.forEach(function(button) {
+               button.style.display = "block"; // 스타일 설정
+            });
          }
       </script>
    </body>

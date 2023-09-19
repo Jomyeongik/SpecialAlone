@@ -13,7 +13,8 @@
 		<typeAlias type="com.alone.special.user.domain.User" alias="User"/>
 		<typeAlias type="com.alone.special.foodProduct.domain.FoodProduct" alias="FoodProduct"/>
 		<typeAlias type="com.alone.special.hobby.domain.Category" alias="Category"/>
-		<typeAlias type="com.alone.special.hobby.domain.Board" alias="Board"/>
+  		<typeAlias type="com.alone.special.hobby.domain.Board" alias="Board"/>
+  		<typeAlias type="com.alone.special.hobby.domain.Reply" alias="Reply"/>
 		<typeAlias type="com.alone.special.product.domain.Product" alias="Product"/>
 		<typeAlias type="com.alone.special.review.domain.Review" alias="Review"/>
 		<typeAlias type="com.alone.special.admin.domain.Singo" alias="Singo"/>
@@ -24,7 +25,8 @@
 		<mapper resource="mappers/user-mapper.xml" />
 		<mapper resource="mappers/food/foodProduct-mapper.xml"/>
 		<mapper resource="mappers/hobby/category-mapper.xml"/>
-		<mapper resource="mappers/hobby/board-mapper.xml"/>
+    	<mapper resource="mappers/hobby/board-mapper.xml"/>
+    	<mapper resource="mappers/hobby/reply-mapper.xml"/>
 		<mapper resource="mappers/product-mapper.xml"/>
 		<mapper resource="mappers/review-mapper.xml"/>
 		<mapper resource="mappers/singo-mapper.xml"/>
