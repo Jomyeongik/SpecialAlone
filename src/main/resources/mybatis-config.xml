@@ -30,7 +30,7 @@
 	<mappers>
 		<mapper resource="mappers/noticeEvent-mapper.xml" />
 		<mapper resource="mappers/user-mapper.xml" />
-		<mapper resource="mappers/food/foodDiner-mapper.xml"/>
+<!-- 		<mapper resource="mappers/food/foodDiner-mapper.xml"/> -->
 		<mapper resource="mappers/food/foodProduct-mapper.xml"/>
 		<mapper resource="mappers/hobby/category-mapper.xml"/>
     	<mapper resource="mappers/hobby/board-mapper.xml"/>
