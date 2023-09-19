@@ -13,7 +13,7 @@
 				<a href="#">NOTICE</a>
 			</li>
 			<li>
-				<a href="#">FOOD</a>
+				<a href="/foodProduct/list.do">FOOD</a>
 			</li>
 			<li>
 				<a href="/hobby/category/list.do">HOBBY</a>
@@ -21,6 +21,9 @@
 			<li>
 				<a href="#">SECURITY</a>
 			</li>
+			<c:if test="${userId eq 'admin' }">
+				<li><a href="#">관리자페이지</a></li>
+			</c:if>
 		</ul>
 	</nav>
 	<div class="nav_right">
