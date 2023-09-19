@@ -1,52 +1,114 @@
 /* header */
 header {
-   height: 8rem;
+   width: 100%;
+   height: 60px;
+}
+.nav_left {
+   width: 10%;
+   height: 100%;
    display: flex;
+   justify-content: center;
+   align-items: center;
+   float: left;
+   border: 1px solid black;
 }
+
+.nav_center {
+   width: 60%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: left;
+   display: flex;
+   border: 1px solid black;
+}
+.nav_center ul {
+   list-style-type: none;
+   display: flex;
+   flex-direction: row;
+}
+.nav_center li {
+   padding: 10px;
+}
+.nav_right {
+   width: 30%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: left;
+   border: 1px solid black;
+}
+.nav_right ul {
+   list-style-type: none;
+   display: flex;
+   flex-direction: row;
+}
+.nav_right li {
+   padding: 10px;
+}
+
+
+/* 기본 스타일 */
+.navbar {
+   background-color: #333;
+   color: #fff;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 15px 20px;
+}
+
 .logo {
-    width: 25%;
-    height: 100%;
+   font-size: 24px;
+   text-decoration: none;
+   color: #fff;
 }
-	.logo img {
-        width: 100%;
-        height: 100%;
-	}
-#nav {
-    height: 100%;
-    width: 45%;
-    display: flex;
-    background-size: cover;
-    background-color: gray;
+
+.nav-links {
+   list-style: none;
+   padding: 0;
+   display: flex;
+   align-items: center;
 }
-		#nav ul li, .nav_right ul li {
-            margin: 5px 10px;
-        }
-        #nav ul li a, .nav_right ul li a{
-            font-size: x-large;
-            color: white;
-            font-family: 'Nanum Pen Script', cursive;
-            font-weight: 700;
-        }
-        #nav ul li a:hover, .nav_right ul li a:hover{
-            color: black;
-        }
-        #nav ul li a:link, .nav_right ul li a:link{
-            text-decoration-line: none;
-        }
-        #nav ul li a:visited, .nav_right ul li a:visited{
-            text-decoration-line: none;
-        }
-   .nav_right {
-      width: 30%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      float: left;
-      background-color: gray;
+
+.nav-links li {
+   margin-right: 20px;
+}
+
+.nav-links a {
+   color: #fff;
+   text-decoration: none;
+}
+
+/* 미디어 쿼리를 사용한 반응형 스타일 */
+@media (max-width: 768px) {
+   .navbar {
+      flex-direction: column;
+      align-items: flex-start;
    }
-      .nav_right ul {
-         list-style-type: none;
-         display: flex;
-         flex-direction: row;
-      }
+
+   .nav-links {
+      margin-top: 10px;
+      flex-direction: column;
+   }
+
+   .nav-links li {
+      margin: 10px 0;
+   }
+}
+
+/* 기본 스타일 */
+.custom-button {
+   display: inline-flex; /* 수평 정렬을 위해 flex 사용 */
+   align-items: center;
+   padding: 0px 20px;
+   background-color: #333;
+   color: #fff;
+   text-decoration: none;
+   border: none;
+   cursor: pointer;
+   border-radius: 4px;
+}
+

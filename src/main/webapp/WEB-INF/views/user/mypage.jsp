@@ -54,7 +54,7 @@
 							</li>
 							<li>
 								<label>주소 : </label>
-								<input id="userAddr" type="text" name="userAddr" placeholder="주소를 입력하세요">
+								<input id="userAddr" type="text" name="userAddr" value="${user.userAddr }">
 								<input type="button" onclick="sample4_execDaumPostcode();" value="주소검색">
 							</li>
 							<li>

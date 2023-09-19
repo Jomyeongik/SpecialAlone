@@ -160,7 +160,7 @@ public class UserController {
 				// 실패
 				mv.addObject("msg", "로그인 실패");
 				mv.addObject("error", "로그인 실패");
-				mv.addObject("url", "/user/register.do");
+				mv.addObject("url", "/user/login.do");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
@@ -200,13 +200,13 @@ public class UserController {
 			String userId = service.findUserId(userEmail);
 			if(userId != null) {
 				session.setAttribute("userId", userId);
+				mv.setViewName("user/findUserIdResult");
 			}else {
 				mv.addObject("msg", "입력하신 이메일로 가입된 아이디는 없습니다");
 				mv.addObject("error", "아이디 찾기 실패");
 				mv.addObject("url", "/index.jsp");
-				mv.setViewName("common/errorPage");
+				mv.setViewName("user/findUserIdResult");
 			}
-			mv.setViewName("user/findUserIdResult");
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의 바랍니다");
 			mv.addObject("error", e.getMessage());
@@ -222,8 +222,6 @@ public class UserController {
 								, HttpSession session) {
 //		String userId = (String) session.getAttribute("userId");
 		String userId = service.findUserId(userEmail);
-		System.out.println("유저 아이디 : " + userId);
-		
 		mv.addObject("userId", userId); 
 	    mv.setViewName("/user/findUserIdResult");
 	    return mv;
@@ -263,8 +261,6 @@ public class UserController {
 								, @RequestParam("userEmail") String userEmail
 								, HttpSession session) {
 		Map<String, String> userPw = service.findUserPw(userId, userEmail);
-		System.out.println("유저 비밀번호 : " + userPw);
-		
 		mv.addObject("userPw", userPw); 
 	    mv.setViewName("/user/findUserPwResult");
 	    return mv;

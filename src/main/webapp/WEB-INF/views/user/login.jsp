@@ -11,6 +11,14 @@
       	<link rel="stylesheet" href="/resources/css/footer.css">
       	<link rel="stylesheet" href="/resources/css/user/login.css">
 		<title>SpecialAlone 회원가입</title>
+		<style>
+			.container_main{
+			   width: 100%;
+			   height: 100%;
+			   text-align: center;
+			   background: url("../../images/loginView.png");
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container">
@@ -18,23 +26,25 @@
 			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 			
 		<!-- main -->
-		<main>
-			<section>
-				<h1>Special Alone</h1><br>
-				<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
-				<h1>로그인</h1>
-				<div class="loginArea">
-					<form action="/user/login.do" method="post">
-						<input type="text" name="userId" placeholder="아이디를 입력하세요">
-						<input type="password" name="userPw" placeholder="비밀번호를 입력하세요">
-						<button type="submit">Login</button>
-					</form>
-					<a href="/user/findUserId.do">아이디찾기</a><br>
-					<a href="/user/findUserPw.do">비밀번호찾기</a><br>
-					<a href="/user/register.do">회원가입</a>
+			<main>
+				<div class="container-main">
+				<section>
+						<h1>Special Alone</h1><br>
+						<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
+						<h2>로그인</h2><br><br>
+					<div class="loginArea">
+						<form action="/user/login.do" method="post">
+							<input type="text" name="userId" placeholder="아이디를 입력하세요" class="in"><br>
+							<input type="password" name="userPw" placeholder="비밀번호를 입력하세요" class="in"><br>
+							<button type="submit" id="btn">Login</button>
+						</form>
+						<a href="/user/findUserId.do" class="button">아이디찾기</a>
+						<a href="/user/findUserPw.do" class="button">비밀번호찾기</a>
+						<a href="/user/register.do" class="button">회원가입</a>
+					</div>
+				</section>
 				</div>
-			</section>
-		</main>
+			</main>
 			
 		<!-- footer -->
 			<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
