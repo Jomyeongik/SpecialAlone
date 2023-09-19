@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,9 +22,13 @@ import com.alone.special.hobby.service.BoardService;
 import com.alone.special.noticeEvent.domain.NoticeEvent;
 import com.alone.special.noticeEvent.domain.PageInfo;
 import com.alone.special.noticeEvent.service.NoticeEventService;
+import com.alone.special.product.controller.ProductController;
 import com.alone.special.product.domain.Product;
 import com.alone.special.product.domain.ProductPageInfo;
 import com.alone.special.product.service.ProductService;
+import com.alone.special.review.domain.Review;
+import com.alone.special.review.domain.ReviewPageInfo;
+import com.alone.special.review.service.ReviewService;
 import com.alone.special.user.domain.User;
 import com.alone.special.user.service.UserService;
 
@@ -38,28 +45,56 @@ public class AdminController {
 	private NoticeEventService nService;
 	@Autowired
 	private ProductService pService;
+	@Autowired
+	private ReviewService rService;
+
 	
 	
 	@RequestMapping(value="/member/list.do", method=RequestMethod.GET)
 	public ModelAndView showMemberList(ModelAndView mv,
 			@RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
-//		try {
-//			Integer totalCount = uService.getUserListCount();
-//			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
-//			List<User> mList = uService.selectUserList(pInfo);
-//			if(!mList.isEmpty()) {
-//				mv.addObject("mList", mList).addObject("pInfo", pInfo).setViewName("admin/manageMember");
-//			} else {
-//				mv.addObject("msg", "멤버 조회가 완료되지 않았습니다.");
-//				mv.addObject("url", "/index.jsp");
-//				mv.setViewName("common/errorPage");
-//			}
-//		} catch (Exception e) {
-//			mv.addObject("msg", "멤버 조회가 완료되지 않았습니다.");
-//			mv.addObject("url", "/index.jsp");
-//			mv.setViewName("common/errorPage");
-//		}
+		try {
+			Integer totalCount = uService.getUserListCount();
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
+			List<User> mList = uService.selectUserList(pInfo);
+			if(!mList.isEmpty()) {
+				mv.addObject("mList", mList).addObject("pInfo", pInfo).setViewName("admin/manageMember");
+			} else {
+				mv.addObject("msg", "멤버 조회가 완료되지 않았습니다.");
+				mv.addObject("url", "/index.jsp");
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "멤버 조회가 완료되지 않았습니다.");
+			mv.addObject("url", "/index.jsp");
+			mv.setViewName("common/errorPage");
+		}
 		
+		return mv;
+	}
+	
+	// 회원정보 페이지
+	@RequestMapping(value="/user/mypage.do", method=RequestMethod.GET)
+	public ModelAndView mypageForm(ModelAndView mv, @RequestParam("userId") String userId) {
+		try {
+			User uOne = uService.selectOneById(userId);
+
+				uOne = uService.selectOneById(userId);
+			if(uOne != null) {
+				mv.addObject("user", uOne);
+				mv.setViewName("user/mypage");
+			}else {
+				mv.addObject("msg", "회원정보 불러오기 실패");
+				mv.addObject("error", "회원정보 불러오기 실패");
+				mv.addObject("url", "/index.jsp");
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의 바랍니다");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/index.jsp");
+			mv.setViewName("common/errorPage");
+		}
 		return mv;
 	}
 	
@@ -131,15 +166,15 @@ public class AdminController {
 			List<Product> pList = pService.selectProductLust(pInfo);
 			mv.addObject("pList", pList).addObject("pInfo", pInfo).setViewName("/admin/manageSProduct");
 		} else if(selectedValue.equals("hBoard")) { //취미 게시글
-			Integer totalCount = hService.getListCount("캠핑");
+			Integer totalCount = hService.getListCountForAdmin();
 			com.alone.special.hobby.domain.PageInfo pInfo = this.getPageInfoH(totalCount, currentPage);
-			Map<String, Object> getListMap = new HashMap<String, Object>();
-			getListMap.put("refCategoryName", "캠핑");
-			getListMap.put("pInfo", pInfo);
-			List<Board> hList = hService.selectBoardList(getListMap);
+			List<Board> hList = hService.selectAllBoardListForAdmin(pInfo);
 			mv.addObject("hList", hList).addObject("pInfo", pInfo).setViewName("/admin/manageHBoard");
 		} else if(selectedValue.equals("sReview")) { // 안전 리뷰
 			//sList
+			Integer totalCount = rService.getListCount();
+			ReviewPageInfo pInfo = this.getReviewPageInfo(totalCount, currentPage);
+//			List<Review> sList = rService.
 		} else if(selectedValue.equals("fBoard")) { // 음식 추천
 			//fList
 		} else if(selectedValue.equals("fReview")) { // 음식 리뷰
@@ -154,23 +189,23 @@ public class AdminController {
 	public ModelAndView showSearchMemberList(ModelAndView mv,
 			@RequestParam("searchKeyword") String searchKeyword,
 			@RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
-//		try {
-//			Integer totalCount = uService.getUserListCount(searchKeyword);
-//			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
-//			List<User> searchList = uService.selectUserList(pInfo, searchKeyword);
-//			if(!searchList.isEmpty()) {
-//				mv.addObject("searchKeyword", searchKeyword).addObject("pInfo", pInfo)
-//				.addObject("sList", searchList).setViewName("admin/manageMemberSearch");
-//			} else {
-//				mv.addObject("msg", "멤버검색 조회가 완료되지 않았습니다.");
-//				mv.addObject("url", "/index.jsp");
-//				mv.setViewName("common/errorPage");
-//			}
-//		} catch (Exception e) {
-//			mv.addObject("msg", "멤버검색 조회가 완료되지 않았습니다.");
-//			mv.addObject("url", "/index.jsp");
-//			mv.setViewName("common/errorPage");
-//		}
+		try {
+			Integer totalCount = uService.getUserListCount(searchKeyword);
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
+			List<User> searchList = uService.selectUserList(pInfo, searchKeyword);
+			if(!searchList.isEmpty()) {
+				mv.addObject("searchKeyword", searchKeyword).addObject("pInfo", pInfo)
+				.addObject("sList", searchList).setViewName("admin/manageMemberSearch");
+			} else {
+				mv.addObject("msg", "멤버검색 조회가 완료되지 않았습니다.");
+				mv.addObject("url", "/index.jsp");
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "멤버검색 조회가 완료되지 않았습니다.");
+			mv.addObject("url", "/index.jsp");
+			mv.setViewName("common/errorPage");
+		}
 		
 		return mv;
 	}
@@ -327,5 +362,44 @@ public class AdminController {
 		page = new ProductPageInfo(currentPage, totalCount, naviTotalCount, recordCountPerPage, naviCountPerPage, startNavi, endNavi);
 				
 		return page;
+	}
+	
+	private ReviewPageInfo getReviewPageInfo(int totalCount, Integer currentPage) {
+		   ReviewPageInfo rpi =null;
+	 	int recordCountPerPage = 10;
+	 	int naviCountPerPage = 20;
+	 	int naviTotalCount;
+	 	int startNavi;
+	 	int endNavi;
+	 	naviTotalCount =(int)((double)totalCount/recordCountPerPage+0.9);
+	 	startNavi = (((int)((double)currentPage/naviCountPerPage+0.9))-1)*naviCountPerPage+1;
+	 	endNavi = startNavi + naviCountPerPage-1;
+	 	if(endNavi>naviTotalCount) {
+	 		endNavi = naviTotalCount;
+	 	}
+	 	rpi = new ReviewPageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, totalCount, naviTotalCount);
+	 	
+	 	return rpi;
+		}
+	
+	@RequestMapping(value="/deleteHBaord.do", method = RequestMethod.GET)
+	public ModelAndView deleteBoard(ModelAndView mv
+			, @ModelAttribute Board board) {
+		try {
+				int result = hService.deleteBoard(board);
+				if(result > 0) {
+
+				} else {
+					mv.addObject("msg", "게시글 삭제가 완료되지 않았습니다.");
+					mv.addObject("error", "게시글 삭제 실패");
+					mv.setViewName("common/errorPage");
+				}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의하세요.");
+			mv.addObject("error", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
 }

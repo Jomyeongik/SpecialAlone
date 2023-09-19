@@ -53,4 +53,20 @@
 	<select id="findUserPw" resultType="Map">
 		SELECT USER_PW FROM USER_TBL WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
 	</select>
+	<!-- 회원 전체 수 조회 -->
+	<select id="getUserListCount" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL
+	</select>
+	<!-- 검색 회원 전체 수 조회 -->
+	<select id="getUserListCountByKeyword" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	<!-- 회원 전체 조회 -->
+	<select id="selectUserList" resultMap="userResultMap">
+		SELECT * FROM USER_TBL ORDER BY USER_NO DESC
+	</select>
+	<!-- 검색 회원 조회 -->
+	<select id="searchUserByKeyword" resultMap="userResultMap">
+		SELECT * FROM USER_TBL WHERE USER_ID LIKE '%'||#{searchKeyword}||'%' ORDER BY USER_NO DESC
+	</select>
 </mapper>
