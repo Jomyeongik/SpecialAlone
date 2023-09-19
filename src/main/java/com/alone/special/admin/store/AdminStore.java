@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.alone.special.admin.domain.Singo;
 import com.alone.special.noticeEvent.domain.PageInfo;
+import com.alone.special.review.domain.Review;
+import com.alone.special.review.domain.ReviewPageInfo;
 
 public interface AdminStore {
 
@@ -56,5 +58,30 @@ public interface AdminStore {
 	 * @return
 	 */
 	int insertSingo(SqlSession sqlSession, Singo singo);
+
+	/**
+	 * 안전 리뷰 전체 리스트 Store
+	 * @param sqlSession
+	 * @param pInfo
+	 * @return
+	 */
+	List<Review> getAllReviews(SqlSession sqlSession, ReviewPageInfo pInfo);
+
+	/**
+	 * 안전 리뷰 검색 갯수 조회 Store
+	 * @param sqlSession
+	 * @param searchKeyword
+	 * @return
+	 */
+	int selectReviewListCountByKeyword(SqlSession sqlSession, String searchKeyword);
+
+	/**
+	 * 안전 리뷰 검색 리스트 Store
+	 * @param sqlSession
+	 * @param pInfo
+	 * @param searchKeyword
+	 * @return
+	 */
+	List<Review> getAllReviewsByKeyword(SqlSession sqlSession, ReviewPageInfo pInfo, String searchKeyword);
 
 }

@@ -54,7 +54,8 @@
                 		<option value="fReview">음식 포토 리뷰</option>
                 	</select>
                 	<br>
-                    <form action="/singo/search.do" method="get">
+                    <form action="/manageBoard/search.do" method="get">
+                    	<input type="hidden" name="selectedValue" value="hBoard">
 						<input type="text" name="searchKeyword" placeholder="카테고리 검색 ex)캠핑, 독서.." style="width:30%">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	

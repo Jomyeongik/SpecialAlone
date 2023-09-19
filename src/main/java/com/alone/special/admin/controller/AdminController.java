@@ -142,6 +142,23 @@ public class AdminController {
 			List<NoticeEvent> sList = nService.searchEventByKeyword(pInfo, searchKeyword);
 			mv.addObject("sList", sList).addObject("pInfo", pInfo)
 			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageEventSearch");
+		} else if(selectedValue.equals("sProduct")) { // 안전 상품
+			Map<String, String> paramMap = new HashMap<String, String>();
+			paramMap.put("searchCondition", "title");
+			paramMap.put("searchKeyword", searchKeyword);
+			int totalCount = pService.getProductListCount(paramMap);
+			ProductPageInfo pInfo = this.getPageInfoS(currentPage, totalCount);
+			List<Product> searchList = pService.searchNoticesByKeyword(pInfo, paramMap);
+			mv.addObject("sList", searchList).addObject("pInfo", pInfo)
+			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageSProductSearch");
+		} else if(selectedValue.equals("sReview")) { // 안전 리뷰
+			Integer totalCount = aService.selectReviewListCountByKeyword(searchKeyword);
+			ReviewPageInfo pInfo = this.getReviewPageInfo(totalCount, currentPage);
+			List<Review> sList = aService.getAllReviewsByKeyword(pInfo, searchKeyword);
+			mv.addObject("sList", sList).addObject("pInfo", pInfo)
+			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageSReviewSearch");
+		} else if(selectedValue.equals("hBoard")) { // 취미 게시글
+			// 맨 마지막 bySession 관리자 사용? writer 삭제해야함
 		}
 		return mv;
 	}
@@ -174,7 +191,8 @@ public class AdminController {
 			//sList
 			Integer totalCount = rService.getListCount();
 			ReviewPageInfo pInfo = this.getReviewPageInfo(totalCount, currentPage);
-//			List<Review> sList = rService.
+			List<Review> sList = aService.getAllReviews(pInfo);
+			mv.addObject("sList", sList).addObject("pInfo", pInfo).setViewName("/admin/manageSReview");
 		} else if(selectedValue.equals("fBoard")) { // 음식 추천
 			//fList
 		} else if(selectedValue.equals("fReview")) { // 음식 리뷰
@@ -367,7 +385,7 @@ public class AdminController {
 	private ReviewPageInfo getReviewPageInfo(int totalCount, Integer currentPage) {
 		   ReviewPageInfo rpi =null;
 	 	int recordCountPerPage = 10;
-	 	int naviCountPerPage = 20;
+	 	int naviCountPerPage = 10;
 	 	int naviTotalCount;
 	 	int startNavi;
 	 	int endNavi;
@@ -377,7 +395,7 @@ public class AdminController {
 	 	if(endNavi>naviTotalCount) {
 	 		endNavi = naviTotalCount;
 	 	}
-	 	rpi = new ReviewPageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, totalCount, naviTotalCount);
+	 	rpi = new ReviewPageInfo(currentPage, totalCount, naviTotalCount, recordCountPerPage, naviCountPerPage, startNavi, endNavi);
 	 	
 	 	return rpi;
 		}
@@ -388,7 +406,7 @@ public class AdminController {
 		try {
 				int result = hService.deleteBoard(board);
 				if(result > 0) {
-
+					mv.setViewName("/index.jsp");
 				} else {
 					mv.addObject("msg", "게시글 삭제가 완료되지 않았습니다.");
 					mv.addObject("error", "게시글 삭제 실패");

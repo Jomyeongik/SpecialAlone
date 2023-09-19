@@ -78,5 +78,15 @@
     <delete id="deleteReview">
     	DELETE FROM S_REVIEW WHERE S_REVIEW_ID = #{sReviewId}
     </delete>
+    
+    <select id="getAllReviews" resultMap="ReviewResultMap">
+    	SELECT * FROM S_REVIEW
+    </select>
+    <select id="selectReviewListCountByKeyword" resultType="_int">
+    	SELECT COUNT(*) FROM S_REVIEW WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+    </select>
+    <select id="getAllReviewsByKeyword" resultMap="ReviewResultMap">
+    	SELECT * FROM S_REVIEW WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+    </select>
 </mapper>
 
