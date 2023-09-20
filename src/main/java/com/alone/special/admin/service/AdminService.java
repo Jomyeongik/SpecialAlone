@@ -73,4 +73,32 @@ public interface AdminService {
 	 */
 	List<Review> getAllReviewsByKeyword(ReviewPageInfo pInfo, String searchKeyword);
 
+	/**
+	 * 전체 회원 수 조회 Service
+	 * @return
+	 */
+	Integer getUserListCount();
+
+	/**
+	 * 전체 회원 조회 Service
+	 * @param pInfo
+	 * @return
+	 */
+	List<User> selectUserList(PageInfo pInfo);
+
+	/**
+	 * 검색 회원 수 조회 Service
+	 * @param searchKeyword
+	 * @return
+	 */
+	Integer getUserListCount(String searchKeyword);
+
+	/**
+	 * 검색 회원 리스트 Service
+	 * @param pInfo
+	 * @param searchKeyword
+	 * @return
+	 */
+	List<User> selectUserList(PageInfo pInfo, String searchKeyword);
+
 }

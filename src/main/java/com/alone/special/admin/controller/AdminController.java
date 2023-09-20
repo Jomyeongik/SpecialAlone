@@ -54,9 +54,9 @@ public class AdminController {
 	public ModelAndView showMemberList(ModelAndView mv,
 			@RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
 		try {
-			Integer totalCount = uService.getUserListCount();
+			Integer totalCount = aService.getUserListCount();
 			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
-			List<User> mList = uService.selectUserList(pInfo);
+			List<User> mList = aService.selectUserList(pInfo);
 			if(!mList.isEmpty()) {
 				mv.addObject("mList", mList).addObject("pInfo", pInfo).setViewName("admin/manageMember");
 			} else {
@@ -208,9 +208,9 @@ public class AdminController {
 			@RequestParam("searchKeyword") String searchKeyword,
 			@RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
 		try {
-			Integer totalCount = uService.getUserListCount(searchKeyword);
+			Integer totalCount = aService.getUserListCount(searchKeyword);
 			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
-			List<User> searchList = uService.selectUserList(pInfo, searchKeyword);
+			List<User> searchList = aService.selectUserList(pInfo, searchKeyword);
 			if(!searchList.isEmpty()) {
 				mv.addObject("searchKeyword", searchKeyword).addObject("pInfo", pInfo)
 				.addObject("sList", searchList).setViewName("admin/manageMemberSearch");

@@ -11,6 +11,7 @@ import com.alone.special.admin.store.AdminStore;
 import com.alone.special.noticeEvent.domain.PageInfo;
 import com.alone.special.review.domain.Review;
 import com.alone.special.review.domain.ReviewPageInfo;
+import com.alone.special.user.domain.User;
 
 @Repository
 public class AdminStoreLogic implements AdminStore{
@@ -79,6 +80,36 @@ public class AdminStoreLogic implements AdminStore{
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		List<Review> sList = sqlSession.selectList("ReviewMapper.getAllReviewsByKeyword", searchKeyword, rowBounds);
 		return sList;
+	}
+
+	@Override
+	public int getUserListCount(SqlSession sqlSession) {
+		int result = sqlSession.selectOne("UserMapper.getUserListCount");
+		return result;
+	}
+
+	@Override
+	public List<User> selectUserList(SqlSession sqlSession, PageInfo pInfo) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage()-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<User> uList = sqlSession.selectList("UserMapper.selectUserList", null, rowBounds);
+		return uList;
+	}
+
+	@Override
+	public int getUserListCountByKeyword(SqlSession sqlSession, String searchKeyword) {
+		int result = sqlSession.selectOne("UserMapper.getUserListCountByKeyword", searchKeyword);
+		return result;
+	}
+
+	@Override
+	public List<User> searchUserByKeyword(SqlSession sqlSession, PageInfo pInfo, String searchKeyword) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage()-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<User> uList = sqlSession.selectList("UserMapper.searchUserByKeyword", searchKeyword, rowBounds);
+		return uList;
 	}
 
 }

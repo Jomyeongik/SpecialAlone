@@ -8,6 +8,7 @@ import com.alone.special.admin.domain.Singo;
 import com.alone.special.noticeEvent.domain.PageInfo;
 import com.alone.special.review.domain.Review;
 import com.alone.special.review.domain.ReviewPageInfo;
+import com.alone.special.user.domain.User;
 
 public interface AdminStore {
 
@@ -83,5 +84,37 @@ public interface AdminStore {
 	 * @return
 	 */
 	List<Review> getAllReviewsByKeyword(SqlSession sqlSession, ReviewPageInfo pInfo, String searchKeyword);
+
+	/**
+	 * 전체 회원 수 조회 Store
+	 * @param sqlSession
+	 * @return
+	 */
+	int getUserListCount(SqlSession sqlSession);
+
+	/**
+	 * 전체 회원 리스트 Store
+	 * @param sqlSession
+	 * @param pInfo
+	 * @return
+	 */
+	List<User> selectUserList(SqlSession sqlSession, PageInfo pInfo);
+
+	/**
+	 * 검색 회원 수 조회 Store
+	 * @param sqlSession
+	 * @param searchKeyword
+	 * @return
+	 */
+	int getUserListCountByKeyword(SqlSession sqlSession, String searchKeyword);
+
+	/**
+	 * 검색 회원 리스트 Store
+	 * @param sqlSession
+	 * @param pInfo
+	 * @param searchKeyword
+	 * @return
+	 */
+	List<User> searchUserByKeyword(SqlSession sqlSession, PageInfo pInfo, String searchKeyword);
 
 }

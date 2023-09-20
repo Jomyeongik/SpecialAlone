@@ -66,4 +66,24 @@ public class AdminServiceImpl implements AdminService{
 		List<Review> sList = aStore.getAllReviewsByKeyword(sqlSession, pInfo, searchKeyword);
 		return sList;
 	}
+	@Override
+	public Integer getUserListCount() {
+		int result = aStore.getUserListCount(sqlSession);
+		return result;
+	}
+	@Override
+	public List<User> selectUserList(PageInfo pInfo) {
+		List<User> uList = aStore.selectUserList(sqlSession, pInfo);
+		return uList;
+	}
+	@Override
+	public Integer getUserListCount(String searchKeyword) {
+		int result = aStore.getUserListCountByKeyword(sqlSession, searchKeyword);
+		return result;
+	}
+	@Override
+	public List<User> selectUserList(PageInfo pInfo, String searchKeyword) {
+		List<User> uList = aStore.searchUserByKeyword(sqlSession, pInfo, searchKeyword);
+		return uList;
+	}
 }

@@ -123,7 +123,7 @@
   	DELETE FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ hCategoryName }
   </delete>
   
-  <select id="selectBoardListByCategoryForAdmin" resultType="_int">
+  <select id="selectBoardListByCategoryForAdmin" resultMap="boardResultMap">
  	SELECT * FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_STATUS = 'Y'
   </select>
   
