@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.alone.special.diner.domain.Diner;
 import com.alone.special.diner.domain.DinerFile;
 import com.alone.special.diner.domain.DinerRev;
+import com.alone.special.diner.domain.DinerRevFile;
 import com.alone.special.diner.store.DinerStore;
 import com.alone.special.foodProduct.domain.FoodProduct;
 import com.alone.special.foodProduct.domain.FoodProductFile;
@@ -36,6 +37,14 @@ public class DinerStoreLogic implements DinerStore{
 		Map<String,Object> params = new HashMap<>();
 		params.put("list", dList);
 		int result = session.insert("FoodDinerMapper.insertDinerFiles", params);
+		return result;
+	}
+
+	@Override
+	public int insertRevFiles(SqlSession session, List<DinerRevFile> dRevList) {
+		Map<String,Object> params = new HashMap<>();
+		params.put("list", dRevList);
+		int result = session.insert("FoodDinerMapper.insertRevFiles", params);
 		return result;
 	}
 
@@ -97,6 +106,39 @@ public class DinerStoreLogic implements DinerStore{
 	public int getCurrentFDinerRevId(SqlSession session) {
 		int currentFDinerRevId = session.selectOne("FoodDinerMapper.getCurrentFDinerRevId"); // 실제 시퀀스 값을 가져오는 코드가 필요합니다.
         return currentFDinerRevId;
+	}
+
+	@Override
+	public int getRevListCount(SqlSession session) {
+		int result = session.selectOne("FoodDinerMapper.getRevListCount");
+		return result;
+	}
+
+	@Override
+	public List<DinerRev> selectRevListByFdinerId(SqlSession session, PageInfo pInfo, int fDinerId) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage()-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<DinerRev> dRevList = session.selectList("FoodDinerMapper.selectRevListByFdinerId", fDinerId, rowBounds);
+		return dRevList;
+	}
+
+	@Override
+	public List<DinerRevFile> selectRevFileList(SqlSession session) {
+		List<DinerRevFile> dRevFileList = session.selectList("FoodDinerMapper.selectRevFileList");
+		return dRevFileList;
+	}
+
+	@Override
+	public int deleteDiner(SqlSession session, int fDinerId) {
+		int result = session.delete("FoodDinerMapper.deleteDiner", fDinerId);
+		return result;
+	}
+
+	@Override
+	public int deleteRev(SqlSession session, DinerRev dinerRev) {
+		int result = session.delete("FoodDinerMapper.deleteRev", dinerRev);
+		return result;
 	}
 
 

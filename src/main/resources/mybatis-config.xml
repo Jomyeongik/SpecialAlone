@@ -23,14 +23,16 @@
 		<typeAlias type="com.alone.special.foodProduct.domain.FoodProductPhotoRevFile" alias="FoodProductPhotoRevFile"/>
 		<typeAlias type="com.alone.special.foodProduct.domain.FoodProductOneRev" 	   alias="FoodProductOneRev"/>
 		<typeAlias type="com.alone.special.diner.domain.Diner" 						   alias="Diner"/>
-		<typeAlias type="com.alone.special.diner.domain.DinerFile" 					   alias="DinerFile"/>	
+		<typeAlias type="com.alone.special.diner.domain.DinerFile" 					   alias="DinerFile"/>
+		<typeAlias type="com.alone.special.diner.domain.DinerRev" 					   alias="DinerRev"/>
+		<typeAlias type="com.alone.special.diner.domain.DinerRevFile" 				   alias="DinerRevFile"/>	
 		<typeAlias type="com.alone.special.user.domain.User" 						   alias="User"/>	
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/noticeEvent-mapper.xml" />
 		<mapper resource="mappers/user-mapper.xml" />
-<!-- 		<mapper resource="mappers/food/foodDiner-mapper.xml"/> -->
+		<mapper resource="mappers/food/foodDiner-mapper.xml"/>
 		<mapper resource="mappers/food/foodProduct-mapper.xml"/>
 		<mapper resource="mappers/hobby/category-mapper.xml"/>
     	<mapper resource="mappers/hobby/board-mapper.xml"/>

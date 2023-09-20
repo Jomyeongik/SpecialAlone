@@ -24,15 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alone.special.diner.domain.Diner;
 import com.alone.special.diner.domain.DinerFile;
 import com.alone.special.diner.domain.DinerRev;
+import com.alone.special.diner.domain.DinerRevFile;
+import com.alone.special.diner.domain.DinerRevSet;
 import com.alone.special.diner.domain.DinerSet;
 import com.alone.special.diner.service.DinerService;
 import com.alone.special.foodProduct.domain.FoodProduct;
-import com.alone.special.foodProduct.domain.FoodProductFile;
 import com.alone.special.foodProduct.domain.FoodProductOneRev;
 import com.alone.special.foodProduct.domain.FoodProductPhotoRev;
 import com.alone.special.foodProduct.domain.FoodProductPhotoRevFile;
 import com.alone.special.foodProduct.domain.FoodProductRevSet;
-import com.alone.special.foodProduct.domain.FoodProductSet;
 import com.alone.special.foodProduct.domain.PageInfo;
 
 
@@ -57,30 +57,36 @@ public class DinerController {
 		return mv;
 	}	
 	
-	// 추천식당 메뉴파일등록 페이지 이동
+	// 추천식당 메뉴정보등록 페이지 이동
 	@RequestMapping(value="/diner/infofileregister.do", method=RequestMethod.GET)
 	public ModelAndView showInfoFileRegisterForm(ModelAndView mv) {		
 		mv.setViewName("food/diner/dinerInfoFileReg");
 		return mv;
 	}	
 
-	// 리뷰 등록 페이지 이동
-	@RequestMapping(value="/foodProduct/showrevform.do", method=RequestMethod.GET)
-	public ModelAndView showRevRegisterForm(ModelAndView mv
+	// 리뷰 정보 등록 페이지 이동
+	@RequestMapping(value="/diner/showRevInfoRegForm.do", method=RequestMethod.GET)
+	public ModelAndView showRevInfoRegisterForm(ModelAndView mv
 			,@RequestParam("fDinerId") int fDinerId) {
-		Diner diner = FDService.selectDetailInfoByFDinerId(fDinerId);
+		Diner diner = FDService.selectDetailInfoByFDinerId(fDinerId);	
 		mv.addObject("diner", diner);
-		mv.setViewName("food/diner/dinerRevReg");
+		mv.setViewName("food/diner/dinerRevInfoReg");
+		return mv;
+	}		
+
+	// 리뷰 파일 등록 페이지 이동
+	@RequestMapping(value="/diner/showRevFileRegForm.do", method=RequestMethod.GET)
+	public ModelAndView showRevFileRegisterForm(ModelAndView mv
+			,@RequestParam("fDinerId") int fDinerId) {
+		Diner diner = FDService.selectDetailInfoByFDinerId(fDinerId);	
+		mv.addObject("diner", diner);
+		mv.setViewName("food/diner/dinerRevFileReg");
 		return mv;
 	}		
 	
-	
-	
-	
-	
 	// 추천식당 등록
 	@RequestMapping(value="/diner/register.do", method=RequestMethod.POST)
-	public ModelAndView productInfoRegister(ModelAndView mv
+	public ModelAndView dinerInfoRegister(ModelAndView mv
 			,@ModelAttribute Diner diner			
 			) {
 		int result = FDService.insertDinerInfo(diner);
@@ -246,17 +252,18 @@ public class DinerController {
 	@RequestMapping(value="/diner/revInfoReg.do", method=RequestMethod.POST)
 	public ModelAndView revInfoRegister(ModelAndView mv
 			,@ModelAttribute DinerRev dinerRev
-			,@RequestParam(value="fdinerId") int fdinerId
+			,@RequestParam(value="fDinerId") int fDinerId
 			,HttpSession session
 			,HttpServletRequest request) {
 		String fUserId = (String)session.getAttribute("userId");
-		dinerRev.setRefFDinerId(fdinerId);
+		dinerRev.setRefFDinerId(fDinerId);
 		dinerRev.setfUserId(fUserId);
 		int result = FDService.insertRevInfo(dinerRev);
 		try {
 			if(result>0) {
 				//성공
-				mv.addObject("msg", "리뷰 정보등록 성공");
+				mv.addObject("fDinerId", fDinerId);
+				mv.setViewName("redirect:/diner/showRevFileRegForm.do");
 			}else {
 				//실패
 				mv.addObject("msg", "리뷰 정보등록이 완료되지 않았습니다");
@@ -268,68 +275,69 @@ public class DinerController {
 			// 에러처리
 			mv.addObject("msg", "리뷰 정보등록 에러");
 			mv.addObject("error", e.getMessage());
-			mv.addObject("url", "/diner/showphotorevform.do");
+			mv.addObject("url", "/diner/list.do");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}		
 	
 	// 리뷰 파일등록
-//	@RequestMapping(value="/diner/revInfoReg.do", method=RequestMethod.POST)
-//	public ModelAndView photoRevFileRegister(ModelAndView mv
-//			,@ModelAttribute Diner diner
-//			,@RequestParam(value="revImageName1", required=false) MultipartFile image1
-//			,@RequestParam(value="revImageName2", required=false) MultipartFile image2
-//			,HttpServletRequest request
-//			,HttpSession session) {
-//		try {
-//			int refFDinerId = FDService.getCurrentFDinerRevId();
-//			// 이미지 2개가 값이 들어갔으면
-//	        List<FoodProductFile> fList = new ArrayList<>();
-//			if(image1 != null && !image1.getOriginalFilename().equals("")
-//					&& image2 != null && !image2.getOriginalFilename().equals("")
-//					) {
-//				Map<String,Object> fMap1 = this.saveFile(request, image1);
-//				Map<String,Object> fMap2 = this.saveFile(request, image2);				
-//				for (int i = 1; i <= 2; i++) {
-//				    FoodProductFile fProductFile = new FoodProductFile();
-//				    fProductFile.setRefFProductId(refFProductRevId); // 연관 상품 ID 설정
-//				    fProductFile.setfProductFileorder(i); // 파일 순서 설정
-//				    
-//				    // 각 이미지에 따라 파일 정보 설정
-//				    if (i == 1) {
-//				        fProductFile.setfProductFilename((String) fMap1.get("fileName"));
-//				        fProductFile.setfProductFilerename((String) fMap1.get("fileRename"));
-//				        fProductFile.setfProductFilepath((String) fMap1.get("filePath"));
-//				    } else if (i == 2) {
-//				        fProductFile.setfProductFilename((String) fMap2.get("fileName"));
-//				        fProductFile.setfProductFilerename((String) fMap2.get("fileRename"));
-//				        fProductFile.setfProductFilepath((String) fMap2.get("filePath"));
-//				    }				    
-//				    fList.add(fProductFile);
-//				}
-//			}
-//	        int result = FPService.insertPhotoRevFiles(fList);
-//			
-//			if(result == 2) {
-//				// 리스트로 이동 해야함
-//				mv.setViewName("redirect:/foodProduct/photorevlist.do");
-//			}else {
-//				// 에러페이지
-//				mv.addObject("msg", "파일등록이 완료되지 않았습니다");
-//				mv.addObject("error", "게시글 등록 실패");
-//				mv.addObject("url", "/foodProduct/showphotorevform.do");
-//				mv.setViewName("common/errorPage");
-//			}
-//		} catch (Exception e) {
-//			mv.addObject("msg", "게시글 등록이 완료되지 않았습니다");
-//			mv.addObject("error", e.getMessage());
-//			mv.addObject("url", "/foodProduct/showphotorevform.do");
-//			mv.setViewName("common/errorPage");
-//		}
-//		
-//		return mv;
-//	}		
+	@RequestMapping(value="/diner/revFileReg.do", method=RequestMethod.POST)
+	public ModelAndView revFileRegister(ModelAndView mv
+			,@ModelAttribute Diner diner
+			,@RequestParam(value="revImageName1", required=false) MultipartFile image1
+			,@RequestParam(value="revImageName2", required=false) MultipartFile image2
+			,HttpServletRequest request
+			,HttpSession session) {
+		try {
+			int refFDinerId = FDService.getCurrentFDinerRevId();
+			// 이미지 2개가 값이 들어갔으면
+	        List<DinerRevFile> dRevList = new ArrayList<>();
+			if(image1 != null && !image1.getOriginalFilename().equals("")
+					&& image2 != null && !image2.getOriginalFilename().equals("")
+					) {
+				Map<String,Object> dRevMap1 = this.saveFile(request, image1);
+				Map<String,Object> dRevMap2 = this.saveFile(request, image2);				
+				for (int i = 1; i <= 2; i++) {
+				    DinerRevFile dRevFile = new DinerRevFile();
+				    dRevFile.setRefFDinerId(refFDinerId);; // 연관 상품 ID 설정
+				    dRevFile.setfDinerRevFileorder(i);; // 파일 순서 설정
+				    
+				    // 각 이미지에 따라 파일 정보 설정
+				    if (i == 1) {
+				    	dRevFile.setfDinerRevFilename((String) dRevMap1.get("fileName"));
+				    	dRevFile.setfDinerRevFilerename((String) dRevMap1.get("fileRename"));
+				    	dRevFile.setfDinerRevFilepath((String) dRevMap1.get("filePath"));
+				    } else if (i == 2) {
+				    	dRevFile.setfDinerRevFilename((String) dRevMap2.get("fileName"));
+				    	dRevFile.setfDinerRevFilerename((String) dRevMap2.get("fileRename"));
+				    	dRevFile.setfDinerRevFilepath((String) dRevMap2.get("filePath"));
+				    }				    
+				    dRevList.add(dRevFile);
+				}
+			}
+			System.out.println(dRevList);
+	        int result = FDService.insertRevFiles(dRevList);
+			
+			if(result == 2) {
+				// 리스트로 이동 해야함
+				mv.setViewName("redirect:/diner/list.do");
+			}else {
+				// 에러페이지
+				mv.addObject("msg", "리뷰파일 등록이 완료되지 않았습니다");
+				mv.addObject("error", "리뷰 파일 등록 실패");
+				mv.addObject("url", "/diner/list.do");
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.addObject("error", e.getMessage());
+			
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}		
 	
 	
 	
@@ -383,16 +391,76 @@ public class DinerController {
 	}
 	
 
+	// 추천식당 리뷰목록 조회
+	@RequestMapping(value = "/diner/revList.do", method = RequestMethod.GET)
+	public ModelAndView showDinerRevList(
+	        ModelAndView mv,
+	        @RequestParam(value = "fDinerId") int fDinerId
+	        ,@RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
+	    try {
+	    	// fDinerId 쿼리스트링으로 받아옴
+			Diner diner = FDService.selectDetailInfoByFDinerId(fDinerId);
+			mv.addObject("diner", diner);	    	
+	        Integer totalCount;
+	        totalCount = FDService.getRevListCount();
+	        PageInfo pInfo = this.getPageInfo(currentPage, totalCount,5);	        
+	        List<DinerRev> dRevList;
+	        List<DinerRevFile> dRevFileList;
+	        dRevList = FDService.selectRevListByFdinerId(fDinerId,pInfo);	        	        
+	        dRevFileList = FDService.selectRevFileList();
+	        System.out.println(dRevFileList);
+	        // 리뷰 세트 목록을 생성합니다.
+	        List<DinerRevSet> dinerRevSet = createDinerRevSets(dRevList, dRevFileList);
+	        mv.addObject("dinerRevSet", dinerRevSet);
+	        mv.addObject("pInfo", pInfo);
+	        mv.setViewName("food/diner/dinerRevList");
+	    } catch (Exception e) {
+	        // 예외 처리 로직 추가
+	        mv.addObject("msg", e.getMessage());
+	        
+	        mv.addObject("url", "/diner/list.do");
+	        mv.setViewName("common/errorPage"); // 에러 페이지로 리다이렉트 또는 예외 처리
+	    }
+	    return mv;
+	}	
+	
+	
+	//식당 리뷰 삭제
+	@RequestMapping(value="/diner/deleteDinerRev.do", method=RequestMethod.GET)
+	public ModelAndView revDelete(ModelAndView mv
+			,@RequestParam("fDinerRevId") int fDinerRevId
+			,@RequestParam("refFDinerId") int refFDinerId			
+			,HttpSession session) {
+		try {
+				DinerRev dinerRev = new DinerRev();
+				dinerRev.setfDinerRevId(fDinerRevId);
+				dinerRev.setRefFDinerId(refFDinerId);
+				int result =FDService.deleteRev(dinerRev);		
+				if(result>0) {
+					mv.setViewName("redirect:/diner/revList.do?fDinerId=" + refFDinerId);					
+				}else {
+					mv.addObject("msg", "리뷰삭제가 완료되지 않았습니다");
+					mv.addObject("url", "redirect:/index.jsp");
+					mv.setViewName("common/errorPage");					
+				}			
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.addObject("url", "redirect:/index.jsp");
+			mv.setViewName("common/errorPage");
+		}	
+		return mv;
+	}
+
 	// 상품 상세정보 조회
 	@RequestMapping(value="/diner/dinerDetail.do", method=RequestMethod.GET)
 	public ModelAndView showDinerDetail(ModelAndView mv
 			,@RequestParam("fDinerId") Integer fDinerId
 			,@RequestParam("refFDinerId") Integer refFDinerId) {	
 		try {
-			Diner Diner = FDService.selectDetailInfoByFDinerId(fDinerId);
+			Diner diner = FDService.selectDetailInfoByFDinerId(fDinerId);
 			List<DinerFile> dFileList = FDService.selectDetailFileByRefFDinerId(refFDinerId);
-			if(Diner !=null && dFileList !=null) {
-				mv.addObject("Diner", Diner);
+			if(diner !=null && dFileList !=null) {
+				mv.addObject("diner", diner);
 				mv.addObject("dFileList", dFileList);
 				mv.setViewName("food/diner/dinerDetail");
 			}else {
@@ -412,29 +480,29 @@ public class DinerController {
 	
 	
 	
+	// 추천식당 삭제(연관 파일,리뷰 모두삭제)
+	@RequestMapping(value="/diner/deleteDiner.do", method=RequestMethod.GET)
+	public ModelAndView deleteDiner(ModelAndView mv
+			,@RequestParam("fDinerId") int fDinerId) {
+		try {
+			int result = FDService.deleteDiner(fDinerId);
+				if(result>0) {
+					mv.setViewName("redirect:/diner/list.do");
+				}else {
+					mv.addObject("msg", "추천상품 삭제가 완료되지 않았습니다");
+					mv.addObject("url", "/diner/list.do");
+					mv.setViewName("common/errorPage");
+				}			
+			} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.addObject("url", "/diner/list.do");
+			mv.setViewName("common/errorPage");			
+		}		
+		return mv;
+	}	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 상품 세트 목록을 생성하는 메서드
+	// 식당 전체 목록 조회를 위한 정보+이미지 세트 생성
 	private List<DinerSet> createDinerSets(List<Diner> dInfoList, List<DinerFile> dFileList) {
 	    List<DinerSet> dinerSetList = new ArrayList<>();
 	    for (Diner diner : dInfoList) {
@@ -456,7 +524,24 @@ public class DinerController {
 	    return dinerSetList;
 	}	
 	
-	
+	// 리뷰 조회를 위한 정보+이미지 세트생성 
+	private List<DinerRevSet> createDinerRevSets(List<DinerRev> dRevList, List<DinerRevFile> dRevFileList) {
+	    List<DinerRevSet> dinerRevSetList = new ArrayList<>();
+	    for (DinerRev dinerRev : dRevList) {
+	    	DinerRevSet dinerRevSet = new DinerRevSet();
+	    	dinerRevSet.setDinerRev(dinerRev);	
+	        List<DinerRevFile> dRevFiles = new ArrayList<>();
+	        for(DinerRevFile dRevFile : dRevFileList) {
+	        	if(dRevFile.getRefFDinerId() == dinerRev.getfDinerRevId()) {
+	        		dRevFiles.add(dRevFile);
+	        	}
+	        }
+	    	dinerRevSet.setdRevFileList(dRevFiles);
+	    	dinerRevSetList.add(dinerRevSet);
+	   
+	    }
+	    return dinerRevSetList;
+	}		
 	
 	
 	

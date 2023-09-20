@@ -17,9 +17,12 @@
          <!-- main -->
         <main>
             <section>                
-                <h1>상품 상세정보</h1><br><hr><br>                 
+                <h1>식당 상세정보</h1><br><hr><br>
+                                 
                 <h2>${diner.fDinerType }</h2>
                 <h3>${diner.fDinerName }</h3>
+                <button onclick="deleteDiner(${diner.fDinerId})">식당정보 삭제</button>
+				<a href="/diner/showRevInfoRegForm.do?fDinerId=${diner.fDinerId}">리뷰 작성</a>
                 <br>       
                 <br><br>
                 <div id="product_list_first" class="product_list">
@@ -52,6 +55,7 @@
                         <h2>대표리뷰</h2> <br><br>
                         <p>리뷰내용</p>
                         <!-- 리뷰 가지고오기 -->
+                        <button onclick="toReviewList(${diner.fDinerId})">리뷰로 이동</button>
                     </div>
                 </div>
                 <br><br>
@@ -92,14 +96,24 @@
         </main>   
          <!-- footer -->
             <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-      </div>
-      <script>
-		function toReviewList(fdinerId) {
-		    // 리뷰 목록 페이지 URL을 생성하고 상품 ID를 쿼리 문자열로 추가
-		    var url = '/diner/showrevlist.do?fDinerId=' + fdinerId;		
-		    // 새로운 URL로 이동
-		    window.location.href = url;
-		}
-		</script>		
+      </div>	
+	<script>
+	function toReviewList(fDinerId) {
+	    // 리뷰 목록 페이지 URL을 생성하고 상품 ID를 쿼리 문자열로 추가
+	    var url = '/diner/revList.do?fDinerId=' + fDinerId;		
+	    // 새로운 URL로 이동
+	    window.location.href = url;
+	}
+	
+	function deleteDiner(fDinerId){
+		var confirmation = confirm("상품 정보를 삭제하시겠습니까?");
+		if(confirmation){
+			var url = '/diner/deleteDiner.do?fDinerId=' + fDinerId;
+			window.location.href = url;				
+		}else{
+			return;
+		}			
+	}	
+	</script>      
 	</body>
 </html>

@@ -42,11 +42,13 @@
 					</div>
 					<div id="product_item2">
 						<!-- 작성자와 별점 표시 -->
-						<span>아이디: ${review.FPPhotoRev.fUserId}</span> <span>제목:
-							${review.FPPhotoRev.fProductRevTitle}</span> <span>${review.FPPhotoRev.fProductRevStar}</span><br>
+						<span>아이디: ${review.FPPhotoRev.fUserId}</span> 
+						<span>제목: ${review.FPPhotoRev.fProductRevTitle}</span> 
+						<span>${review.FPPhotoRev.fProductRevStar}</span><br>
 						<br> <br>
 						<!-- 리뷰 내용 표시 -->
 						<p>${review.FPPhotoRev.fProductRevContent}</p>
+						<button onclick="deleteReview(${review.FPPhotoRev.fProductRevId},${review.FPPhotoRev.refFProductId },'${review.FPPhotoRev.fUserId }')">리뷰 삭제</button>
 					</div>
 				</div>
 			</c:forEach>
@@ -56,28 +58,27 @@
 				<c:if test="${foodProductRevSetList.size() > 0}">
 				    <ul>
 				        <c:if test="${pInfo.startNavi > 1}">
-				            <li><a href="/foodProduct/revlist.do?fProductId=${foodProduct.fProductId}&page=1">처음</a></li>
+				            <li><a href="/foodProduct/revlist.do?page=1">처음</a></li>
 				        </c:if>
 				        <c:if test="${pInfo.currentPage > 1}">
-				            <li><a href="/foodProduct/revlist.do?fProductId=${foodProduct.fProductId}&page=${pInfo.currentPage - 1}">이전</a></li>
+				            <li><a href="/foodProduct/revlist.do?page=${pInfo.currentPage - 1}">이전</a></li>
 				        </c:if>
 				        <c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="i">
 				            <c:if test="${pInfo.currentPage == i}">
 				                <li class="active"><span>${i}</span></li>
 				            </c:if>
 				            <c:if test="${pInfo.currentPage != i}">
-				                <li><a href="/foodProduct/revlist.do?fProductId=${foodProduct.fProductId}&page=${i}">${i}</a></li>
+				                <li><a href="/foodProduct/revlist.do?page=${i}">${i}</a></li>
 				            </c:if>
 				        </c:forEach>
 				        <c:if test="${pInfo.currentPage < pInfo.naviTotalCount}">
-				            <li><a href="/foodProduct/revlist.do?fProductId=${foodProduct.fProductId}&page=${pInfo.currentPage + 1}">다음</a></li>
+				            <li><a href="/foodProduct/revlist.do?page=${pInfo.currentPage + 1}">다음</a></li>
 				        </c:if>
 				        <c:if test="${pInfo.endNavi < pInfo.naviTotalCount}">
-				            <li><a href="/foodProduct/revlist.do?fProductId=${foodProduct.fProductId}&page=${pInfo.naviTotalCount}">끝</a></li>
+				            <li><a href="/foodProduct/revlist.do?page=${pInfo.naviTotalCount}">끝</a></li>
 				        </c:if>
 				    </ul>
 				</c:if>
-
 			</div>
 			<h2>한줄리뷰</h2>
 			<br> 
@@ -109,8 +110,9 @@
 				<colgroup>
 					<col width="5%">
 					<col width="10%">
-					<col width="75%">
+					<col width="60%">
 					<col width="10%">
+					<col width="15%">
 				</colgroup>
 				<thead>
 					<tr>
@@ -118,6 +120,7 @@
 						<th>작성자</th>
 						<th>한줄리뷰</th>
 						<th>별점</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -127,6 +130,7 @@
 							<td>${oneReview.fProductOneRevWriter}</td>
 							<td>${oneReview.fProductOneRevContent}</td>
 							<td>${oneReview.fProductOneRevStar}</td>
+							<td><button onclick="deleteOneReview(${oneReview.fProductOneRevNo},'${oneReview.fProductOneRevWriter}',${oneReview.refFProductId })">삭제</button></td>
 						</tr>
 					</c:forEach>
 					 
@@ -134,5 +138,28 @@
 			</table>
 		</section>
 	</main>
+	
+	<script>
+	function deleteReview(fProductRevId,fProductId,fUserId) {
+	    var deleteUrl = '/foodProduct/deletePhotoRev.do?fProductRevId=' + fProductRevId + '&fProductId=' + fProductId;	   
+	    var userId = '<%= (String)session.getAttribute("userId") %>';	    
+	    // 삭제 요청 실행
+		if (userId === fUserId) {
+		        window.location.href = deleteUrl;
+		    } else {
+		        alert("본인 작성리뷰만 삭제 가능합니다!");
+		    }		
+	}
+	
+	function deleteOneReview(revNo,revWriter,refId){
+		 var deleteUrl = '/foodProduct/deleteOneRev.do?No=' + revNo + '&refId='+refId;
+		 var userId = '<%= (String)session.getAttribute("userId") %>';
+			if (userId === revWriter) {
+		        window.location.href = deleteUrl;
+		    } else {
+		        alert("본인 작성리뷰만 삭제 가능합니다!");
+		    }			
+	}
+	</script>	
 </body>
 </html>
