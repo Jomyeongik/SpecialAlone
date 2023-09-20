@@ -70,6 +70,4 @@ public class UserServiceImpl implements UserService{
 		Map<String, String> userPw = uStore.findUserPw(session, userId, userEmail);
 		return userPw;
 	}
-	
-	
 }

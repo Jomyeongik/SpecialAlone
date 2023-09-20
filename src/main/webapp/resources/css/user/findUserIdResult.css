@@ -12,7 +12,7 @@ main section {
 	height: 900px;
 	text-align: center;
 	background-image: url("../../images/user_images/findUserId-view.jpg");
-	background-size: cover;
+	background-size: contain;
 }
 
 .findUserPwArea{

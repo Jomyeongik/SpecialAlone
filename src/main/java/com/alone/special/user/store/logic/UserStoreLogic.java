@@ -70,5 +70,4 @@ public class UserStoreLogic implements UserStore{
 		Map<String, String> userPw = session.selectOne("UserMapper.findUserPw", userPwMap);
 		return userPw;
 	}
-
 }

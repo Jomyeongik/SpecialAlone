@@ -60,5 +60,4 @@ public interface UserService {
 	 * @return
 	 */
 	Map<String, String> findUserPw(String userId, String userEmail);
-
 }

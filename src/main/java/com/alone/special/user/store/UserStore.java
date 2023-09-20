@@ -70,5 +70,4 @@ public interface UserStore {
 	 * @return
 	 */
 	Map<String, String> findUserPw(SqlSession session, String userId, String userEmail);
-
 }
