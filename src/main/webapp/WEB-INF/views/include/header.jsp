@@ -19,7 +19,7 @@
 				<a href="/hobby/category/list.do">HOBBY</a>
 			</li>
 			<li>
-				<a href="#">SECURITY</a>
+				<a href="/product/slistproduct.do">SECURITY</a>
 			</li>
 			<c:if test="${userId eq 'admin' }">
 				<li><a href="#">관리자페이지</a></li>

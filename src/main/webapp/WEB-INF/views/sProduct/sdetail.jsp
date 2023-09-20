@@ -24,13 +24,13 @@
 <style>
 .ad-container {
   position: fixed;
-  top: 40%;
-  left: 90%;
+  top: 50%;
+  left: 91%;
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
 .ad-container img{
-	width:300px;
+	width:200px;
 	height:600px;
 	
 }
@@ -114,7 +114,7 @@ height:180px;
     padding-left: 20px;
 }
  .image img {
-    width:      600px;	
+    width:  100%;	
     height:80%;
     object-fit: cover; /* Maintain aspect ratio and cover the entire container */
 }
@@ -208,7 +208,7 @@ top:50px;
 			<div class="pagination">
     <c:choose>
         <c:when test="${empty rInfo}">
-            <span class="no-reviews">리뷰가 없습니다.</span>
+            <span class="no-reviews">리뷰가 없습니다!</span>
         </c:when>
         <c:otherwise>
             <c:url var="prevUrl" value="/product/sdetail.do">
@@ -235,7 +235,7 @@ top:50px;
     </c:choose>
 </div>
 	<div class="middle row">
-	<div class="image ">
+	<div class="image" style="max-width: 400px; ">
 	<img alt="방호상품" src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}">
 	</div>
 	<hr>
@@ -261,7 +261,7 @@ top:50px;
 	</div>
 	<div class="row form-group " id="reviewcontainer">
 	<div class="col-md-12">
-<strong><h3>리뷰 쓰기</h3></strong>
+<strong ><span style="font-size:22px; font-weight:bold;">리뷰 쓰기</span></strong>
 <form action="/review/insertReview.do" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="sProductId" value="${Product.sProductId}">
     <input type="hidden" name="sUserNo" value="${User.userNo}">
@@ -447,7 +447,7 @@ top:50px;
 		                    <div class="card-body">\
 		                        <strong><p class="card-title">'+item.sProductName+'</p></strong>\
 		                        <p class="card-text"> <span class="star" data-rating="'+item.sProductAverageRating+'"></span></p>\
-		                        <p class="card-text"><span>'+item.sPrice+'</p></strong>\
+		                        <strong><p class="card-text" style="color:red; font-size:15px; font-weight:bold;">'+item.sPrice+'원</p></strong>\
 		                    </div>\
 		                </div>\
 		            </div>';
