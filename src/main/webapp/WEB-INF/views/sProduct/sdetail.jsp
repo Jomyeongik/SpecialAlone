@@ -12,7 +12,7 @@
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -22,7 +22,41 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>
 
 <style>
-  .star-rating {
+.ad-container {
+  position: fixed;
+  top: 40%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.ad-container img{
+	width:300px;
+	height:600px;
+	
+}
+ .pagination {
+        text-align: center;
+        margin-top:1900px;
+        margin-right:px;
+    }
+
+    .pagination a {
+        padding: 5px 10px;
+        margin: 0 5px;
+        border: 1px solid #ccc;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .pagination a:hover {
+        background-color: #eee;
+    }
+
+    .pagination .active {
+        background-color: #333;
+        color: #fff;
+    }
+ .star-rating {
   margin-bottom:-20px;
   margin-top:-20px;
   display:flex;
@@ -60,7 +94,7 @@
   display:flex;
   }
 .recently-viewed-products{
-width:15%;
+width:20%;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -80,20 +114,19 @@ height:180px;
     padding-left: 20px;
 }
  .image img {
-    width:      800px;	
+    width:      600px;	
+    height:80%;
     object-fit: cover; /* Maintain aspect ratio and cover the entire container */
 }
 
 .middle{
 margin-top:50px;
 float:left;
-width:70%;
+width:60%;
 display:flex;
-margin-right:300px;
-margin-left:200px;
 }
 .right{
-width:15%;
+width:20%;
 }
 #bottom{
 margin-top :10%;
@@ -101,17 +134,17 @@ margin-top :10%;
 #review-commit{
     position: relative	;
     top: -75px;
-    right: -400px;
+    right:50%;
     width: 56px;
     height: 56px;
     line-height: 56px;
     margin: 0;
     padding: 0;
-    left:300px;
+    left:80%;
 }
 .imagedetail{
 position:absolute;
-margin-left:800px;
+margin-left:30%;
 margin-top:0%;
 }
 #fileup{
@@ -123,7 +156,8 @@ margin-top:0%;
 #reviewcontents{
 	position: relative;
 	right:-100px;
-	left:20px;
+	left:20%;
+	width:90%;
 }
 #userId{
 padding-left :20px;
@@ -132,7 +166,32 @@ right:25%;
 .recent{
 top:50px;
 }
+.custom-star-rating {
+    display: inline-block;
+    font-size: 0;
+}
+
+
+.custom-star:before {
+    content: '\2606';
+    font-size: 24px;
+    color: #ccc;
+}
+
+
+.custom-star.filled:before {
+    content: '\2605'; 
+    color: #f1c40f; 
+    }
+ #reviewcontainer{
+ 	margin-bottom:50%;
+ 	width:100%;
+ }
+ #reviewnone{
+ 	margin-left:35%;	
+ }
 </style>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -146,25 +205,61 @@ top:50px;
 	</div>
 	</div>
 	</div>
+			<div class="pagination">
+    <c:choose>
+        <c:when test="${empty rInfo}">
+            <span class="no-reviews">리뷰가 없습니다.</span>
+        </c:when>
+        <c:otherwise>
+            <c:url var="prevUrl" value="/product/sdetail.do">
+                <c:param name="page" value="${rInfo.startNavi - 1 }"></c:param>
+            </c:url>
+            <c:if test="${rInfo.startNavi != 1 }">
+                <a href="${prevUrl }">[이전]</a>
+            </c:if>
+            
+	<c:forEach begin="${rInfo.startNavi >= 0 ? rInfo.startNavi : 0}" end="${rInfo.endNavi}" var="p">
+                <c:url var="pageUrl" value="/product/sdetail.do">
+                    <c:param name="page" value="${p }"></c:param>
+                </c:url>
+                <a href="${pageUrl }">${p }</a>&nbsp;
+            </c:forEach>
+            
+            <c:url var="nextUrl" value="/product/sdetail.do">
+                <c:param name="page" value="${rInfo.endNavi + 1 }"></c:param>
+            </c:url>
+            <c:if test="${rInfo.endNavi != rInfo.naviTotalCount }">
+                <a href="${nextUrl }">[다음]</a>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
+</div>
 	<div class="middle row">
-	<div class="image col-md-6">
+	<div class="image ">
 	<img alt="방호상품" src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}">
 	</div>
 	<hr>
-	<div class="imagedetail col-md-6">
+	<div class="imagedetail ">
 	<ol>
+	<br><br><br>
 	<li><h1>${Product.sProductName }</h1></li>
-	<li><strong>${Product.sPrice }</strong></li>
+	<hr>
+	<br>
+<li><strong><span style="color: red; font-size: 25px; font-weight: bold;">${Product.sPrice } 원</span></strong></li>
+	<hr>
+	<br>
 	<li>${Product.sDescription }</li>
+	<hr>
 	<li>
-	<c:if test="${User.userGrade eq '2' }">
-		<a href="/product/update.do?sproductId="${Product.sProductId } class="btn btn-light">수정</a>
-		<a href="/product/delete.do?sproductId="${Product.sProductId } class="btn btn-light">삭제</a>		
+	<c:if test="${User.userId eq 'admin' }">
+	<input type="hidden" value="${Product.sProductId }">
+		<a href="/product/update.do?sProductId=${Product.sProductId }" class="btn btn-light">수정</a>
+		<a href="/product/delete.do?sProductId=${Product.sProductId }" class="btn btn-light">삭제</a>		
 	</c:if>
 	</li>
 	</ol>
 	</div>
-	<div class="row form-group ">
+	<div class="row form-group " id="reviewcontainer">
 	<div class="col-md-12">
 <strong><h3>리뷰 쓰기</h3></strong>
 <form action="/review/insertReview.do" method="POST" enctype="multipart/form-data">
@@ -186,7 +281,7 @@ top:50px;
                     <label for="1-star" class="star">&#9733;</label>
                 </div>
                 <br>
-                <textarea id="reviewcontents" rows="3" cols="55" placeholder="리뷰를 남겨주세요." name="sReviewContent"></textarea>
+                <textarea id="reviewcontents" rows="3" cols="55" placeholder="리뷰를 남겨주세요." name="sReviewContent" required></textarea>
                 	<br>
                 <input type="submit" class="bd_btn keyup_alt" id="review-commit"value="등록"></td>               
             <td ><br><br>
@@ -214,11 +309,22 @@ top:50px;
 										<tr>
 											<td>${Review.sUserId } <input type="hidden" id="sReviewNo_${Review.sReviewId}" value="${Review.sReviewId }"></td>	
 											<td align="left">
-											<td colspan="2"><td>${Review.sReviewContent }</td>
+											
 											<td align="right">
 												<td>${Review.sCreateDate }</td>
+												<td><td>
+												    <div class="custom-star-rating" data-rating="${Review.sRating}">
+												        <span class="custom-star"></span>
+												        <span class="custom-star"></span>
+												        <span class="custom-star"></span>
+												        <span class="custom-star"></span>
+												        <span class="custom-star"></span>
+												    </div>
+												</td>
 												<td class="fdv_nav img_tx">	
-	   										<a class="fa fa-thumbs-o-up like-button" onclick="return confirm('추천하시겠습니까?')" data-reviews="${Review.sReviewId}"><span class="vote-count">${Review.sReviewReCommend }</span></a>
+	   										<a class="fa fa-thumbs-o-up like-button" onclick="return confirm('추천하시겠습니까?')" data-reviews="${Review.sReviewId}">
+	   										<span class="vote-count">${Review.sReviewReCommend }</span>
+	   										</a>
 											<a class="fa fa-exclamation-triangle" onclick="openSingoPopup(${Review.sReviewId});">신고</a>
 											<c:if test="${Review.sUserId eq sessionScope.userId or User.userNo eq 2}">
 											<a class="fa fa-pencil edit-button" id="sReviewId" data-sreviewid="${Review.sReviewId}" data-target="#editModal">수정</a>
@@ -226,27 +332,45 @@ top:50px;
 											</c:if>
 											</td>
 										</tr>
-										<tr>
-											<td colspan="5" align="left">
-											
-											<br><br><img src = "${pageContext.request.contextPath}/resources/images/${Review.sFileReName}" width="300px" height="300px"><br><br></td>
-										</tr>
+								<tr>
+								    <td colspan="5" align="left">
+								        <br>
+								        <c:if test="${Review.sFileReName ne null }">
+								            <div class="image-with-text">
+								                <img src="${pageContext.request.contextPath}/resources/images/${Review.sFileReName}" width="300px" height="300px">
+								                <span>${Review.sReviewContent}</span>
+								            </div>
+								        </c:if>
+								        <c:if test="${Review.sReviewContent ne null and Review.sFileReName eq null}">
+								        	 <span>${Review.sReviewContent}</span>
+								        </c:if>
+								    </td>
+								</tr>
+
 									</tbody>
+									
 								</table>			
 				</tr>
 						</table>
 					</div>
 				</c:forEach>
+				
 		 </c:when>
     <c:otherwise>
-        <p>리뷰가 없습니다.</p>
+                    <p id="reviewnone">리뷰가 없습니다!</p>
     </c:otherwise>
 </c:choose>
 				</div>
 		
 	</div>
+	
 	</div>
+	
 	</div>
+	<aside class="ad-container">
+  <a href="https://kh-academy.co.kr/main/main.kh"><img src="${pageContext.request.contextPath}/resources/images/advertise.png" alt="Advertisement"></a>
+</aside>		
+
 	<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -272,19 +396,28 @@ top:50px;
         </div>
     </div>
 </div>
-	
+
+
 	<div class="right"></div>
+	
 	</main>
 	  <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 	
 	<script>
-	
+	$(document).ready(function() {
+	  
+	    $(".custom-star-rating").each(function() {
+	        var rating = $(this).data("rating"); 
+	        var $stars = $(this).find(".custom-star"); 
+	        $stars.slice(0, rating).addClass("filled");
+	    });
+	});
 	
 	var product = {
 		    sProductId: ${Product.sProductId},
 		    sProductName: "${Product.sProductName}",
-		    sFilePath: "${Product.sFilePath}",
 		    sFileReName: "${Product.sFileReName}",
+		    sPrice:"${Product.sPrice}",
 		    sProductAverageRating: ${Product.sProductAverageRating}
 		};
 
@@ -308,12 +441,13 @@ top:50px;
 // 		    	let fileName = 11;
 // 		    	productListHTML += `<div class='col-md-3'>${fileName}</div>` 
 		        productListHTML += 
-		            '<div class="col-md-8 recent">\
+		            '<div class="col-md-9 recent">\
 		                <div class="card">\
 		                   <a href="/product/sdetail.do?sProductId='+item.sProductId+'"> <img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/'+item.sFileReName+'" alt="${product.sProductName}"></a>\
 		                    <div class="card-body">\
 		                        <strong><p class="card-title">'+item.sProductName+'</p></strong>\
-		                        <p class="card-text">평균평점: <span class="star" data-rating="'+item.sProductAverageRating+'"></span></p>\
+		                        <p class="card-text"> <span class="star" data-rating="'+item.sProductAverageRating+'"></span></p>\
+		                        <p class="card-text"><span>'+item.sPrice+'</p></strong>\
 		                    </div>\
 		                </div>\
 		            </div>';
@@ -363,7 +497,10 @@ top:50px;
 		                localStorage.setItem('recommendedReview' + reviewId, 'true');
 
 		                voteCountElement.text(updatedVoteCount);
+	                    location.reload();
+
 		            },
+		                
 		            error: function(xhr, status, error) {
 		                alert("추천 중 오류가 발생했습니다.");
 		                console.error(error);
@@ -410,6 +547,14 @@ top:50px;
             } else {
                 imagePreview.src = ''; 
                 imagePreview.style.display = 'none';
+            }
+        });
+        
+        document.getElementById("review-commit").addEventListener("click", function(event) {
+            var reviewContent = document.getElementById("reviewcontents").value.trim();
+            if (reviewContent === "") {
+                event.preventDefault(); 
+                alert("리뷰 내용을 써주세요.");
             }
         });
  		</script>

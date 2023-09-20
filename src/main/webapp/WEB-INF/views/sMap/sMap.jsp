@@ -7,39 +7,28 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device=width, initial-scale=1 shrink-to-fit=no">
 	<title>맵</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
+ 	 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/smap.css">
+ 	
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c7a14b510baba8f2aa2d6bdf15c8181a"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
 	<style>
-    .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-    .wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .info .link {color: #5085BB;}
+    
          
         	</style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <main>
-<div id="map" style="width: 80%; height: 400px; margin-left:10%;"></div>
+<div id="map" style="width: 80%; height: 500px; margin-left:10%;"></div>
     
  
 
@@ -50,7 +39,7 @@
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도의 중심좌표
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(37.56754515172555,126.97951230967526), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(37.52250335538303,126.97511281291301), // 지도의 중심좌표
 	        level: 8 // 지도의 확대 레벨
 	    }; 
 
@@ -130,7 +119,55 @@
                             		image : '/resources/images/gangnamterminal.png',
                             		link : 'https://news.imaeil.com/page/view/2023080411484095671'
                             		
-                                    }
+                                    },{
+                                		position: new kakao.maps.LatLng(37.55701460166768,127.06464597295061),
+                                		title : '합정역 칼부림',
+                                		content :'합정역 칼루림',
+                                		image : '/resources/images/police.jpg',
+                                		link : 'https://n.news.naver.com/article/449/0000255884'
+                                		
+                                        },{
+                                    		position: new kakao.maps.LatLng(37.532579615850445,126.93555614545221),
+                                    		title : '더현대 칼부림',
+                                    		content :'더현대 칼루림',
+                                    		image : '/resources/images/police.jpg',
+                                    		link : 'https://twitter.com/make_save_korea/status/1689131375407054848?s=46&t=BX0mDNHizXtfLWo0lvcI-A'
+                                    		
+                                            },{
+                                        		position: new kakao.maps.LatLng(37.63933654269959,126.9506916289992),
+                                        		title : '구산역 인근 주택가',
+                                        		content :'구산역 인근 주택가',
+                                        		image : '/resources/images/police.jpg',
+                                        		link : 'https://n.news.naver.com/article/081/0003387956'
+                                        		
+                                                },{
+                                            		position: new kakao.maps.LatLng(37.568051339703935,127.04649944721719),
+                                            		title : '왕십리역 살인예고',
+                                            		content :'왕십리역 살인예고',
+                                            		image : '/resources/images/police.jpg',
+                                            		link : 'https://n.news.naver.com/article/025/0003298696'
+                                            		
+                                                    },{
+                                                		position: new kakao.maps.LatLng(37.485887553474846,126.93197808767329),
+                                                		title : '신림역 살인예고',
+                                                		content :'신림역 살인예고',
+                                                		image : '/resources/images/police.jpg',
+                                                		link : 'https://n.news.naver.com/mnews/article/001/0014093397'
+                                                		
+                                                        },{
+                                                    		position: new kakao.maps.LatLng(37.570273344996615,126.92855082311863),
+                                                    		title : '경성고 칼부림예고',
+                                                    		content :'경성고 칼부림예고',
+                                                    		image : '/resources/images/police.jpg',
+                                                    		link : 'http://weekly.chosun.com/news/articleView.html?idxno=28119'
+                                                    		
+                                                            },{
+                                                            	position: new kakao.maps.LatLng(37.50255950713821,127.06197522483517),
+                                                        		title : '한티역 칼부림',
+                                                        		content :'한티역 칼부림',
+                                                        		image : '/resources/images/police.jpg',
+                                                        		link : 'https://www.topstarnews.net/news/articleView.html?idxno=15377289'
+                                                            }
 		
 	]
 	var overlays =[];
@@ -204,12 +241,11 @@
     	        title: markerData[i].title
     	    });
 
-    	    // 클로저를 사용하여 이벤트 핸들러 등록
     	    kakao.maps.event.addListener(marker, 'click', function (data) {
     	        return function () {
     	            displayOverlay(data);
     	        };
-    	    }(markerData[i])); // 클로저로 현재 반복의 데이터 전달
+    	    }(markerData[i])); 
     	}
 
 
@@ -218,14 +254,14 @@
 
 	<section class="container">
 	<input type="hidden" name="userId"value="${User.userId }" >
-		<form method="get" action="/comment/select.do" class="form-inline mt-3">
+		<form method="POST" action="/comment/select.do" class="form-inline mt-3">
 			<select name="searchCondition" class="form-control mx-1 mt-2">
-				<option value="최신순">최신순</option>
-				<option value="내용찾기" >내용</option>
+				<option value="Writer'">작성자</option>
+				<option value="content" >내용</option>
 			</select>
 			<input type="text" name="searchKeyword" class="form-control mx-1 mt-2 col-10" placeholder="내용을 입력하세요.">
 			<button type="submit" class="btn btn-outline-info mx-1 mt-2">검색</button>
-			<a class="btn btn-outline-primary mx-1 mt-2 insert-Comment" id="openModalButton" href="#">댓글쓰기</a>
+			<a class="btn btn-outline-primary mx-1 mt-2 insert-Comment" id="openModalButton">댓글쓰기</a>
 		</form>
 <c:choose>
     <c:when test="${not empty Comments}">
@@ -256,9 +292,9 @@
 						</c:if>
 					</div>
 					<div class="col-12 text-right">
-							<a class="fa fa-thumbs-o-up like-button"onclick="return confirm('추천하시겠습니까?')" data-comments="${Comment.sCommentNo}" href="/comment/insertrecommend.do">
-							</a>					
+							<a class="fa fa-thumbs-o-up like-button" onclick="return confirm('추천하시겠습니까?')" data-comments="${Comment.sCommentNo}" >
    						 <span class="vote-count">${Comment.sRecommend}</span>
+							</a>					
 						<c:if test="${Comment.userId eq sessionScope.userId or User.userGrade eq '2' }">
 						<a onclick="return confirm('삭제하시겠습니까?')"href="/comment/commentdelete.do?sCommentNo=${Comment.sCommentNo }">삭제</a>
 						<a style="color:gray" data-toggle="modal" id="sCommentNo" data-commentno="${Comment.sCommentNo}" data-target="#editModal"href="/comment/updatecomment?sCommentNo=${Comment.sCommentNo }">수정</a>
@@ -339,6 +375,8 @@
   	            data: commentData,
   	            success: function(response) {
   	                $("#registerModal").modal("hide");
+                    location.replace(window.location.href);
+
   	            },
   	            error: function(xhr, status, error) {
   	                console.error(error);
@@ -347,20 +385,28 @@
   	    });
   	});
   	
-	$('#editModal').on('show.bs.modal', function (event) {
+	$('#editModal').on('show.bs.modal', function (event) {	
 		    var commentno = $("#sCommentNo").data('commentno'); 
 		    $('#sCommentInput').val(commentno); 
 		});
 
-  	$("#saveEditButton").on("click", function() {
-  	    var commentNo = $(this).data("comment-no");
-  	    $("#sCommentInput").val(commentNo);
-  	    $("#editCommentForm").submit();
-  	});
-
-  	$("#closeEditButton").on("click", function() {
-  	    $("#editModal").modal("hide");
-  	});
+	$(".edit-button").on("click", function() {
+	    var sCommentNo = $(this).data("scommentno"); 
+	    var reviewContent = $(this).closest("tr").find(".review-content").text();
+	    $("#editReviewContent").val(reviewContent);
+	    $("#saveEditButton").data("comment-no", sCommentNo); 
+	    $("#editModal").modal("show");
+	    
+	    console.log("sCommentNo in modal:", sCommentNo); // 수정된 부분
+	});
+	
+	$("#saveEditButton").on("click", function() {
+	    var sCommentNo = $(this).data("comment-no"); // 수정된 부분
+  	 	 $("#editCommentForm").submit();
+	});
+    $("#closeEditButton").on("click", function() {
+        $("#editModal").modal("hide");
+    });
     $(document).ready(function() {
         $(".fa.fa-thumbs-o-up.like-button").on("click", function(event) {
             event.preventDefault(); 
@@ -385,6 +431,7 @@
                     localStorage.setItem('recommendedComment' + commentId, 'true');
 
                     voteCountElement.text(updatedVoteCount);
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     alert("추천 중 오류가 발생했습니다.");
