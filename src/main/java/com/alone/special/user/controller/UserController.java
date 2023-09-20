@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,13 +39,13 @@ public class UserController {
 			}else {
 				mv.addObject("msg", "회원가입 실패");
 				mv.addObject("error", "회원가입 실패");
-				mv.addObject("url", "/user/register.do");
+				mv.addObject("url", "/index.jsp");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의 바랍니다");
 			mv.addObject("error", e.getMessage());
-			mv.addObject("url", "/user/register.do");
+			mv.addObject("url", "/index.jsp");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
@@ -239,13 +238,13 @@ public class UserController {
 			Map<String, String> userPw = service.findUserPw(userId, userEmail);
 			if(userPw != null) {
 				session.setAttribute("userPw", userPw);
+				mv.setViewName("user/findUserPwResult");
 			}else {
 				mv.addObject("msg", "입력하신 아이디와 이메일로 가입된 아이디는 없습니다");
 				mv.addObject("error", "비밀번호 찾기 실패");
 				mv.addObject("url", "/index.jsp");
-				mv.setViewName("common/errorPage");
+				mv.setViewName("user/findUserPwResult");
 			}
-			mv.setViewName("user/findUserPwResult");
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의 바랍니다");
 			mv.addObject("error", e.getMessage());
@@ -261,8 +260,8 @@ public class UserController {
 								, @RequestParam("userEmail") String userEmail
 								, HttpSession session) {
 		Map<String, String> userPw = service.findUserPw(userId, userEmail);
-		mv.addObject("userPw", userPw); 
-	    mv.setViewName("/user/findUserPwResult");
+		mv.addObject("userPw", userPw);
+	    mv.setViewName("user/findUserPwResult");
 	    return mv;
 	}
 }

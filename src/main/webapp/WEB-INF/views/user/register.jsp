@@ -20,57 +20,42 @@
 			
 		<!-- main -->
 		<main>
+			<div class="container-main">
 			<section>
-					<h1>Special Alone</h1>
-					<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
+				<h1>Special Alone</h1><br>
+				<h3>더 특별한 혼자가 되기를 바랍니다.</h3><br>
+				<h2>회원가입</h2><br><br>
+					<div class="registerArea">
 					<form action="/user/register.do" method="post">
-					<fieldset id="registerbox">
-						<legend>회원가입</legend><br>
-						<ul>
-							<li>
-								<label>아이디 : </label>
-								<input id="userId" type="text" name="userId" placeholder="아이디를 입력하세요"><br>
-								<span id="userIdMsg"></span>
-							</li>
-							<li>
-								<label>비밀번호 : </label>
-								<input id="textbox" type="password" name="userPw" placeholder="비밀번호를 입력하세요">
-							</li>
-							<li>
-								<label>이름 : </label>
-								<input id="textbox" type="text" name="userName" placeholder="이름을 입력하세요">
-							</li>
-							<li>
-								<label>성별 : </label>
-								<input type="radio" name="userGender" value="M"> 남자
-								<input type="radio" name="userGender" value="F"> 여자
-							</li>
-							<li>
-								<label>이메일 : </label>
-								<input id="userEmail" type="email" name="userEmail" placeholder="이메일을 입력하세요"><br>
-								<span id="userEmailMsg"></span>
-							</li>
-							<li>
-								<label>전화번호 : </label>
-								<input id="textbox" type="text" name="userPhone" placeholder="전화번호를 입력하세요">
-							</li>
-							<li>
-								<label>주소 : </label>
-								<input id="userAddr" type="text" name="userAddr" placeholder="주소를 입력하세요">
-								<input type="button" onclick="sample4_execDaumPostcode();" value="주소검색">
-							</li>
-							<li>
-								<label>관심사 : </label>
-<!-- 								<input type="text" name="userHobby"> -->
-								<input type="radio" name="userHobby" value="음식"> 음식
-								<input type="radio" name="userHobby" value="안전"> 안전
-								<input type="radio" name="userHobby" value="취미"> 취미
-							</li>
-						</ul>
-					</fieldset><br>
-					<input type="submit" value="회원가입">
-					<input type="reset" value="취소">
-				</form>
+						
+						<input id="userId" type="text" name="userId" placeholder="아이디를 입력하세요" class="in">
+						<span id="userIdMsg"></span>
+						
+						<input id="textbox" type="password" name="userPw" placeholder="비밀번호를 입력하세요" class="in"><br>
+						
+						<input id="textbox" type="text" name="userName" placeholder="이름을 입력하세요" class="in"><br>
+						
+						성별 : 
+							<input type="radio" name="userGender" value="M" > 남자
+							<input type="radio" name="userGender" value="F" > 여자 <br><br>
+							   
+						<input id="userEmail" type="email" name="userEmail" placeholder="이메일을 입력하세요" class="in"><br>
+						<span id="userEmailMsg"></span>
+						
+						<input id="textbox" type="text" name="userPhone" placeholder="전화번호를 입력하세요" class="in"><br>
+						
+						<input id="userAddr" type="text" name="userAddr" placeholder="주소를 입력하세요" class="in_addr" readonly>
+						<input type="button" onclick="sample4_execDaumPostcode();" value="주소검색" class="button"><br>
+						
+						관심사 : <input type="radio" name="userHobby" value="음식" > 음식
+								 <input type="radio" name="userHobby" value="안전" > 안전
+								 <input type="radio" name="userHobby" value="취미" > 취미 <br><br>
+								 
+						<button type="submit" id="btn">회원가입</button>
+						<button type="reset" id="btn">취소</button>
+						
+					</form>
+				</div>
 				<script>
 				$(document).ready(function () {
 				    var userIdInput = $("#userId");
@@ -152,8 +137,9 @@
 				}
 				</script>
 			</section>
+			</div>
 		</main>
-			
+		
 		<!-- footer -->
 			<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		</div>

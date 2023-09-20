@@ -4,7 +4,7 @@
 
 <header>
 	<nav class="nav_left">
-		<a href="#">Special Alone</a>
+		<a href="/index.jsp">Special Alone</a>
 	</nav>
 	
 	<nav class="nav_center">

@@ -1,13 +1,11 @@
 package com.alone.special.user.service.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alone.special.noticeEvent.domain.PageInfo;
 import com.alone.special.user.domain.User;
 import com.alone.special.user.service.UserService;
 import com.alone.special.user.store.UserStore;
@@ -72,26 +70,4 @@ public class UserServiceImpl implements UserService{
 		Map<String, String> userPw = uStore.findUserPw(session, userId, userEmail);
 		return userPw;
 	}
-	@Override
-	public Integer getUserListCount() {
-		int result = uStore.getUserListCount(session);
-		return result;
-	}
-	@Override
-	public List<User> selectUserList(PageInfo pInfo) {
-		List<User> uList = uStore.selectUserList(session, pInfo);
-		return uList;
-	}
-	@Override
-	public Integer getUserListCount(String searchKeyword) {
-		int result = uStore.getUserListCount(session, searchKeyword);
-		return result;
-	}
-	@Override
-	public List<User> selectUserList(PageInfo pInfo, String searchKeyword) {
-		List<User> sList = uStore.selectUserList(session, pInfo, searchKeyword);
-		return sList;
-	}
-	
-	
 }

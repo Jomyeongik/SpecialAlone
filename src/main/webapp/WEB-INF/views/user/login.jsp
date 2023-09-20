@@ -11,14 +11,6 @@
       	<link rel="stylesheet" href="/resources/css/footer.css">
       	<link rel="stylesheet" href="/resources/css/user/login.css">
 		<title>SpecialAlone 회원가입</title>
-		<style>
-			.container_main{
-			   width: 100%;
-			   height: 100%;
-			   text-align: center;
-			   background: url("../../images/loginView.png");
-			}
-		</style>
 	</head>
 	<body>
 		<div class="container">

@@ -1,11 +1,9 @@
 package com.alone.special.user.store;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.alone.special.noticeEvent.domain.PageInfo;
 import com.alone.special.user.domain.User;
 
 public interface UserStore {
@@ -72,33 +70,4 @@ public interface UserStore {
 	 * @return
 	 */
 	Map<String, String> findUserPw(SqlSession session, String userId, String userEmail);
-	/**
-	 * 회원 전체 수 store
-	 * @param session
-	 * @return
-	 */
-	int getUserListCount(SqlSession session);
-	/**
-	 * 회원 전체 리스트 store
-	 * @param session
-	 * @param pInfo
-	 * @return
-	 */
-	List<User> selectUserList(SqlSession session, PageInfo pInfo);
-	/**
-	 * 검색 회원 수 store
-	 * @param session
-	 * @param searchKeyword
-	 * @return
-	 */
-	int getUserListCount(SqlSession session, String searchKeyword);
-	/**
-	 * 회원 검색 리스트 store
-	 * @param session
-	 * @param pInfo
-	 * @param searchKeyword
-	 * @return
-	 */
-	List<User> selectUserList(SqlSession session, PageInfo pInfo, String searchKeyword);
-
 }

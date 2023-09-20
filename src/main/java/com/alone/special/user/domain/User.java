@@ -19,6 +19,12 @@ public class User {
 		super();
 	}
 	
+	public User(String userId, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userEmail = userEmail;
+	}
+
 	public int getUserNo() {
 		return userNo;
 	}

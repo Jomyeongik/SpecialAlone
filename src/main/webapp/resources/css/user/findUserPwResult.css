@@ -11,13 +11,13 @@ main section {
 	width: 100%;
 	height: 900px;
 	text-align: center;
-	background-image: url("../../images/user_images/5042356.jpg");
+	background-image: url("../../images/user_images/findUserPw-view.jpg");
+	background-size: cover;
 }
 
-.loginArea{
+.findUserPwArea{
 	margin: 0 auto;
-	width: 100%;
-	max-width: 400px;
+	width: 20%;
 }
 
 input {
@@ -56,9 +56,14 @@ h2 {
 	font-size: 20px;
 }
 
+p {
+	font-size: 20px;
+	font-weight: bold;
+}
+
 .button {
   display: inline-block;
-  padding: 10px 23px; /* 원하는 패딩 값으로 조절하세요 */
+  padding: 10px 13px; /* 원하는 패딩 값으로 조절하세요 */
   background-color: #007bff; /* 배경색 설정 */
   color: #fff; /* 텍스트 색상 설정 */
   text-decoration: none; /* 밑줄 제거 */
