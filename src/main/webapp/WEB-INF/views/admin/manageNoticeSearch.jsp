@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -9,15 +9,15 @@
 		<link rel="stylesheet" href="/resources/css/reset.css">
 	    <link rel="stylesheet" href="/resources/css/header.css">
 	    <link rel="stylesheet" href="/resources/css/footer.css">
-	    <link rel="stylesheet" href="/resources/css/index.css">
 	    <link rel="stylesheet" href="/resources/css/admin/manageBoard.css">
+	    <link rel="stylesheet" href="/resources/css/admin/main.css">
 		<script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<title>°Ô½Ã±Û/¸®ºä °ü¸®</title>
+		<title>ê²Œì‹œê¸€/ë¦¬ë·° ê´€ë¦¬</title>
 	</head>
 	<body>
 		<!-- header -->
@@ -27,36 +27,36 @@
         	<div id="main_left">
                 <table>
                     <tr>
-                        <td><a href="/member/list.do">È¸¿ø°ü¸®</a></td>
+                        <td><a href="/member/list.do">íšŒì›ê´€ë¦¬</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/singo/list.do">½Å°íÈ¸¿ø</a></td>
+                        <td><a href="/singo/list.do">ì‹ ê³ íšŒì›</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: black;"><a href="/manageBoard.do?selectedValue=notice" style="color:white;">°Ô½Ã±Û/¸®ºä °ü¸®</a></td>
+                        <td style="background-color: black;"><a href="/manageBoard.do?selectedValue=notice" style="color:white;">ê²Œì‹œê¸€/ë¦¬ë·° ê´€ë¦¬</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/manageReply.do?selectedValue=hobby">´ñ±Û °ü¸®</a></td>
+                        <td><a href="/manageReply.do?selectedValue=hobby">ëŒ“ê¸€ ê´€ë¦¬</a></td>
                     </tr>
                 </table>
             </div>
             <div id="main_middle">
-            	<h2><b>°Ô½Ã±Û/¸®ºä °ü¸®</b></h2>
+            	<h2><b>ê²Œì‹œê¸€/ë¦¬ë·° ê´€ë¦¬</b></h2>
                 <hr>
                 <div class="search">
                 	<select id="boardType">
-                		<option value="notice" selected>°øÁö»çÇ×</option>
-                		<option value="event">Çà»ç</option>
-                		<option value="sProduct">¾ÈÀü »óÇ°</option>
-                		<option value="sReview">¾ÈÀü ¸®ºä</option>
-                		<option value="hBoard">Ãë¹Ì °Ô½Ã±Û</option>
-                		<option value="fBoard">À½½Ä ÃßÃµ</option>
-                		<option value="fReview">À½½Ä Æ÷Åä ¸®ºä</option>
+                		<option value="notice" selected>ê³µì§€ì‚¬í•­</option>
+                		<option value="event">í–‰ì‚¬</option>
+                		<option value="sProduct">ì•ˆì „ ìƒí’ˆ</option>
+                		<option value="sReview">ì•ˆì „ ë¦¬ë·°</option>
+                		<option value="hBoard">ì·¨ë¯¸ ê²Œì‹œê¸€</option>
+                		<option value="fBoard">ìŒì‹ ì¶”ì²œ</option>
+                		<option value="fReview">ìŒì‹ í¬í†  ë¦¬ë·°</option>
                 	</select>
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="notice">
-						<input type="text" name="searchKeyword" placeholder="°øÁö»çÇ× Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä." style="width:30%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="ê³µì§€ì‚¬í•­ ì œëª©ì„ ìž…ë ¥í•˜ì„¸ìš”." style="width:30%" value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -69,10 +69,10 @@
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
-	                            <th>¹øÈ£</th>
-	                            <th>Á¦¸ñ</th>
-	                            <th>ÀÛ¼ºÀÏ</th>
-	                            <th>°ü¸®</th>
+	                            <th>ë²ˆí˜¸</th>
+	                            <th>ì œëª©</th>
+	                            <th>ìž‘ì„±ì¼</th>
+	                            <th>ê´€ë¦¬</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody class="table-group-divider">
@@ -82,8 +82,8 @@
 									<td><a href="/noticeEvent/detail.do?boardNo=${notice.boardNo }">${notice.boardTitle }</a></td>
 									<td style="text-align:center"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${notice.bCreateDate }"/></td>
 									<td style="text-align:center">
-										<button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'">¼öÁ¤</button>
-										<button onclick="if (confirm('»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?')) { location.href = '/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">»èÁ¦</button>
+										<button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'">ìˆ˜ì •</button>
+										<button onclick="if (confirm('ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) { location.href = '/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">ì‚­ì œ</button>
 									</td>
 								</tr>
 							</c:forEach>

@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="/resources/css/reset.css">
 	    <link rel="stylesheet" href="/resources/css/header.css">
 	    <link rel="stylesheet" href="/resources/css/footer.css">
-	    <link rel="stylesheet" href="/resources/css/index.css">
 	    <link rel="stylesheet" href="/resources/css/admin/manageMember.css">
+	    <link rel="stylesheet" href="/resources/css/admin/main.css">
 		<script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,8 +73,8 @@
 								<td style="text-align:center">${member.userEmail }</td>
 								<td style="text-align:center">${member.userPhone }</td>
 								<td style="text-align:center" class="manage">
-									<button class="userDetail" onclick="javascript: location.href='/member/detail.do?userNo=${member.userNo }'">상세정보</button>
-									<button class="userDelete" onclick="deleteCheck();">탈퇴</button>
+									<button class="userDetail" onclick="javascript: location.href='/user/mypage.do?userId=${member.userId }'">상세정보</button>
+									<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/user/delete.do?userId=${member.userId }'; window.location.href = window.location.href; }">탈퇴</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -107,13 +107,6 @@
         </main>
         <!-- footer -->
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>	
-        <script>
-			const deleteCheck = () => {
-				if(confirm("탈퇴 시키겠습니까?")){
-					location.href = "/member/delete.do?userNo=${member.usereNo }";
-				}
-			}
-		</script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	</body>
 </html>

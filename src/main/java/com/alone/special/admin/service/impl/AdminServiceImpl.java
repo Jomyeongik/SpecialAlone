@@ -10,6 +10,8 @@ import com.alone.special.admin.domain.Singo;
 import com.alone.special.admin.service.AdminService;
 import com.alone.special.admin.store.AdminStore;
 import com.alone.special.noticeEvent.domain.PageInfo;
+import com.alone.special.review.domain.Review;
+import com.alone.special.review.domain.ReviewPageInfo;
 import com.alone.special.user.domain.User;
 
 @Service
@@ -48,5 +50,20 @@ public class AdminServiceImpl implements AdminService{
 	public int insertSingo(Singo singo) {
 		int result = aStore.insertSingo(sqlSession, singo);
 		return result;
+	}
+	@Override
+	public List<Review> getAllReviews(ReviewPageInfo pInfo) {
+		List<Review> rList = aStore.getAllReviews(sqlSession, pInfo);
+		return rList;
+	}
+	@Override
+	public Integer selectReviewListCountByKeyword(String searchKeyword) {
+		int result = aStore.selectReviewListCountByKeyword(sqlSession, searchKeyword);
+		return result;
+	}
+	@Override
+	public List<Review> getAllReviewsByKeyword(ReviewPageInfo pInfo, String searchKeyword) {
+		List<Review> sList = aStore.getAllReviewsByKeyword(sqlSession, pInfo, searchKeyword);
+		return sList;
 	}
 }

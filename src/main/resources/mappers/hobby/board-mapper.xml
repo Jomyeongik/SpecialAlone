@@ -127,7 +127,7 @@
  	SELECT * FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_STATUS = 'Y'
   </select>
   
-  <select id="selectAllBoardListForAdmin" resultType="_int">
+  <select id="selectAllBoardListForAdmin" resultMap="boardResultMap">
    	SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y'
   </select>
   

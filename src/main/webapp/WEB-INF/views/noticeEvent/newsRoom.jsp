@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="/resources/css/reset.css">
 	    <link rel="stylesheet" href="/resources/css/header.css">
 	    <link rel="stylesheet" href="/resources/css/footer.css">
-	    <link rel="stylesheet" href="/resources/css/index.css">
 	    <link rel="stylesheet" href="/resources/css/noticeEvent/newsRoom.css">
+	    <link rel="stylesheet" href="/resources/css/admin/main.css">
 	    <script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
