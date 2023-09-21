@@ -48,6 +48,7 @@
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
+                <br>
                 <table class="table table-striped table-hover">
                 	<colgroup>
 						<col width="5%"></col>
@@ -73,7 +74,7 @@
 								<td style="text-align:center">${singo.singoNo }</td>
 								<td style="text-align:center">${singo.singoReason }</td>
 								<td style="text-align:center">${singo.singoContent }</td>
-								<td style="text-align:center">${singo.singoLocation }</td>
+								<td style="text-align:center"><a href="${singo.singoLocation }">${singo.singoLocationTitle }</a></td>
 								<td style="text-align:center">${singo.singoId }</td>
 								<td style="text-align:center" class="manage">
 									<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/singo/delete.do?singoNo=${singo.singoNo }'; window.location.href = window.location.href; }">신고 취소</button>

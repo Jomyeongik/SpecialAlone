@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<footer class="navbar navbar-expand-lg">
+<footer class="sticky-bottom navbar navbar-expand-lg">
    <div id="footer" class= "container-fluid">
      <div class="logo">
-       <a href="#"><img src="/resources/images/logo.png" alt=""></a>
+       <a href="/"><img src="/resources/images/logo.png" alt=""></a>
      </div>
      <div class="footer footer1">
        <ul>
@@ -17,7 +17,7 @@
      <div class="footer footer2">
        <ul>
          <li><a href="#">회사소개</a></li>
-         <li><a href="#">회사연혁</a></li>
+         <li><a href="/admin/companyHistory.do">회사연혁</a></li>
          <li><a href="">이용약관</a></li>
          <li><a href="">개인정보취급방침</a></li>
        </ul>

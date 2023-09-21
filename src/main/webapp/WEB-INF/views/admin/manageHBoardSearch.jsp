@@ -51,7 +51,7 @@
                 		<option value="sReview">안전 리뷰</option>
                 		<option value="hBoard" selected>취미 게시글</option>
                 		<option value="fBoard">음식 추천</option>
-                		<option value="fReview">음식 포토 리뷰</option>
+
                 	</select>
                 	<br>
                     <form action="/manageBoard/search.do" method="get">

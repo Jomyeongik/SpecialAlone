@@ -26,51 +26,9 @@
    	<p>사유</p>
     <textarea rows="3"cols="50" name="singocontents"></textarea>
     
-    <button id="submit">보내기</button>
+    <button id="submit" onclick="xx();">보내기</button>
     <button type="button" id="closePopup">닫기</button>
     
 </form>
 </body>
-<script >
-
-$(document).ready(function() {
-    $("#closePopup").click(function() {
-        $("#reportPopup").hide();
-        window.close();
-    });
-    
-    $("#submit").click(function() {
-        var dataToSend = {
-            reason: $("#categorySelect").val(),
-            productTitle: $("input[name='productTitle']").val(),
-            name: $("input[name='name']").val(),
-            url: $("input[name='url']").val(),
-            content: $("input[name='content']").val(),
-            singocontents: $("textarea[name='singocontents']").val()
-        };
-
-        $.ajax({
-            url: "/admin/singo.do", 
-            method: "POST",
-            data: dataToSend,
-            success: function(response) {
-            	if(response = "success"){
-                $("#reportPopup").html("<p>신고가 완료되었습니다.</p>");
-                setTimeout(function() {
-                    $("#reportPopup").hide();
-                    window.close();
-                }, 2000);
-            		
-            	}else{
-            		alert("Fail");
-            	}
-            },
-            error: function(error) {
-                console.error("신고 요청 실패:", error);
-            }
-        });
-    });
-
-});
-</script>
 </html>

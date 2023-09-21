@@ -3,17 +3,17 @@ header {
    height: 60px;
 }
 
-a {
+#nav a {
 	text-decoration: none;
 	padding: 19px;
 }
 
-ul {
+#nav ul {
 	list-style: none;
 }
 
 .nav_left {
-	width: 20%; */
+	width: 20%; 
 	height: 100%;
 	display: flex;
 	justify-content: center;
