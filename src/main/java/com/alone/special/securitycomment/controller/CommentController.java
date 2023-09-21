@@ -46,8 +46,8 @@ public class CommentController {
 		return mv;
 	}
 	@RequestMapping(value = "/insertComment.do", method = RequestMethod.POST)
-	public ModelAndView insertComment(ModelAndView mv,@ModelAttribute Comment comment,HttpSession session,@RequestParam("userId") String userId) {
-		
+	public ModelAndView insertComment(ModelAndView mv,@ModelAttribute Comment comment,HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
 	    User user = userservice.selectOneById(userId);
 	    comment.setUserId(user.getUserId());
 	    comment.setUserNo(user.getUserNo());

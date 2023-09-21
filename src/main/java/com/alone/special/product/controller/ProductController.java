@@ -73,7 +73,7 @@ public class ProductController {
 	  
 private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	   ReviewPageInfo rpi =null;
-	int recordCountPerPage = 5;
+	int recordCountPerPage = 7;
  	int naviCountPerPage = 10;
  	int naviTotalCount;
  	int startNavi;
@@ -150,15 +150,15 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 		    		String productFilename = (String)sMap.get("fileName");
 		    		long productFilelength = (long)sMap.get("fileLength");
 		    		product.setsFileName(productFilename);
-		    		product.setsFileReName((String)sMap.get("fileReName"));
-		    		product.setsFilePath((String)sMap.get("filePath"));
+		    		product.setsFileReName((String)sMap.get("fileRename"));
+		    		product.setsFilePath((String)sMap.get("savePath"));
 		    		product.setsFileLength(productFilelength);
 		    				
 		    	}
 		    	int result =productservice.updateProduct(product);
 		    	if(result>0) {
 		    		
-		    		mv.setViewName("redirect:/sProduct/sdetail.do?sProductId="+product.getsProductId()); 
+		    		mv.setViewName("redirect:/product/sdetail.do?sProductId="+product.getsProductId()); 
 		    			
 		    	}else {
 		    		mv.setViewName("sProduct/insertproduct");
@@ -178,7 +178,7 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	    		if(result>0) {
 	    			mv.addObject("pInfo", pInfo);
 					mv.addObject("pList", pList);
-	    			mv.setViewName("sProduct/slistproduct");
+	    			mv.setViewName("redirect:/product/slistproduct.do");
 	    		}
 	    		return mv;
 	    	

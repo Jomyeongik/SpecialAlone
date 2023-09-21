@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+  /* 전체 폼 스타일 */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 라벨 스타일 */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* 선택 박스 스타일 */
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 입력 필드 스타일 */
+        input[type="hidden"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* 사유 입력 필드 스타일 */
+        textarea {
+            height: 100px;
+        }
+
+        /* 버튼 스타일 */
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 버튼 호버 스타일 */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 수평 라인 스타일 */
+        hr {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
