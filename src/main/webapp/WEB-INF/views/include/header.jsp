@@ -13,8 +13,8 @@
 				<ul>
 					<li><a href="#">공지</a></li>
 					<li><a href="#">음식</a></li>
-					<li><a href="/hobby/category/list.do">취미</a></li>
 					<li><a href="#">안전</a></li>
+					<li><a href="/hobby/category/list.do">취미</a></li>
 				</ul>
 
 				<c:if test="${userId eq 'admin' }">
@@ -41,14 +41,13 @@
 						<li><a href="/diner/list.do">추천식당</a></li>
 					</ul>
 					<ul class="menu">
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">행사</a></li>
-						<li><a href="#">뉴스룸</a></li>
+						<li><a href="/product/slistproduct.do">안전상품</a></li>
+						<li><a href="/comment/map.do">안전지도</a></li>
 					</ul>
 					<ul class="menu">
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">행사</a></li>
-						<li><a href="#">뉴스룸</a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
 					</ul>
 					<c:if test="${userId eq 'admin' }">
 						<ul class="menu" style = "display: flex;">					

@@ -1,14 +1,8 @@
 /* main */
 
-/* main { */
-/*    width: 1920px; */
-/*    height: 1080px; */
-/* } */
-
 main section {
 	height: 1200px;
-/*    padding: 100px; */
-   text-align: center;
+	text-align: center;
 }
 
 .container {
