@@ -54,32 +54,33 @@
 			</c:forEach>
 
 			<!-- 페이징 네비게이션 수정필요 -->
-			<div class="pagination">
-				<c:if test="${foodProductRevSetList.size() > 0}">
-				    <ul>
-				        <c:if test="${pInfo.startNavi > 1}">
-				            <li><a href="/foodProduct/revlist.do?page=1">처음</a></li>
-				        </c:if>
-				        <c:if test="${pInfo.currentPage > 1}">
-				            <li><a href="/foodProduct/revlist.do?page=${pInfo.currentPage - 1}">이전</a></li>
-				        </c:if>
-				        <c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="i">
-				            <c:if test="${pInfo.currentPage == i}">
-				                <li class="active"><span>${i}</span></li>
+				<div class="pagination">
+				    <c:if test="${foodProductRevSetList.size() > 0}">
+				        <ul>
+				            <c:if test="${pInfo.startNavi != 1 }">
+				                <c:url var="prevUrl" value="/foodProduct/revlist.do">
+				                    <c:param name="fProductId" value="${foodProduct.fProductId}" />
+				                    <c:param name="page" value="${pInfo.startNavi - 1}" />
+				                </c:url>
+				                <a href="${prevUrl }">[이전]</a>
 				            </c:if>
-				            <c:if test="${pInfo.currentPage != i}">
-				                <li><a href="/foodProduct/revlist.do?page=${i}">${i}</a></li>
+				            <c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
+				                <c:url var="pageUrl" value="/foodProduct/revlist.do">
+				                    <c:param name="fProductId" value="${foodProduct.fProductId}" />
+				                    <c:param name="page" value="${p }" />
+				                </c:url>
+				                <a href="${pageUrl }">${p }</a>&nbsp;
+				            </c:forEach>
+				            <c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+				                <c:url var="nextUrl" value="/foodProduct/revlist.do">
+				                    <c:param name="fProductId" value="${foodProduct.fProductId}" />
+				                    <c:param name="page" value="${pInfo.endNavi + 1 }" />
+				                </c:url>
+				                <a href="${nextUrl }">[다음]</a>
 				            </c:if>
-				        </c:forEach>
-				        <c:if test="${pInfo.currentPage < pInfo.naviTotalCount}">
-				            <li><a href="/foodProduct/revlist.do?page=${pInfo.currentPage + 1}">다음</a></li>
-				        </c:if>
-				        <c:if test="${pInfo.endNavi < pInfo.naviTotalCount}">
-				            <li><a href="/foodProduct/revlist.do?page=${pInfo.naviTotalCount}">끝</a></li>
-				        </c:if>
-				    </ul>
-				</c:if>
-			</div>
+				        </ul>
+				    </c:if>
+				</div>			
 			<h2>한줄리뷰</h2>
 			<br> 
 			<div>
