@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<footer class="sticky-bottom navbar navbar-expand-lg">
+<footer class=" navbar2 navbar-expand-lg">
    <div id="footer" class= "container-fluid">
      <div class="logo">
        <a href="/"><img src="/resources/images/logo.png" alt=""></a>

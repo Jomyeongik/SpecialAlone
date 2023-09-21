@@ -89,7 +89,6 @@
 									<td style="text-align:center">${food.fProductCompany }</td>
 									<td style="text-align:center">${food.fProductPrice }</td>
 									<td style="text-align:center">
-										<button class="userDetail" onclick="javascript: location.href='/foodProduct/modifyInfo.do?fProductId=${food.fProductId }'">수정</button>
 										<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/foodProduct/deleteProduct.do?fProductId=${food.fProductId }'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
