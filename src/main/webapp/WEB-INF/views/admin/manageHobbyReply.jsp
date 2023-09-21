@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<title>´ñ±Û °ü¸®</title>
+		<title>ëŒ“ê¸€ ê´€ë¦¬</title>
 	</head>
 	<body>
 		<!-- header -->
@@ -27,31 +27,31 @@
         	<div id="main_left">
                 <table>
                     <tr>
-                        <td><a href="/member/list.do">È¸¿ø°ü¸®</a></td>
+                        <td><a href="/member/list.do">íšŒì›ê´€ë¦¬</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/singo/list.do">½Å°íÈ¸¿ø</a></td>
+                        <td><a href="/singo/list.do">ì‹ ê³ íšŒì›</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/manageBoard.do?selectedValue=notice">°Ô½Ã±Û/¸®ºä °ü¸®</a></td>
+                        <td><a href="/manageBoard.do?selectedValue=notice">ê²Œì‹œê¸€/ë¦¬ë·° ê´€ë¦¬</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: black;"><a href="/manageReply.do?selectedValue=hobby" style="color:white;">´ñ±Û °ü¸®</a></td>
+                        <td style="background-color: black;"><a href="/manageReply.do?selectedValue=hobby" style="color:white;">ëŒ“ê¸€ ê´€ë¦¬</a></td>
                     </tr>
                 </table>
             </div>
             <div id="main_middle">
-            	<h2><b>´ñ±Û °ü¸®</b></h2>
+            	<h2><b>ëŒ“ê¸€ ê´€ë¦¬</b></h2>
                 <hr>
                 <div class="search">
                 	<select id="boardType">
-                		<option value="hobby" selected>Ãë¹Ì ´ñ±Û</option>
-                		<option value="security">¾ÈÀü ´ñ±Û</option>
+                		<option value="hobby" selected>ì·¨ë¯¸ ëŒ“ê¸€</option>
+                		<option value="security">ì•ˆì „ ëŒ“ê¸€</option>
                 	</select>
                 	<br>
                     <form action="/manageReply/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="hobby">
-						<input type="text" name="searchKeyword" placeholder="ÀÛ¼ºÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä." style="width:30%">
+						<input type="text" name="searchKeyword" placeholder="ìž‘ì„±ìžë¥¼ ìž…ë ¥í•˜ì„¸ìš”.">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -60,24 +60,24 @@
 							<col width="10%"></col>
 							<col width="40%"></col>
 							<col width="20%"></col>
-							<col width="10%"></col>
+							<col width="15%"></col>
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
-	                            <th>¹øÈ£</th>
-	                            <th>³»¿ë</th>
-	                            <th>ÀÛ¼ºÀÚ</th>
-	                            <th>°ü¸®</th>
+	                            <th>ë²ˆí˜¸</th>
+	                            <th>ë‚´ìš©</th>
+	                            <th>ìž‘ì„±ìž</th>
+	                            <th>ê´€ë¦¬</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody class="table-group-divider">
 							<c:forEach var="reply" items="${hList}">
 								<tr>
 									<td style="text-align:center">${reply.hReplyNo }</td>
-									<td><a href="/noticeEvent/detail.do?boardNo=${reply.refBoardNo }">${reply.hReplyContent }</a></td>
+									<td>${reply.hReplyContent }</td>
 									<td style="text-align:center">${reply.hReplyWriter }</td>
 									<td style="text-align:center">
-										<button onclick="if (confirm('»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?')) { location.href = '/noticeEvent/delete.do?boardNo=${reply.hReplyNo }'; window.location.href = window.location.href; }">»èÁ¦</button>
+										<button class="userDelete" onclick="if (confirm('ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) { location.href = '/deleteHReply.do?hReplyNo=${reply.hReplyNo }'; window.location.href = window.location.href; }">ì‚­ì œ</button>
 									</td>
 								</tr>
 							</c:forEach>

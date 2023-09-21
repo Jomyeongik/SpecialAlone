@@ -44,18 +44,18 @@
                 <hr>
                 <div class="search">
                     <form action="/singo/search.do" method="get">
-						<input type="text" name="searchKeyword" placeholder="아이디를 입력하세요." style="width:30%">
+						<input type="text" name="searchKeyword" placeholder="아이디를 입력하세요.">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
                 <table class="table table-striped table-hover">
                 	<colgroup>
-						<col width="10%"></col>
+						<col width="5%"></col>
 						<col width="20%"></col>
 						<col width="20%"></col>
 						<col width="20%"></col>
 						<col width="20%"></col>
-						<col width="10%"></col>
+						<col width="15%"></col>
 					</colgroup>
                     <thead>
                         <tr style="text-align:center">
@@ -76,7 +76,7 @@
 								<td style="text-align:center">${singo.singoLocation }</td>
 								<td style="text-align:center">${singo.singoId }</td>
 								<td style="text-align:center" class="manage">
-									<button class="userDelete" onclick="deleteCheck();">신고 취소</button>
+									<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/singo/delete.do?singoNo=${singo.singoNo }'; window.location.href = window.location.href; }">신고 취소</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -106,13 +106,6 @@
         </main>
         <!-- footer -->
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-        <script>
-			const deleteCheck = () => {
-				if(confirm("신고 취소 하시겠습니까?")){
-					location.href = "/singo/delete.do?singoNo=${singo.singoNo }";
-				}
-			}
-		</script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	</body>
 </html>

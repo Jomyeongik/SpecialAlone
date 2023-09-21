@@ -7,7 +7,8 @@ h2 b{
   }
 
 .search {
-    margin-left: 5%;
+    display: flex;
+    justify-content: space-around;
 }
 #findProduct {
 font-size: inherit;
@@ -15,9 +16,7 @@ background-color: rgba(0,0,0,0);
 border: none;
 margin-left: 5px;
 }
-form{
-	margin-top : 30px;
-}
+
 tfoot a{
 	margin : 0 10px;
 }
@@ -32,10 +31,22 @@ tfoot a{
   }
   .userDetail {
     background-color: orange;
+    border-radius: 5px;
+    padding: 0px 5px;
   }
   .userDelete {
     background-color: rgb(233, 105, 105);
+    border-radius: 5px;
+    padding: 0px 5px;
   }
 td a{
 	text-decoration: none;
+}
+
+#boardType {
+	height:30px;
+}
+form input {
+	margin-left:-30%;
+	width: 110%;
 }

@@ -44,7 +44,7 @@
                 <hr>
                 <div class="search">
                     <form action="/member/search.do" method="get">
-						<input type="text" name="searchKeyword" placeholder="아이디를 입력하세요." style="width:30%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="아이디를 입력하세요." value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>

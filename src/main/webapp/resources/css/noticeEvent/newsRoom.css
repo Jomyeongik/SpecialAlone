@@ -7,7 +7,8 @@ h2 b{
   }
 
 .search {
-    margin-left: 3%;
+	display:flex;
+	justify-content: right;
 }
 #findProduct {
 font-size: inherit;
@@ -23,4 +24,8 @@ form{
   }
 tfoot a{
 	margin : 0 10px;
+}
+form input {
+	margin-left:-30%;
+	width: 110%;
 }

@@ -44,9 +44,9 @@
 						<input type="text" name="searchKeyword" placeholder="제목을 입력하세요." style="width:30%">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
-	                <%-- <c:if test="${memberId eq 'admin' }"> --%>
-	                <button class="eventNotice" onclick="javascript: location.href='/noticeEvent/write.do'" style="margin-top:-30px;">행사 등록</button>
-	                <%-- </c:if> --%>
+	                <c:if test="${userId eq 'admin' }">
+	                	<button class="eventNotice" onclick="javascript: location.href='/noticeEvent/write.do'" style="margin-top:-30px;">행사 등록</button>
+	                </c:if>
                 </div><br>
                 <div class="container itemlist">
                         <div class="row">

@@ -56,7 +56,7 @@
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="sReview">
-						<input type="text" name="searchKeyword" placeholder="작성자를 입력하세요." style="width:30%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="작성자를 입력하세요." value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -66,7 +66,7 @@
 							<col width="30%"></col>
 							<col width="20%"></col>
 							<col width="10%"></col>
-							<col width="10%"></col>
+							<col width="15%"></col>
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
@@ -81,11 +81,11 @@
 							<c:forEach var="review" items="${sList}">
 								<tr>
 									<td style="text-align:center">${review.sReviewId }</td>
-									<td style="text-align:center"><a href="/sdetail.do?sProductId=${review.sProductId }">${review.sProductId }</a></td>
+									<td style="text-align:center"><a href="/product/sdetail.do?sProductId=${review.sProductId }">${review.sProductId }</a></td>
 									<td>${review.sUserId }</td>
 									<td style="text-align:center">${review.sReviewReCommend }</td>
 									<td style="text-align:center">
-										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/deleteReview.do?sReviewId=${review.sReviewId }'; window.location.href = window.location.href; }">삭제</button>
+										<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/review/deleteReview.do?sReviewId=${review.sReviewId }&sProductId=${review.sProductId }'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>

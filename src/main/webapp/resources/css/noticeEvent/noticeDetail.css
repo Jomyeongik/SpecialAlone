@@ -6,7 +6,7 @@ button:has(.fa-trash) {
 }
 .modify {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 0px 50px;
 }
 .modify button {

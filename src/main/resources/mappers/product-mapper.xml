@@ -26,7 +26,7 @@
         UPDATE S_PRODUCT SET S_PRODUCT_NAME = #{sProductName},S_P_FILE_NAME=#{sFileName},S_P_FILE_RENAME=#{sFileReName}, S_DESCRIPTION = #{sDescription},S_P_FILE_PATH=#{sFilePath},S_P_FILE_LENGTH=#{sFileLength}, S_PRICE = #{sPrice} WHERE S_PRODUCT_ID = #{sProductId}
     </update>
 
-    <delete id="deleteProduct" parameterType="int">
+    <delete id="deleteProduct">
         DELETE FROM S_PRODUCT WHERE S_PRODUCT_ID = #{sProductId}
     </delete>
     

@@ -56,7 +56,7 @@
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="sProduct">
-						<input type="text" name="searchKeyword" placeholder="상품명을 입력하세요." style="width:30%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="상품명을 입력하세요." value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -66,7 +66,7 @@
 							<col width="30%"></col>
 							<col width="20%"></col>
 							<col width="10%"></col>
-							<col width="10%"></col>
+							<col width="15%"></col>
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
@@ -81,12 +81,12 @@
 							<c:forEach var="product" items="${sList}">
 								<tr>
 									<td style="text-align:center">${product.sProductId }</td>
-									<td style="text-align:center"><a href="/noticeEvent/detail.do?boardNo=${product.boardNo }">${product.sProductName }</a></td>
+									<td style="text-align:center"><a href="/product/sdetail.do?sProductId=${product.sProductId }">${product.sProductName }</a></td>
 									<td>${product.sPrice }</td>
 									<td style="text-align:center">${product.sProductAverageRating }</td>
 									<td style="text-align:center">
-										<button onclick="javascript: location.href='/product/update.do?sProductId=${product.sProductId }'">수정</button>
-										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/product/delete.do?sProductId=${product.sProductId }'; window.location.href = window.location.href; }">삭제</button>
+										<button class="userDetail" onclick="javascript: location.href='/product/update.do?sProductId=${product.sProductId }'">수정</button>
+										<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/product/delete.do?sProductId=${product.sProductId }'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>

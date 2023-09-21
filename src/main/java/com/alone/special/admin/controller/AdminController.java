@@ -1,5 +1,7 @@
 package com.alone.special.admin.controller;
 
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alone.special.admin.domain.Singo;
 import com.alone.special.admin.service.AdminService;
 import com.alone.special.hobby.domain.Board;
+import com.alone.special.hobby.domain.Reply;
 import com.alone.special.hobby.service.BoardService;
+import com.alone.special.hobby.service.ReplyService;
 import com.alone.special.noticeEvent.domain.NoticeEvent;
 import com.alone.special.noticeEvent.domain.PageInfo;
 import com.alone.special.noticeEvent.service.NoticeEventService;
@@ -29,6 +33,7 @@ import com.alone.special.product.service.ProductService;
 import com.alone.special.review.domain.Review;
 import com.alone.special.review.domain.ReviewPageInfo;
 import com.alone.special.review.service.ReviewService;
+import com.alone.special.securitycomment.domain.Comment;
 import com.alone.special.user.domain.User;
 import com.alone.special.user.service.UserService;
 
@@ -47,6 +52,8 @@ public class AdminController {
 	private ProductService pService;
 	@Autowired
 	private ReviewService rService;
+	@Autowired
+	private ReplyService hrService;
 
 	
 	
@@ -103,9 +110,15 @@ public class AdminController {
 			@RequestParam("selectedValue") String selectedValue,
 			@RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
 		if(selectedValue.equals("hobby")) {
-			
+			Integer totalCount = aService.getHReplyListCount();
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
+			List<Reply> hList = aService.getHReplyList(pInfo);
+			mv.addObject("hList", hList).addObject("pInfo", pInfo).setViewName("/admin/manageHobbyReply");
 		} else if(selectedValue.equals("security")) {
-			
+			Integer totalCount = aService.getSReplyListCount();
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
+			List<Comment> sList = aService.getSReplyList(pInfo);
+			mv.addObject("sList", sList).addObject("pInfo", pInfo).setViewName("/admin/manageSecurityReply");
 		}
 		
 		return mv;
@@ -117,9 +130,17 @@ public class AdminController {
 			@RequestParam("searchKeyword") String searchKeyword,
 			@RequestParam(value="currentPage", required=false, defaultValue="1") Integer currentPage) {
 		if(selectedValue.equals("hobby")) {
-			
+			Integer totalCount = aService.getHReplyListCount(searchKeyword);
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
+			List<Reply> sList = aService.getHReplyList(pInfo, searchKeyword);
+			mv.addObject("sList", sList).addObject("pInfo", pInfo)
+			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageHobbyReplySearch");
 		} else if(selectedValue.equals("security")) {
-			
+			Integer totalCount = aService.getSReplyListCount(searchKeyword);
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
+			List<Comment> sList = aService.getSReplyList(pInfo, searchKeyword);
+			mv.addObject("sList", sList).addObject("pInfo", pInfo)
+			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageSecurityReplySearch");
 		}
 		
 		return mv;
@@ -153,12 +174,16 @@ public class AdminController {
 			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageSProductSearch");
 		} else if(selectedValue.equals("sReview")) { // 안전 리뷰
 			Integer totalCount = aService.selectReviewListCountByKeyword(searchKeyword);
-			ReviewPageInfo pInfo = this.getReviewPageInfo(totalCount, currentPage);
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
 			List<Review> sList = aService.getAllReviewsByKeyword(pInfo, searchKeyword);
 			mv.addObject("sList", sList).addObject("pInfo", pInfo)
 			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageSReviewSearch");
 		} else if(selectedValue.equals("hBoard")) { // 취미 게시글
-			// 맨 마지막 bySession 관리자 사용? writer 삭제해야함
+			Integer totalCount = hService.getListCount(searchKeyword);
+			com.alone.special.hobby.domain.PageInfo pInfo = this.getPageInfoH(totalCount, currentPage);
+			List<Board> sList = hService.selectBoardListByCategoryForAdmin(searchKeyword, pInfo);
+			mv.addObject("sList", sList).addObject("pInfo", pInfo)
+			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageHBoardSearch");
 		}
 		return mv;
 	}
@@ -188,14 +213,15 @@ public class AdminController {
 			List<Board> hList = hService.selectAllBoardListForAdmin(pInfo);
 			mv.addObject("hList", hList).addObject("pInfo", pInfo).setViewName("/admin/manageHBoard");
 		} else if(selectedValue.equals("sReview")) { // 안전 리뷰
-			//sList
 			Integer totalCount = rService.getListCount();
-			ReviewPageInfo pInfo = this.getReviewPageInfo(totalCount, currentPage);
+			PageInfo pInfo = this.getPageInfo(totalCount, currentPage);
 			List<Review> sList = aService.getAllReviews(pInfo);
 			mv.addObject("sList", sList).addObject("pInfo", pInfo).setViewName("/admin/manageSReview");
 		} else if(selectedValue.equals("fBoard")) { // 음식 추천
 			//fList
 		} else if(selectedValue.equals("fReview")) { // 음식 리뷰
+			//fList
+		} else if(selectedValue.equals("rBorad")) { // 식당 추천
 			//fList
 		}
 		
@@ -267,9 +293,7 @@ public class AdminController {
 			if(!singoList.isEmpty()) {
 				mv.addObject("singoList", singoList).addObject("pInfo", pInfo).setViewName("admin/singo");
 			} else {
-				mv.addObject("msg", "신고 회원 조회가 완료되지 않았습니다.");
-				mv.addObject("url", "/index.jsp");
-				mv.setViewName("common/errorPage");
+				mv.addObject("singoList", singoList).addObject("pInfo", pInfo).setViewName("admin/singo");
 			}
 		} catch (Exception e) {
 			mv.addObject("msg", "신고 회원 조회가 완료되지 않았습니다.");
@@ -404,7 +428,7 @@ public class AdminController {
 	public ModelAndView deleteBoard(ModelAndView mv
 			, @ModelAttribute Board board) {
 		try {
-				int result = hService.deleteBoard(board);
+				int result = aService.deleteBoard(board);
 				if(result > 0) {
 					mv.setViewName("/index.jsp");
 				} else {
@@ -416,6 +440,26 @@ public class AdminController {
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의하세요.");
 			mv.addObject("error", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/deleteHReply.do", method = RequestMethod.GET)
+	public ModelAndView deleteReply(ModelAndView mv
+			, @ModelAttribute Reply reply) {
+		try {
+				int result = hrService.deleteReply(reply);
+				if(result > 0) {
+					mv.setViewName("/index.jsp");
+				} else {
+					mv.addObject("msg", "댓글 삭제가 완료되지 않았습니다.");
+					mv.addObject("url", "/index.jsp");
+					mv.setViewName("common/errorPage");
+				}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의하세요.");
+			mv.addObject("url", "/index.jsp");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
