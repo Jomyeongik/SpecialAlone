@@ -6,16 +6,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="/resources/css/reset.css">
 	    <link rel="stylesheet" href="/resources/css/header.css">
 	    <link rel="stylesheet" href="/resources/css/footer.css">
 	    <link rel="stylesheet" href="/resources/css/admin/main.css">
 	    <link rel="stylesheet" href="/resources/css/noticeEvent/noticeDetail.css">
 	    <script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 		<c:if test="${notice.boardType eq 'NOTICE' }"><title>공지사항 상세</title></c:if>
 		<c:if test="${notice.boardType eq 'EVENT' }"><title>행사 상세</title></c:if>
 		
@@ -24,7 +24,7 @@
 		<!-- header -->
         <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
         <!-- main -->
-        <main>
+        <main style="overflow:auto;">
         	<div id="main_left">
                 <table>
                     <tr>
@@ -44,7 +44,7 @@
                     </tr>
                 </table>
             </div>
-   	        <div id="main_middle">
+   	        <div id="main_middle" style="height:80vh;">
 				<c:if test="${notice.boardType eq 'NOTICE' }">
 					<label class="back"><a href="/notice/list.do"><i class="fa-solid fa-arrow-rotate-left"></i>목록으로</a></label>
 					<h2><b>공지사항 상세</b></h2>

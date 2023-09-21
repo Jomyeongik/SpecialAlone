@@ -60,7 +60,7 @@ public class NoticeEventController {
 			if(noticeEvent.getBoardType().equals("NOTICE")) {
 				mv.setViewName("redirect:/notice/list.do");
 			} else {
-				mv.setViewName("redirect:/eventd/list.do");
+				mv.setViewName("redirect:/event/list.do");
 			}
 			int result = nService.insertNoticeEvent(noticeEvent);
 		} catch (Exception e) {
