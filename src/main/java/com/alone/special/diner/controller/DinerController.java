@@ -379,6 +379,7 @@ public class DinerController {
 	        System.out.println(dinerSetList);
 	        mv.addObject("dinerSetList", dinerSetList);
 	        mv.addObject("pInfo", pInfo);
+	        mv.addObject("region", region);
 	        mv.setViewName("food/diner/dinerList");
 	    } catch (Exception e) {
 	        // 예외 처리 로직 추가
@@ -454,13 +455,20 @@ public class DinerController {
 	// 상품 상세정보 조회
 	@RequestMapping(value="/diner/dinerDetail.do", method=RequestMethod.GET)
 	public ModelAndView showDinerDetail(ModelAndView mv
+			,@ModelAttribute DinerRev dRev
 			,@RequestParam("fDinerId") Integer fDinerId
 			,@RequestParam("refFDinerId") Integer refFDinerId) {	
 		try {
+			float revStar = FDService.getStarByfDinerId(fDinerId);
+			double roundedRevStar = Math.round(revStar * 100.0)/100.0;
+			List<DinerRev> dRevList;
+			dRevList = FDService.selectRevListByFDinerId(fDinerId);
 			Diner diner = FDService.selectDetailInfoByFDinerId(fDinerId);
 			List<DinerFile> dFileList = FDService.selectDetailFileByRefFDinerId(refFDinerId);
 			if(diner !=null && dFileList !=null) {
+				mv.addObject("roundedRevStar", roundedRevStar);
 				mv.addObject("diner", diner);
+				mv.addObject("dRevList",dRevList);
 				mv.addObject("dFileList", dFileList);
 				mv.setViewName("food/diner/dinerDetail");
 			}else {

@@ -18,10 +18,10 @@ h1{
     text-align: center;
     font-size: 2em;
 }
-main{
-    margin-left: 20%;
-    margin-right: 20%;
-    font-family: 'SUITE-Regular';    
+main {
+	width: 1150px;
+    margin: 0 auto;
+	font-family: 'SUITE-Regular';
 }
 .input_box{
     display: inline-flex;

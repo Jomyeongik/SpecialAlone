@@ -168,6 +168,7 @@ public class FoodProductController {
 	        List<FoodProductSet> foodProductSetList = createFoodProductSets(fPInfoList, fPFileList);
 	        User user = (User) session.getAttribute("user");
 	        mv.addObject("user", user);
+	        mv.addObject("category", category);
 	        mv.addObject("foodProductSetList", foodProductSetList);
 	        mv.addObject("pInfo", pInfo);
 	        mv.setViewName("food/foodRecommend/productList");
@@ -189,11 +190,14 @@ public class FoodProductController {
 			,@RequestParam("fProductId") Integer fProductId
 			,@RequestParam("refFProductId") Integer refFProductId) {	
 		try {
+			float revStar = FPService.getStarByfProductId(fProductId);
+			double roundedRevStar = Math.round(revStar * 100.0)/100.0;			
 			List<FoodProductOneRev> fPOneRevList;
 	        fPOneRevList = FPService.selectOneRevList(fProductId);
 			FoodProduct foodProduct = FPService.selectDetailInfoByFProductId(fProductId);
 			List<FoodProductFile> fPFileList = FPService.selectDetailFileByRefFProductId(refFProductId);
 			if(foodProduct !=null && fPFileList !=null) {
+				mv.addObject("roundedRevStar",roundedRevStar);
 				mv.addObject("fPOneRevList", fPOneRevList);
 				mv.addObject("foodProduct", foodProduct);
 				mv.addObject("fPFileList", fPFileList);

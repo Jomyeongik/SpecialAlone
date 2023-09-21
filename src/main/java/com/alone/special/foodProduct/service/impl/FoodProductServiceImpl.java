@@ -163,6 +163,12 @@ public class FoodProductServiceImpl implements FoodProductService{
 		return result;
 	}
 
+	@Override
+	public float getStarByfProductId(Integer fProductId) {
+		float result = FPStore.getStarByfProductId(session,fProductId);
+		return result;
+	}
+
 
 
 

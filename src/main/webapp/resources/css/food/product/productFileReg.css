@@ -26,9 +26,9 @@ h1 {
 }
 
 main {
-	margin-left: 20%;
-	margin-right: 20%;
-    font-family: 'SUITE-Regular';
+	width: 1150px;
+    margin: 0 auto;
+	font-family: 'SUITE-Regular';
 }
 
 .btn1 {

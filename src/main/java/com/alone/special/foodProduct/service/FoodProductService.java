@@ -57,6 +57,8 @@ public interface FoodProductService {
 
 	int oneRevDelete(FoodProductOneRev fPOneRev);
 
+	float getStarByfProductId(Integer fProductId);
+
 
 
 	

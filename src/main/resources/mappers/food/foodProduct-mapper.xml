@@ -156,5 +156,21 @@
 	</select>	
 	<select id="selectListCountByCategory" resultType="_int">
 		SELECT COUNT(*) FROM F_PRODUCT_TBL WHERE F_PRODUCT_TYPE = #{category}
+	</select>
+	<select id="getPhotoRevStar" resultType="_float">
+		SELECT SUM(F_P_REV_STAR) as photoRev_star_sum
+		FROM F_P_REV_TBL WHERE REF_F_PRODUCT_ID = #{fProductId}
+	</select>
+	<select id="getOneRevStar" resultType="_float">
+		SELECT SUM(F_ONE_REVIEW_STAR) as photoRev_star_sum
+		FROM F_PRODUCT_O_REV_TBL WHERE REF_F_PRODUCT_ID = #{fProductId}
 	</select>	
+	<select id="getPhotoRevCountByfProductId" resultType="_float">
+		SELECT COUNT(*) FROM F_P_REV_TBL WHERE REF_F_PRODUCT_ID = #{fProductId}
+	</select>	
+	<select id="getOneRevCountByfProductId" resultType="_float">
+		SELECT COUNT(*) FROM F_PRODUCT_O_REV_TBL WHERE REF_F_PRODUCT_ID = #{fProductId}
+	</select>
+	
+		
 </mapper>  

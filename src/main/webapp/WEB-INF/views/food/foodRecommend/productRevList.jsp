@@ -6,14 +6,17 @@
 <head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-		<link rel="stylesheet" href="/resources/css/common/footer.css">
-        <link rel="stylesheet" href="/resources/css/common/header.css">
-        <link rel="stylesheet" href="/resources/css/common/reset.css">
+		<link rel="stylesheet" href="/resources/css/footer.css">
+        <link rel="stylesheet" href="/resources/css/header.css">
+        <link rel="stylesheet" href="/resources/css/reset.css">
         <link rel="stylesheet" href="/resources/css/food/product/star.css">
         <link rel="stylesheet" href="/resources/css/food/product/productRevList.css">
         
 </head>
 <body>
+     <div class="container">
+         <!-- header -->
+            <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<main>
 		<section>
 			<h1>상품 리뷰</h1>
@@ -21,7 +24,7 @@
 			<hr>
 			<br>
 			<h2>${foodProduct.fProductCompany }</h2>
-			<h3>${foodProduct.fProductName }</h3>
+			<h2 id="fProductName">${foodProduct.fProductName }</h2>
 			<br> <br> <br>
 
 
@@ -42,7 +45,7 @@
 					</div>
 					<div id="product_item2">
 						<!-- 작성자와 별점 표시 -->
-						<span>아이디: ${review.FPPhotoRev.fUserId}</span> 
+						<span>아이디: ${review.FPPhotoRev.fUserId}</span> <br><br>
 						<span>제목: ${review.FPPhotoRev.fProductRevTitle}</span> 
 						<span>${review.FPPhotoRev.fProductRevStar}</span><br>
 						<br> <br>
@@ -53,34 +56,33 @@
 				</div>
 			</c:forEach>
 
-			<!-- 페이징 네비게이션 수정필요 -->
+			<!-- 페이징 네비게이션 수정필요 -->		
 				<div class="pagination">
-				    <c:if test="${foodProductRevSetList.size() > 0}">
-				        <ul>
-				            <c:if test="${pInfo.startNavi != 1 }">
-				                <c:url var="prevUrl" value="/foodProduct/revlist.do">
-				                    <c:param name="fProductId" value="${foodProduct.fProductId}" />
-				                    <c:param name="page" value="${pInfo.startNavi - 1}" />
-				                </c:url>
-				                <a href="${prevUrl }">[이전]</a>
-				            </c:if>
-				            <c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-				                <c:url var="pageUrl" value="/foodProduct/revlist.do">
-				                    <c:param name="fProductId" value="${foodProduct.fProductId}" />
-				                    <c:param name="page" value="${p }" />
-				                </c:url>
-				                <a href="${pageUrl }">${p }</a>&nbsp;
-				            </c:forEach>
-				            <c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
-				                <c:url var="nextUrl" value="/foodProduct/revlist.do">
-				                    <c:param name="fProductId" value="${foodProduct.fProductId}" />
-				                    <c:param name="page" value="${pInfo.endNavi + 1 }" />
-				                </c:url>
-				                <a href="${nextUrl }">[다음]</a>
-				            </c:if>
-				        </ul>
-				    </c:if>
-				</div>			
+					<c:if test="${ pInfo.startNavi != 1 }">
+					    <c:url var="prevUrl" value="/foodProduct/revlist.do">
+					        <c:param name="page" value="${ pInfo.startNavi - 1 }"></c:param>
+							<c:param name="fProductId" value="${foodProduct.fProductId}" />
+					    </c:url>
+					    <a href="${prevUrl}">[이전]</a>
+					</c:if>
+					<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
+					    <c:url var="pageUrl" value="/foodProduct/revlist.do">
+					        <c:param name="page" value="${p}"></c:param>
+							<c:param name="fProductId" value="${foodProduct.fProductId}" />
+					    </c:url>
+					    <a href="${pageUrl}">${p}</a>&nbsp;
+					</c:forEach>
+					<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+					    <c:url var="nextUrl" value="/foodProduct/revlist.do">
+					        <c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
+							<c:param name="fProductId" value="${foodProduct.fProductId}" />
+					    </c:url>
+					    <a href="${nextUrl}">[다음]</a>
+					</c:if>
+
+
+				</div>							
+				<br><br>
 			<h2>한줄리뷰</h2>
 			<br> 
 			<div>
@@ -98,7 +100,8 @@
 				            <input type="radio" id="rating3" name="fProductOneRevStar" value="1.5"><label class="half" for="rating3" title="1.5점"></label>
 				            <input type="radio" id="rating2" name="fProductOneRevStar" value="1"><label for="rating2" title="1점"></label>
 				            <input type="radio" id="rating1" name="fProductOneRevStar" value="0.5"><label class="half" for="rating1" title="0.5점"></label>
-				        </fieldset> 
+				        </fieldset>
+				        <br> 
 					    <input type="text" name="fProductOneRevContent" placeholder="한줄 리뷰를 작성해주세요!" style="width: 500px;">
 					    <input type="submit" value="댓글등록">
 					</form>
@@ -139,7 +142,9 @@
 			</table>
 		</section>
 	</main>
-	
+         <!-- footer -->
+            <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+      </div>	
 	<script>
 	function deleteReview(fProductRevId,fProductId,fUserId) {
 	    var deleteUrl = '/foodProduct/deletePhotoRev.do?fProductRevId=' + fProductRevId + '&fProductId=' + fProductId;	   

@@ -85,7 +85,11 @@
 	<select id="selectRevListByFdinerId" resultMap="DinerRevMap">
 		SELECT * FROM F_DINER_REV_TBL WHERE REF_F_DINER_ID=#{fDinerId}
 	</select>
-	
+
+	<!-- pInfo 안가져가는거 -->
+	<select id="selectRevListByFDinerId" resultMap="DinerRevMap">
+		SELECT * FROM F_DINER_REV_TBL WHERE REF_F_DINER_ID=#{fDinerId}
+	</select>	
 	<select id="selectRevFileList" resultMap="DinerRevFileMap">
 		SELECT * FROM F_DINER_REV_FILE_TBL ORDER BY REF_F_DINER_REV_ID ASC
 	</select>	
@@ -115,4 +119,12 @@
 	<select id="getCurrentDinerId" resultType="int">
 		SELECT SEQ_F_DINER_ID.CURRVAL FROM DUAL
 	</select>
+	<select id="getRevStar" resultType="_float">
+		SELECT SUM(F_DINER_REV_STAR) as dinerRev_star_sum
+		FROM F_DINER_REV_TBL WHERE REF_F_DINER_ID = #{fDinerId}
+	</select>	
+	<select id="getRevCount" resultType="_float">
+		SELECT COUNT(*) FROM F_DINER_REV_TBL WHERE REF_F_DINER_ID = #{fDinerId}
+	</select>		
+	
 </mapper>  

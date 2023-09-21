@@ -60,6 +60,8 @@ public interface FoodProductStore {
 
 	int oneRevDelete(SqlSession session, FoodProductOneRev fPOneRev);
 
+	float getStarByfProductId(SqlSession session, Integer fProductId);
+
 
 
 	

@@ -141,6 +141,33 @@ public class DinerStoreLogic implements DinerStore{
 		return result;
 	}
 
+	@Override
+	public List<DinerRev> selectRevListByFDinerId(SqlSession session, Integer fDinerId) {
+		List<DinerRev> dRevList = session.selectList("FoodDinerMapper.selectRevListByFDinerId", fDinerId);
+		return dRevList;
+	}
+
+	@Override
+	public float getStarByfDinerId(SqlSession session, Integer fDinerId) {
+		Float sumRevStar = session.selectOne("FoodDinerMapper.getRevStar", fDinerId);
+	    Float RevCount = session.selectOne("FoodDinerMapper.getRevCount", fDinerId);
+    // NULL 값을 처리하고 기본값 할당
+	    if (sumRevStar == null) {
+	        sumRevStar = 0.0f;
+	    }
+	    
+	    if (RevCount == null) {
+	        RevCount = 0.0f;
+	    }
+	    
+
+	    float result = 0.0f;
+	    if (RevCount + RevCount > 0.0f) {
+	        result = sumRevStar / RevCount;
+	    }
+	    return result;
+	}
+
 
 
 }

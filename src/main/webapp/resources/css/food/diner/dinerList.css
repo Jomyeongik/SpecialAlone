@@ -1,19 +1,35 @@
 @charset "UTF-8";
-
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+main {
+	width: 60%;
+    margin: 0 auto;
+	font-family: 'SUITE-Regular';
+}
 h1 {
 	text-align: center;
 	font-size: 2em;
 }
-
-main {
-	width: 80%;
-	margin: 0 auto;
+img {
+	width: 100%;
+	height: 100%;
 }
-
+.dinerListImage{
+    width: 100%;
+	height: 100%;
+	padding: 15px;
+}
 .diner-list {
 	display: flex;
+	height: 300px;
 }
-
+.dinerSet{
+	display: flex;
+}
 .nav_region {
 	width: 100%;
 	height: 100%;
@@ -39,12 +55,12 @@ main {
 
 .dinerListImage {
 	width: 20%;
-	border: 1px solid black;
+	border-bottom: 1px solid black;
 	
 }
 .dinerListInfo {
 	width: 60%;
-	border: 1px solid black;
+	border-bottom: 1px solid black;
 }
 .pagination {
     text-align: center; /* 텍스트를 가운데로 정렬 */
@@ -62,4 +78,7 @@ main {
 
 .pagination ul li:last-child {
     margin-right: 0; /* 마지막 항목에 오른쪽 여백 제거 */
+}
+#dinerName{
+	font-size: 2em;
 }
