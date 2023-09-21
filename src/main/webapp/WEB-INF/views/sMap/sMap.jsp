@@ -7,18 +7,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device=width, initial-scale=1 shrink-to-fit=no">
 	<title>맵</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
- 	 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/smap.css">
- 	
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/smap.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c7a14b510baba8f2aa2d6bdf15c8181a"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
 	<style>
     
@@ -27,6 +23,10 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
 <main>
 <div id="map" style="width: 80%; height: 500px; margin-left:10%;"></div>
     
@@ -441,6 +441,7 @@
         });
     });
   	</script>
+  	
 </body>
 
 </html>

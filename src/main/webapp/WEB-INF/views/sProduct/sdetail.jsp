@@ -12,7 +12,6 @@
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/detail.css">
  
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,199 +21,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/plugins/sortable.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/detail.css">
 
 <style>
-.image-container {
-    display: flex;
-    align-items: center; 
-    margin-top: 20px; 
-}
 
-.image-content,
-.description-content {
-position: relative;
-    float: right;
-    width: 300px;
-    margin-left:700px;
-    font-size: 12px;}
-
-.image-content img {
-    max-width: 400px; 
-    height: auto;
-    object-fit: cover;
-}
-
-.image-description {
-    font-size: 16px; 
-}
-.ad-container {
-  position: fixed;
-  top: 50%;
-  left: 91%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-.ad-container img{
-	width:200px;
-	height:600px;
-	
-}
- .pagination {
-        text-align: center;
-        position : relative;
-        margin-top:10%;
-    }
-
-    .pagination a {
-        padding: 5px 10px;
-        margin: 0 5px;
-        border: 1px solid #ccc;
-        text-decoration: none;
-        color: #333;
-    }
-
-    .pagination a:hover {
-        background-color: #eee;
-    }
-
-    .pagination .active {
-        background-color: #333;
-        color: #fff;
-    }
- .star-rating {
-  margin-bottom:-20px;
-  margin-top:-20px;
-  display:flex;
-  flex-direction: row-reverse;
-  font-size:1.5em;
-  justify-content:space-around;
-  padding:0 .2em;
-  text-align:center;
-  width:5em;
-}
-
-.star-rating input {
-  display:none;
-}
-
-.star-rating label {
-  color:#ccc;
-  cursor:pointer;
-}
-
-.star-rating :checked ~ label {
-  color:#f90;
-}
-
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-  color:#fc0;
-}
-
-
-
-  main{
-  overflow:clip;
-  height:auto;
-  display:flex;
-  }
-.recently-viewed-products{
-width:20%;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-text-align: center;
-}
-.card{
-width:200px;
-}
-.card-img-top{
-width:100%;
-height:180px;
-}
-.imagination{
-    display: flex;
-    justify-content: left;
-    text-align: left;
-    padding-left: 20px;
-}
- .image img {
- 	width:600px;
-    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
-}
-
-.middle{
-margin-top:50px;
-float:left;
-width:60%;
-display:flex;
-
-}
-.right{
-width:20%;
-}
-#bottom{
-margin-top :10%;
-}
-#review-commit{
-    position: relative	;
-    top: -75px;
-    right:50%;
-    width: 56px;
-    height: 56px;
-    line-height: 56px;
-    margin: 0;
-    padding: 0;
-    left:80%;
-}
-.imagedetail{
-position:relative;
-margin-left:30%;
-margin-top:0%;
-}
-#fileup{
-    position: relative;
-    right :-200px;
-	top:60px;
-	left:50px	;
-}
-#reviewcontents{
-	position: relative;
-	right:-100px;
-	left:20%;
-	width:90%;
-}
-#userId{
-padding-left :20px;
-right:25%;
-}
-.recent{
-top:50px;
-}
-.custom-star-rating {
-    display: inline-block;
-    font-size: 0;
-}
-
-
-.custom-star:before {
-    content: '\2606';
-    font-size: 24px;
-    color: #ccc;
-}
-
-
-.custom-star.filled:before {
-    content: '\2605'; 
-    color: #f1c40f; 
-    }
- #reviewcontainer{
- 	margin-bottom:100%;
- 	width:100%;
- }
- #reviewnone{
- 	margin-left:35%;	
- }
 </style>
 
 </head>
@@ -254,8 +64,8 @@ top:50px;
 	<c:if test="${User.userId eq 'admin' }">
 	<input type="hidden" value="${Product.sProductId }">
 		<a href="/product/update.do?sProductId=${Product.sProductId }" class="btn btn-light">수정</a>
-		<a href="/product/delete.do?sProductId=${Product.sProductId }" id="deleteButton"class="btn btn-light">삭제</a>		
 	</c:if>
+		<a href="/product/delete.do?sProductId=${Product.sProductId }" id="deleteButton"class="btn btn-light">삭제</a>		
 	<div class="row form-group " id="reviewcontainer">
 	<div class="col-md-12">
 	<strong ><span style="font-size:22px; font-weight:bold;">리뷰 쓰기</span></strong>
@@ -519,6 +329,7 @@ top:50px;
 		        alert("팝업 창이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요.");
 		    }
 		}
+
 
 			
 		$(document).ready(function() {

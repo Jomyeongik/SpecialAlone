@@ -40,13 +40,10 @@
 						</form>
 						</div>
        </div>
-<aside class="ad-container">
-  <a href="https://kh-academy.co.kr/main/main.kh"><img src="${pageContext.request.contextPath}/resources/images/advertise.png" alt="Advertisement"></a>
-</aside>		
-<div class="container ">
+       
  <h1>상품 리스트</h1>
 <div class="row middle">
-	
+	<div class="container">
     <c:forEach var="Product" items="${pList}" >
     <div class="product-card col-md-4">
     	<c:url var="detailUrl" value="/product/sdetail.do">
@@ -60,8 +57,6 @@
     </div>
     
     </c:forEach>
- 
-    </div>
   <div class="pagination">
     <c:url var="prevUrl" value="/product/slistproduct.do">
         <c:param name="page" value="${pInfo.startNavi - 1 }"></c:param>
@@ -84,7 +79,11 @@
         <a href="${nextUrl }">[다음]</a>
     </c:if>
 </div>
+ </div>
     </div>
+    <aside class="ad-container">
+  <a href="https://kh-academy.co.kr/main/main.kh"><img src="${pageContext.request.contextPath}/resources/images/advertise.png" alt="Advertisement"></a>
+</aside>		
              <div id="main_right"></div>
   	
   	</main>
@@ -119,7 +118,7 @@
 		    var recentProductsList = document.getElementById('recentProductsList');
 
 		    var productListHTML = '';
-		    var itemCount = Math.min(5, recentlyViewedProducts.length);
+		    var itemCount = Math.min(2, recentlyViewedProducts.length);
 		    for (var i = 0; i < itemCount; i++) {
 		        var item = recentlyViewedProducts[i];
 

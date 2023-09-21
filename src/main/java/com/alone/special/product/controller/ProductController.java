@@ -73,7 +73,7 @@ public class ProductController {
 	  
 private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	   ReviewPageInfo rpi =null;
-	int recordCountPerPage = 5;
+	int recordCountPerPage = 7;
  	int naviCountPerPage = 10;
  	int naviTotalCount;
  	int startNavi;
@@ -178,7 +178,7 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	    		if(result>0) {
 	    			mv.addObject("pInfo", pInfo);
 					mv.addObject("pList", pList);
-	    			mv.setViewName("sProduct/slistproduct");
+	    			mv.setViewName("redirect:/product/slistproduct.do");
 	    		}
 	    		return mv;
 	    	
