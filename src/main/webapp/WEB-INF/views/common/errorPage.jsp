@@ -7,8 +7,6 @@
 		<title>서비스 결과 실패</title>
 	</head>
 	<body>
-		<h1>서비스 결과 실패!</h1>
-		<h2>${requestScope.msg }</h2>
 		<script>
 			alert("${requestScope.msg}");
 			location.href = "${url}";

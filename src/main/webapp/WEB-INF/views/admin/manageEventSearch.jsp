@@ -56,7 +56,7 @@
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="event">
-						<input type="text" name="searchKeyword" placeholder="행사 제목을 입력하세요." style="width:30%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="행사 제목을 입력하세요." value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -65,7 +65,7 @@
 							<col width="10%"></col>
 							<col width="40%"></col>
 							<col width="20%"></col>
-							<col width="10%"></col>
+							<col width="15%"></col>
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
@@ -82,8 +82,8 @@
 									<td><a href="/noticeEvent/detail.do?boardNo=${notice.boardNo }">${notice.boardTitle }</a></td>
 									<td style="text-align:center"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${notice.bCreateDate }"/></td>
 									<td style="text-align:center">
-										<button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'">수정</button>
-										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">삭제</button>
+										<button class="userDetail" onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'">수정</button>
+										<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>

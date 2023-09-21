@@ -36,8 +36,8 @@
 				</section>
 			</section>
 		</main>
+		</div>
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		</div>
 	</body>
 </html>

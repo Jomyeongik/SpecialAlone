@@ -56,7 +56,7 @@
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
                     	<input type="hidden" name="selectedValue" value="hBoard">
-						<input type="text" name="searchKeyword" placeholder="카테고리 검색 ex)캠핑, 독서.." style="width:30%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="카테고리 검색 ex)캠핑, 독서.." value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>	
                 </div>
@@ -66,7 +66,7 @@
 							<col width="15%"></col>
 							<col width="15%"></col>
 							<col width="30%"></col>
-							<col width="10%"></col>
+							<col width="15%"></col>
 						</colgroup>
 	                    <thead>
 	                        <tr style="text-align:center">
@@ -85,7 +85,7 @@
 									<td style="text-align:center">${notice.hBoardCategory }</td>
 									<td><a href="/hobby/board/detail.do?hBoardNo=${notice.hBoardNo }&category=${notice.refCategoryName}">${notice.hBoardTitle }</a></td>
 									<td style="text-align:center">
-										<button onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/deleteHBaord.do?hBoardNo=${notice.hBoardNo }'; window.location.href = window.location.href; }">삭제</button>
+										<button class="userDelete" onclick="if (confirm('삭제 하시겠습니까?')) { location.href = '/deleteHBaord.do?hBoardNo=${notice.hBoardNo }'; window.location.href = window.location.href; }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>

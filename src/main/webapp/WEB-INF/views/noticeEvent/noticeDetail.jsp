@@ -67,12 +67,14 @@
 	                </div>
 	                    <br>
 						<p>${notice.boardContent }</p>
-					<div class="modify">
-	                        <label>
-	                            <button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'"><i class="fa-solid fa-pen-to-square"></i>글 수정</button>
-	                            <button onclick="deleteCheck();"><i class="fa-solid fa-trash"></i>글 삭제</button>
-	                        </label>
-	               	</div>
+					<c:if test="${userId eq 'admin' }">
+						<div class="modify">
+		                        <label>
+		                            <button onclick="javascript: location.href='/noticeEvent/modify.do?boardNo=${notice.boardNo }'"><i class="fa-solid fa-pen-to-square"></i>글 수정</button>
+		                            <button onclick="deleteCheck();"><i class="fa-solid fa-trash"></i>글 삭제</button>
+		                        </label>
+		               	</div>
+	               	</c:if>
                	</div>
 			</div>
             <div id="main_right"></div>

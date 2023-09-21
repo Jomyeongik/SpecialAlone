@@ -7,8 +7,9 @@ h2 b{
   }
 
 .search {
-    margin-left: 3%;
     display: flex;
+    justify-content: right;
+    margin-left:30%;
 }
 #findProduct {
 font-size: inherit;
@@ -17,7 +18,6 @@ border: none;
 margin-left: 5px;
 }
 form{
-	margin-top : 30px;
 	width: 50%;
 }
 #main_middle td a{
@@ -28,9 +28,10 @@ tfoot a{
 }
 .writeBtn {
   position: relative;
-  left: -15%;
+  left: -10%;
   padding: 0px 10px;
   border-radius: 10px;
+  height:30px;
 }
 .cancel {
   background-color: #ccc;

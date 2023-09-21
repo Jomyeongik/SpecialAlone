@@ -41,11 +41,12 @@
                 <hr>
                 <div class="search">
                     <form action="/newsRoom/search.do" method="get">
-						<input type="text" name="searchKeyword" placeholder="다른 뉴스 검색" style="width:50%" value="${searchKeyword }">
+						<input type="text" name="searchKeyword" placeholder="다른 뉴스 검색" style="width:60%" value="${searchKeyword }">
 						<button id="findProduct" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: blue;"></i></button>
 					</form>
                 	<button class="writeBtn cancel" onclick="javascript: location.href='/newsRoom/list.do'"><i class="fa-solid fa-arrow-rotate-left"></i>&nbsp;1인 가구 뉴스</button>
                 </div>
+                <br>
                 <table class="table table-striped table-hover">
                 	<colgroup>
 						<col width="50%"></col>

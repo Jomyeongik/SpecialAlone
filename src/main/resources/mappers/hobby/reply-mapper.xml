@@ -36,4 +36,19 @@
   	SELECT COUNT (*) FROM H_REPLY_TBL WHERE REF_BOARD_NO = #{ refBoardNo } AND H_REPLY_STATUS = 'Y'
   </select>
   
+  <select id="getHReplyListCount" resultType="_int">
+  	SELECT COUNT (*) FROM H_REPLY_TBL WHERE H_REPLY_STATUS = 'Y'
+  </select>
+  
+  <select id="getHReplyListCountByKeyword" resultType="_int">
+  	SELECT COUNT (*) FROM H_REPLY_TBL WHERE H_REPLY_STATUS = 'Y' AND H_REPLY_WRITER LIKE '%'||#{ searchKeyword }||'%'
+  </select>
+  
+  <select id="getHReplyList" resultMap="replyResultMap">
+  	SELECT * FROM H_REPLY_TBL WHERE H_REPLY_STATUS = 'Y'
+  </select>
+  
+  <select id="getHReplyListByKeyword" resultMap="replyResultMap">
+  	SELECT * FROM H_REPLY_TBL WHERE H_REPLY_STATUS = 'Y'AND H_REPLY_WRITER LIKE '%'||#{ searchKeyword }||'%'
+  </select>
 </mapper>
