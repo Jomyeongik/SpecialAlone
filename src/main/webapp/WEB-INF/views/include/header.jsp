@@ -47,6 +47,23 @@
 				</div>
 			</div>
 		</div>
+		<ul>
+			<li>
+				<a href="#">NOTICE</a>
+			</li>
+			<li>
+				<a href="/foodProduct/list.do">FOOD</a>
+			</li>
+			<li>
+				<a href="/hobby/category/list.do">HOBBY</a>
+			</li>
+			<li>
+				<a href="/product/slistproduct.do">SECURITY</a>
+			</li>
+			<c:if test="${userId eq 'admin' }">
+				<li><a href="#">관리자페이지</a></li>
+			</c:if>
+		</ul>
 	</nav>
 	
 	<div class="nav_right">

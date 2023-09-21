@@ -36,8 +36,13 @@ public class CommentController {
 	    User user = userservice.selectOneById(userId);
 
 		List<Comment> Comments = commentservice.getCommentList();
-		
+		if(Comments.size()>0) {
 		mv.addObject("User",user).addObject("Comments", Comments).setViewName("sMap/sMap");
+		return mv;
+		}
+		else {
+			mv.setViewName("sMap/sMap");
+		}
 		return mv;
 	}
 	@RequestMapping(value = "/insertComment.do", method = RequestMethod.POST)
@@ -47,9 +52,8 @@ public class CommentController {
 	    comment.setUserId(user.getUserId());
 	    comment.setUserNo(user.getUserNo());
 	    int result = commentservice.insertComment(comment);
-	    List<Comment> Comments = commentservice.getCommentList();
 	    if(result>0) {
-	    	mv.addObject("Comments",Comments).setViewName("sMap/sMap");
+	    	mv.setViewName("redirect:/comment/map.do");
 	    }
 	    return mv; 
 	}
@@ -74,18 +78,18 @@ public class CommentController {
 	public ModelAndView deleteComment(ModelAndView mv,@RequestParam("sCommentNo") Integer sCommentNo) {
 		int result = commentservice.deleteComment(sCommentNo);
 		if(result>0) {
-			mv.setViewName("sMap/sMap");
+			mv.setViewName("redirect:/comment/map.do");
 		}
 		return mv;
 	}
 	 @PostMapping("/insertrecommend.do")
 	  @ResponseBody
-	  public int likeComment(@RequestParam("commentId") Integer sCommentNo) {
-	      int result = commentservice.updatelike(sCommentNo);
+	  public int likeComment(@RequestParam("commentId") Integer commentId) {
+	      int result = commentservice.updatelike(commentId);
 	      return result;
 	  }
 
-	 @RequestMapping("/update.do")
+	 @RequestMapping(value="/update.do",method=RequestMethod.POST)
 	 public ModelAndView updateComment(ModelAndView mv,@RequestParam("sCommentContent") String sCommentContent,
 	    		Model model,
 	    		@RequestParam("sCommentNo") Integer sCommentNo,Comment comment,HttpSession session)
@@ -98,7 +102,7 @@ public class CommentController {
 		 	}
 		    int result = commentservice.editComment(comment);
             if (result > 0) {
-                mv.setViewName("sMap/sMap");
+                mv.setViewName("redirect:/comment/map.do");
             } else {
                 mv.setViewName("redirect:/index.jsp");
             }

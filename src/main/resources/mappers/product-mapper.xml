@@ -40,17 +40,21 @@
     
 	
 	<select id="selectProductByKeyword" resultMap="productResultMap">
-	SELECT * FROM S_PRODUCT
-	<if test="searchCondition == 'all'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }'%' OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
-	<if test="searchCondition == 'title'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' </if>
-	<if test="searchCondition == 'content'">WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
-	</select>
-
-<select id="selectProductsByAll" resultMap="productResultMap">SELECT * FROM S_PRODUCT WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </select>
-
-<select id="selectProductsByTitle" resultMap="productResultMap">SELECT * FROM S_PRODUCT WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' </select>
-
-<select id="selectProductsByContent" resultMap="productResultMap">SELECT * FROM S_PRODUCT WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </select>
+    SELECT * FROM S_PRODUCT
+    <choose>
+        <when test="searchCondition == 'all'">
+            WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%'
+        </when>
+        <when test="searchCondition == 'title'">
+            WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%'
+        </when>
+        <when test="searchCondition == 'content'">
+            WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%'
+        </when>
+        <otherwise>
+        </otherwise>
+    </choose>
+</select>
 
 
 

@@ -73,8 +73,8 @@ public class ProductController {
 	  
 private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	   ReviewPageInfo rpi =null;
- 	int recordCountPerPage = 10;
- 	int naviCountPerPage = 20;
+	int recordCountPerPage = 5;
+ 	int naviCountPerPage = 10;
  	int naviTotalCount;
  	int startNavi;
  	int endNavi;
@@ -91,7 +91,7 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	
 
 		@RequestMapping(value = "/insertproduct.do", method = RequestMethod.GET)
-	    public ModelAndView getInsertProduct() {
+	    public ModelAndView getInsertProduct() { 
 	        ModelAndView mv = new ModelAndView("sProduct/insertproduct"); 
 	        return mv;
 	    }
@@ -170,9 +170,14 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	    	return mv;
 	    }
 	    @RequestMapping(value="/delete.do",method=RequestMethod.GET)
-	    public ModelAndView deleteProduct(ModelAndView mv,@RequestParam("sProductId") Integer sProductId) {
+	    public ModelAndView deleteProduct(ModelAndView mv,@RequestParam(value="page",required=false,defaultValue="1") Integer currentPage,@RequestParam("sProductId") Integer sProductId) {
 	    		int result = productservice.deleteProduct(sProductId);
+	    		int totalCount = productservice.getListCount();
+				ProductPageInfo pInfo = this.getPageInfo(currentPage,totalCount);
+				List<Product> pList = productservice.selectProductLust(pInfo);
 	    		if(result>0) {
+	    			mv.addObject("pInfo", pInfo);
+					mv.addObject("pList", pList);
 	    			mv.setViewName("sProduct/slistproduct");
 	    		}
 	    		return mv;
@@ -208,7 +213,7 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 	    
 	    private ProductPageInfo getPageInfo(Integer currentPage, int totalCount) {
 	    	ProductPageInfo ppi =null;
-	    	int recordCountPerPage = 10;
+	    	int recordCountPerPage = 9;
 	    	int naviCountPerPage = 10;
 	    	int naviTotalCount;
 	    	int startNavi;

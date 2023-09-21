@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/insertProduct.css">
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -26,6 +27,8 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<main>
+	<div id="left"></div>
+	<div id="middle">
 		<h2>상품 등록</h2>
 		<form action="/product/insertproduct.do" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
@@ -45,6 +48,9 @@
 			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="reset" class="btn btn-warning">리셋</button>
 		</form>
+		</div>
+			<div id="right"></div>
+		
 	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 	<script>
@@ -60,7 +66,7 @@
 		$(document).ready(function() {
 		
 			$('#summernote').summernote({
-				  height: 300,                 // 에디터 높이
+				  height: 400,                 // 에디터 높이
 				  minHeight: null,             // 최소 높이
 				  maxHeight: null,             // 최대 높이
 				  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
