@@ -134,18 +134,6 @@ public class FoodProductServiceImpl implements FoodProductService{
 	}
 
 	@Override
-	public int modifyProductInfo(FoodProduct fProduct) {
-		int result = FPStore.modifyProductInfo(session,fProduct);
-		return result;
-	}
-
-	@Override
-	public int modifyProductFiles(List<FoodProductFile> fList) {
-		int result = FPStore.modifyProductFiles(session,fList);
-		return result;
-	}
-
-	@Override
 	public int deleteProduct(int fProductId) {
 		int result = FPStore.deleteProduct(session,fProductId);
 		return result;

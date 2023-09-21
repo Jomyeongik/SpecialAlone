@@ -50,10 +50,6 @@ public interface FoodProductStore {
 
 	List<FoodProductOneRev> selectOneRevList(SqlSession session, int fProductId);
 
-	int modifyProductInfo(SqlSession session, FoodProduct fProduct);
-
-	int modifyProductFiles(SqlSession session, List<FoodProductFile> fList);
-
 	int deleteProduct(SqlSession session, int fProductId);
 
 	int photoRevDelete(SqlSession session, FoodProductPhotoRev fPPhotoRev);

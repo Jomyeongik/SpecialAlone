@@ -80,22 +80,6 @@
 	<insert id="oneReviewRegister">
 		INSERT INTO F_PRODUCT_O_REV_TBL VALUES(#{fProductOneRevWriter},SEQ_P_ONE_REV_NO.NEXTVAL,#{fProductOneRevContent},#{fProductOneRevStar},DEFAULT,DEFAULT,#{refFProductId})
 	</insert>
-
-
-	<update id="modifyProductInfo">
-		UPDATE F_PRODUCT_TBL SET F_PRODUCT_NAME=#{fProductName}, F_PRODUCT_COMPANY=#{fProductCompany}, F_PRODUCT_PRICE=#{fProductPrice},F_PRODUCT_SIMPLE= #{fProductSimple}, F_PRODUCT_DETAIL=#{fProductDetail}, F_PRODUCT_TYPE=#{fProductType}, F_PRODUCT_INFO=#{fProductInfo} WHERE F_PRODUCT_ID=#{fProductId}
-	</update>
-
-	<update id="modifyProductFiles" parameterType="java.util.List">
-	    <foreach collection="list" item="item" separator=";">
-	        UPDATE F_PRODUCT_FILE_TBL
-	        SET F_PRODUCT_FILENAME = #{item.fProductFilename},
-	            F_PRODUCT_FILERENAME = #{item.fProductFilerename},
-	            F_PRODUCT_FILEPATH = #{item.fProductFilepath}
-	        WHERE REF_F_PRODUCT_ID = #{item.refFProductId}
-	          AND F_PRODUCT_FILEORDER = #{item.fProductFileorder}
-	    </foreach>
-	</update>	
 	
 	<delete id="deleteProduct">
 		DELETE FROM F_PRODUCT_TBL WHERE F_PRODUCT_ID=#{fProductId}

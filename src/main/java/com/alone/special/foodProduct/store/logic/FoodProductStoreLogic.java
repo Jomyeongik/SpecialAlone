@@ -140,17 +140,6 @@ public class FoodProductStoreLogic implements FoodProductStore{
 		return fPOneRevList;
 	}
 
-	@Override
-	public int modifyProductInfo(SqlSession session, FoodProduct fProduct) {
-		int result = session.update("FoodProductMapper.modifyProductInfo", fProduct);
-		return result;
-	}
-
-	@Override
-	public int modifyProductFiles(SqlSession session, List<FoodProductFile> fList) {
-		int result = session.update("FoodProductMapper.modifyProductFiles", fList);
-		return result;		
-	}
 
 	@Override
 	public int deleteProduct(SqlSession session, int fProductId) {
