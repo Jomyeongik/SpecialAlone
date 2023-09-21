@@ -146,7 +146,6 @@ public class FoodProductController {
 	    try {
 	        Integer totalCount;
 	        if (category != null) {
-	        	System.out.println(category);
 	        	totalCount = FPService.getListCountByCategory(category);
 	        }else {
 	        	totalCount = FPService.getListCount();

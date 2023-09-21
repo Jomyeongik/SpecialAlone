@@ -1,4 +1,15 @@
-@charset "UTF-8";
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+main {
+	margin-left: 20%;
+	margin-right: 20%;
+    font-family: 'SUITE-Regular';
+}
 
 label {
 	display: block; /* 블록 요소로 설정하여 한 줄에 하나의 요소만 표시됩니다. */
@@ -19,13 +30,13 @@ h1 {
 }
 
 .nav_category {
-	width: 100%;
+	margin-left: 20%;
+	margin-right: 20%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	float: left;
-	border: 1px solid black;
+    background-color: #e2534e;
 }
 
 .nav_category ul {
@@ -69,6 +80,7 @@ h1 {
 	/* margin: 10px; */
 	padding: 15px;
 	height: 40%;
+    text-align: center;
 	/* border: 1px solid black; */
 }
 
@@ -95,3 +107,51 @@ img {
 .pagination ul li:last-child {
     margin-right: 0; /* 마지막 항목에 오른쪽 여백 제거 */
 }
+.SMN_effect-13 a {
+    font-family: 'SUITE-Regular';
+    text-shadow: none;
+    padding: 10px 0;
+  }
+  
+  .SMN_effect-13 a:before {
+    color: #fff;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+    content: attr(data-hover);
+    position: absolute;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .SMN_effect-13 a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    opacity: 0;
+    -webkit-transform: translateY(5px);
+    -moz-transform: translateY(5px);
+    transform: translateY(5px);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .SMN_effect-13 a:hover:before, .SMN_effect-13 a:focus:before {
+    opacity: 0;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  
+  .SMN_effect-13 a:hover:after, .SMN_effect-13 a:focus:after {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
+  }

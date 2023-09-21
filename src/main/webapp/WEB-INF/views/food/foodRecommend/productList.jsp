@@ -6,9 +6,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>추천상품 목록</title>
-		<link rel="stylesheet" href="/resources/css/common/footer.css">
-        <link rel="stylesheet" href="/resources/css/common/header.css">
-        <link rel="stylesheet" href="/resources/css/common/reset.css">
+		<link rel="stylesheet" href="/resources/css/footer.css">
+        <link rel="stylesheet" href="/resources/css/header.css">
+        <link rel="stylesheet" href="/resources/css/reset.css">
         <link rel="stylesheet" href="/resources/css/food/product/productList.css">		
 	</head>
 	<body>
@@ -16,24 +16,24 @@
          <!-- header -->
             <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	        <nav class="nav_category">
-	            <ul>
+	            <ul class="menu align-center expanded text-center SMN_effect-13">
 	            	<li>
-	                    <a href="/foodProduct/list.do">전체</a>
+	                    <a href="/foodProduct/list.do" data-hover="전체">전체</a>
 	                </li>
 	                <li>
-	                    <a href="/foodProduct/list.do?category=koreanfood">한식</a>
+	                    <a href="/foodProduct/list.do?category=koreanfood" data-hover="KOREA">KOREA</a>
 	                </li>
 	                <li>
-	                    <a href="/foodProduct/list.do?category=chinesefood">중식</a>
+	                    <a href="/foodProduct/list.do?category=chinesefood" data-hover="CHINA">CHINA</a>
 	                </li>
 	                <li>
-	                    <a href="/foodProduct/list.do?category=japanesefood">일식</a>
+	                    <a href="/foodProduct/list.do?category=japanesefood" data-hover="JAPAN">JAPAN</a>
 	                </li>
 	                <li>
-	                    <a href="/foodProduct/list.do?category=westernfood">양식</a>
+	                    <a href="/foodProduct/list.do?category=westernfood" data-hover="WESTERN">WESTERN</a>
 	                </li>
 	                <li>
-	                    <a href="/foodProduct/list.do?category=snackfood">분식</a>
+	                    <a href="/foodProduct/list.do?category=snackfood" data-hover="SNACKFOOD">SNACKFOOD</a>
 	                </li>
 	            </ul>
 	        </nav>
@@ -41,7 +41,7 @@
             <main>
             <section>
                 <br><br><br>                   
-                <h2>한식</h2>
+                <h2>${foodProductSetList[0].foodProduct.fProductType }</h2>
                 <br>
                 <span>전체 상품 수 : ${pInfo.totalCount }</span>
                 <button id="product_sort">분류방식</button>           
@@ -67,57 +67,33 @@
                     </div>
                 </c:forEach>        
             </div>
-			<div class="pagination">
-				<c:if test="${foodProductSetList.size() > 0}">
-				    <ul>
-				        <c:set var="pageParam" value='' />
-				        <c:choose>
-				            <c:when test="${param.category == 'koreanfood'}">
-				                <c:set var="pageParam" value='?category=koreanfood' />
-				            </c:when>
-				            <c:when test="${param.category == 'chinesefood'}">
-				                <c:set var="pageParam" value='?category=chinesefood' />
-				            </c:when>
-				            <c:when test="${param.category == 'japanesefood'}">
-				                <c:set var="pageParam" value='?category=japanesefood' />
-				            </c:when>
-				            <c:when test="${param.category == 'westernfood'}">
-				                <c:set var="pageParam" value='?category=westernfood' />
-				            </c:when>
-				            <c:when test="${param.category == 'snackfood'}">
-				                <c:set var="pageParam" value='?category=snackfood' />
-				            </c:when>
-				        </c:choose>
-				
-				        <li><a href="/foodProduct/list.do${pageParam}&page=1">처음</a></li>
-				        <c:if test="${pInfo.currentPage > 1}">
-				            <li><a href="/foodProduct/list.do${pageParam}&page=${pInfo.currentPage - 1}">이전</a></li>
-				        </c:if>
-				
-				        <c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="i">
-				            <c:choose>
-				                <c:when test="${pInfo.currentPage == i}">
-				                    <li class="active"><span>${i}</span></li>
-				                </c:when>
-				                <c:otherwise>
-				                    <li><a href="/foodProduct/list.do${pageParam}&page=${i}">${i}</a></li>
-				                </c:otherwise>
-				            </c:choose>
-				        </c:forEach>
-				
-				        <c:if test="${pInfo.currentPage < pInfo.naviTotalCount}">
-				            <li><a href="/foodProduct/list.do${pageParam}&page=${pInfo.currentPage + 1}">다음</a></li>
-				        </c:if>
-				        <c:if test="${pInfo.endNavi < pInfo.naviTotalCount}">
-				            <li><a href="/foodProduct/list.do${pageParam}&page=${pInfo.naviTotalCount}">끝</a></li>
-				        </c:if>
-				    </ul>
-				</c:if>
-
-
-
-
-			</div>
+				<div class="pagination">
+				    <c:if test="${foodProductSetList.size() > 0}">
+				        <ul>
+				            <c:if test="${pInfo.startNavi != 1 }">
+				                <c:url var="prevUrl" value="/foodProduct/list.do">			
+				                	<c:param name="category" value="${foodProductSetList[0].foodProduct.fProductType }"/>	                    
+				                    <c:param name="page" value="${pInfo.startNavi - 1}" />
+				                </c:url>
+				                <a href="${prevUrl }">[이전]</a>
+				            </c:if>
+				            <c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
+				                <c:url var="pageUrl" value="/foodProduct/list.do">
+				                	<c:param name="category" value="${foodProductSetList[0].foodProduct.fProductType }"/>
+				                    <c:param name="page" value="${p }" />
+				                </c:url>
+				                <a href="${pageUrl }">${p }</a>&nbsp;
+				            </c:forEach>
+				            <c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+				                <c:url var="nextUrl" value="/foodProduct/list.do">
+				                	<c:param name="category" value="${foodProductSetList[0].foodProduct.fProductType }"/>
+				                    <c:param name="page" value="${pInfo.endNavi + 1 }" />
+				                </c:url>
+				                <a href="${nextUrl }">[다음]</a>
+				            </c:if>
+				        </ul>
+				    </c:if>
+				</div>			
             </section>
             </main>
 
