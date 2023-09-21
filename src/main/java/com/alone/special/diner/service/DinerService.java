@@ -46,6 +46,10 @@ public interface DinerService {
 
 	int deleteRev(DinerRev dinerRev);
 
+	List<DinerRev> selectRevListByFDinerId(Integer fDinerId);
+
+	float getStarByfDinerId(Integer fDinerId);
+
 
 
 

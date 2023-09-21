@@ -128,6 +128,18 @@ public class DinerServiceImpl implements DinerService{
 		return result;
 	}
 
+	@Override
+	public List<DinerRev> selectRevListByFDinerId(Integer fDinerId) {
+		List<DinerRev> dRevList = FDStore.selectRevListByFDinerId(session, fDinerId);
+		return dRevList;
+	}
+
+	@Override
+	public float getStarByfDinerId(Integer fDinerId) {
+		float result = FDStore.getStarByfDinerId(session,fDinerId);
+		return result;
+	}
+
 
 
 

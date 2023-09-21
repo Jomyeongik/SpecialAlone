@@ -48,6 +48,10 @@ public interface DinerStore {
 
 	int deleteRev(SqlSession session, DinerRev dinerRev);
 
+	List<DinerRev> selectRevListByFDinerId(SqlSession session, Integer fDinerId);
+
+	float getStarByfDinerId(SqlSession session, Integer fDinerId);
+
 
 
 }

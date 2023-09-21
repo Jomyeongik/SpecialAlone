@@ -41,13 +41,21 @@
             <main>
             <section>
                 <br><br><br>                   
-                <h2>${foodProductSetList[0].foodProduct.fProductType }</h2>
+                <c:choose>
+			        <c:when test="${empty category}">
+			            전체
+			        </c:when>
+			        <c:otherwise>
+			            ${foodProductSetList[0].foodProduct.fProductType}
+			        </c:otherwise>
+			    </c:choose>
                 <br>
-                <span>전체 상품 수 : ${pInfo.totalCount }</span>
-                <button id="product_sort">분류방식</button>           
+                <span>전체 상품 수 : ${pInfo.totalCount }</span>         
                 <br><br>
                 <h1>상품 리스트</h1><br><hr><br>
-
+                <c:if test="${userId eq 'admin' }">
+					<button onclick="productRegister();" id="product_register_button">상품등록</button>
+                </c:if>
 
 			<div class="product_list">
                 <!-- 상품 리스트를 반복하여 출력합니다 -->
@@ -68,31 +76,35 @@
                 </c:forEach>        
             </div>
 				<div class="pagination">
-				    <c:if test="${foodProductSetList.size() > 0}">
-				        <ul>
-				            <c:if test="${pInfo.startNavi != 1 }">
-				                <c:url var="prevUrl" value="/foodProduct/list.do">			
-				                	<c:param name="category" value="${foodProductSetList[0].foodProduct.fProductType }"/>	                    
-				                    <c:param name="page" value="${pInfo.startNavi - 1}" />
-				                </c:url>
-				                <a href="${prevUrl }">[이전]</a>
-				            </c:if>
-				            <c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-				                <c:url var="pageUrl" value="/foodProduct/list.do">
-				                	<c:param name="category" value="${foodProductSetList[0].foodProduct.fProductType }"/>
-				                    <c:param name="page" value="${p }" />
-				                </c:url>
-				                <a href="${pageUrl }">${p }</a>&nbsp;
-				            </c:forEach>
-				            <c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
-				                <c:url var="nextUrl" value="/foodProduct/list.do">
-				                	<c:param name="category" value="${foodProductSetList[0].foodProduct.fProductType }"/>
-				                    <c:param name="page" value="${pInfo.endNavi + 1 }" />
-				                </c:url>
-				                <a href="${nextUrl }">[다음]</a>
-				            </c:if>
-				        </ul>
-				    </c:if>
+					<c:if test="${ pInfo.startNavi != 1 }">
+					    <c:url var="prevUrl" value="/foodProduct/list.do">
+					        <c:param name="page" value="${ pInfo.startNavi - 1 }"></c:param>
+					        <c:if test="${not empty category}">
+					            <c:param name="category" value="${category}" />
+					        </c:if>
+					    </c:url>
+					    <a href="${prevUrl}">[이전]</a>
+					</c:if>
+					<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
+					    <c:url var="pageUrl" value="/foodProduct/list.do">
+					        <c:param name="page" value="${p}"></c:param>
+					        <c:if test="${not empty category}">
+					            <c:param name="category" value="${category}" />
+					        </c:if>
+					    </c:url>
+					    <a href="${pageUrl}">${p}</a>&nbsp;
+					</c:forEach>
+					<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+					    <c:url var="nextUrl" value="/foodProduct/list.do">
+					        <c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
+					        <c:if test="${not empty category}">
+					            <c:param name="category" value="${category}" />
+					        </c:if>
+					    </c:url>
+					    <a href="${nextUrl}">[다음]</a>
+					</c:if>
+
+
 				</div>			
             </section>
             </main>
@@ -102,12 +114,23 @@
       </div>
       
       <script>
-		function showProductDetail(fProductId, refFProductId) {
-		    // 선택한 상품의 fProductId 및 refFProductId를 사용하여 URL을 구성합니다.
-		    var url = "/foodProduct/productdetail.do?fProductId=" + fProductId + "&refFProductId=" + refFProductId; 
-		    // 구성한 URL로 이동합니다.
-		    window.location.href = url;
-		}
+      function showProductDetail(fProductId, refFProductId) {    	    
+    	    var isUserLoggedIn = <%= session.getAttribute("userId") != null %>;
+    	    if (isUserLoggedIn) {    	       
+    	        var url = "/foodProduct/productdetail.do?fProductId=" + fProductId + "&refFProductId=" + refFProductId;
+    	        window.location.href = url;
+    	    } else {    	        
+    	        alert("로그인이 필요합니다.");
+    	        var url = "/user/login.do";
+    	        window.location.href = url;
+    	    }
+    	}
+      
+
+      function productRegister(){    	
+    	  var url = "register.do";
+    	  window.location.href = url;
+      }
 		</script>			
 	</body>
 </html>

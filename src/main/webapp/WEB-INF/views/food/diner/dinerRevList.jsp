@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>추천식당 목록</title>
-<link rel="stylesheet" href="/resources/css/common/footer.css">
-<link rel="stylesheet" href="/resources/css/common/header.css">
-<link rel="stylesheet" href="/resources/css/common/reset.css">
-<link rel="stylesheet" href="/resources/css/food/diner/dinerList.css">
+<link rel="stylesheet" href="/resources/css/footer.css">
+<link rel="stylesheet" href="/resources/css/header.css">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/food/product/productRevList.css">
 </head>
 <body>
 	<div class="container">
@@ -24,19 +24,23 @@
                 <h3>${diner.fDinerName }</h3>
                 <br>       
                 <br><br>
-			<div class="product_list">
+
                 <!-- 상품 리스트를 반복하여 출력합니다 -->
                 <c:forEach var="dinerRevSet" items="${dinerRevSet}">
-                    <div class="product_item">
-                        <div class="image_thumbnail">
-                            <img src="${dinerRevSet.dRevFileList[0].fDinerRevFilepath}" alt="${dinerRevSet.dRevFileList[0].fDinerRevFilename}" >
-                        </div>
-                        <div class="image_thumbnail">
-                            <img src="${dinerRevSet.dRevFileList[1].fDinerRevFilepath}" alt="${dinerRevSet.dRevFileList[1].fDinerRevFilename}" >
-                        </div>
+                    <div id="product_list_first" class="product_list">
+                    	<div id="product_item1" class="product_item">
+	                        <div id="image_container1" class="image_thumbnail">
+	                            <img src="${dinerRevSet.dRevFileList[0].fDinerRevFilepath}" alt="${dinerRevSet.dRevFileList[0].fDinerRevFilename}" >
+	                        </div>                    	
+	                        <div id="image_container2" class="image_thumbnail">
+	                            <img src="${dinerRevSet.dRevFileList[1].fDinerRevFilepath}" alt="${dinerRevSet.dRevFileList[1].fDinerRevFilename}" >
+	                        </div>
+                    	</div>
+                    	
+                    	
 						<div id="product_item2">
 							<!-- 작성자와 별점 표시 -->
-							<span>아이디: ${dinerRevSet.dinerRev.fUserId}</span> 
+							<span>아이디: ${dinerRevSet.dinerRev.fUserId}</span><br><br> 
 							<span>제목: ${dinerRevSet.dinerRev.fDinerRevTitle}</span> 
 							<span>${dinerRevSet.dinerRev.fDinerRevStar}</span><br>
 							<br> <br>
@@ -46,7 +50,7 @@
 						</div>
                     </div>
                 </c:forEach> 
-              </div>  
+ 
                 <br><hr>
                 <br><br>
 				

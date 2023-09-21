@@ -134,18 +134,6 @@ public class FoodProductServiceImpl implements FoodProductService{
 	}
 
 	@Override
-	public int modifyProductInfo(FoodProduct fProduct) {
-		int result = FPStore.modifyProductInfo(session,fProduct);
-		return result;
-	}
-
-	@Override
-	public int modifyProductFiles(List<FoodProductFile> fList) {
-		int result = FPStore.modifyProductFiles(session,fList);
-		return result;
-	}
-
-	@Override
 	public int deleteProduct(int fProductId) {
 		int result = FPStore.deleteProduct(session,fProductId);
 		return result;
@@ -160,6 +148,12 @@ public class FoodProductServiceImpl implements FoodProductService{
 	@Override
 	public int oneRevDelete(FoodProductOneRev fPOneRev) {
 		int result = FPStore.oneRevDelete(session,fPOneRev);
+		return result;
+	}
+
+	@Override
+	public float getStarByfProductId(Integer fProductId) {
+		float result = FPStore.getStarByfProductId(session,fProductId);
 		return result;
 	}
 

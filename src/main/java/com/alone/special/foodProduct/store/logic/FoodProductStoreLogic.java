@@ -140,17 +140,6 @@ public class FoodProductStoreLogic implements FoodProductStore{
 		return fPOneRevList;
 	}
 
-	@Override
-	public int modifyProductInfo(SqlSession session, FoodProduct fProduct) {
-		int result = session.update("FoodProductMapper.modifyProductInfo", fProduct);
-		return result;
-	}
-
-	@Override
-	public int modifyProductFiles(SqlSession session, List<FoodProductFile> fList) {
-		int result = session.update("FoodProductMapper.modifyProductFiles", fList);
-		return result;		
-	}
 
 	@Override
 	public int deleteProduct(SqlSession session, int fProductId) {
@@ -168,6 +157,34 @@ public class FoodProductStoreLogic implements FoodProductStore{
 	public int oneRevDelete(SqlSession session, FoodProductOneRev fPOneRev) {
 		int result = session.delete("FoodProductMapper.oneRevDelete", fPOneRev);
 		return result;
+	}
+
+	@Override
+	public float getStarByfProductId(SqlSession session, Integer fProductId) {
+		Float sumPhotoRevStar = session.selectOne("FoodProductMapper.getPhotoRevStar", fProductId);
+	    Float sumOneRevStar = session.selectOne("FoodProductMapper.getOneRevStar", fProductId);
+	    Float photoRevCount = session.selectOne("FoodProductMapper.getPhotoRevCountByfProductId", fProductId);
+	    Float oneRevCount = session.selectOne("FoodProductMapper.getOneRevCountByfProductId", fProductId);
+
+	    // NULL 값을 처리하고 기본값 할당
+	    if (sumPhotoRevStar == null) {
+	        sumPhotoRevStar = 0.0f;
+	    }
+	    if (sumOneRevStar == null) {
+	        sumOneRevStar = 0.0f;
+	    }
+	    if (photoRevCount == null) {
+	        photoRevCount = 0.0f;
+	    }
+	    if (oneRevCount == null) {
+	        oneRevCount = 0.0f;
+	    }
+
+	    float result = 0.0f;
+	    if (photoRevCount + oneRevCount > 0.0f) {
+	        result = (sumPhotoRevStar + sumOneRevStar) / (photoRevCount + oneRevCount);
+	    }
+	    return result;
 	}
 
 
