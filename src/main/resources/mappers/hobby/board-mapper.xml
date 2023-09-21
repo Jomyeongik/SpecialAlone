@@ -32,7 +32,7 @@
   </update>
   <!-- 전체 게시물 -->
   <select id="selectAllBoardListForAdmin" resultMap="boardResultMap">
-      SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y'
+      SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
   </select>
   <!-- 전체 게시물 갯수 -->
   <select id="getListCountForAdmin" resultType="_int">   

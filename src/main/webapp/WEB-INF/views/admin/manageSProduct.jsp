@@ -51,7 +51,7 @@
                 		<option value="sReview">안전 리뷰</option>
                 		<option value="hBoard">취미 게시글</option>
                 		<option value="fBoard">음식 추천</option>
-                		<option value="fReview">음식 포토 리뷰</option>
+
                 	</select>
                 	<br>
                     <form action="/manageBoard/search.do" method="get">
@@ -82,7 +82,7 @@
 								<tr>
 									<td style="text-align:center">${product.sProductId }</td>
 									<td style="text-align:center"><a href="/product/sdetail.do?sProductId=${product.sProductId }">${product.sProductName }</a></td>
-									<td>${product.sPrice }</td>
+									<td style="text-align:center">${product.sPrice }</td>
 									<td style="text-align:center">${product.sProductAverageRating }</td>
 									<td style="text-align:center">
 										<button class="userDetail" onclick="javascript: location.href='/product/update.do?sProductId=${product.sProductId }'">수정</button>

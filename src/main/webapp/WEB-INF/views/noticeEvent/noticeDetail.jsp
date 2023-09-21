@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="/resources/css/reset.css">
 	    <link rel="stylesheet" href="/resources/css/header.css">
 	    <link rel="stylesheet" href="/resources/css/footer.css">
-	    <link rel="stylesheet" href="/resources/css/noticeEvent/noticeDetail.css">
 	    <link rel="stylesheet" href="/resources/css/admin/main.css">
+	    <link rel="stylesheet" href="/resources/css/noticeEvent/noticeDetail.css">
 	    <script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,6 +87,8 @@
 					location.href = "/noticeEvent/delete.do?boardNo=${notice.boardNo }&boardFileRename=${notice.boardFileRename}&boardType=${notice.boardType}";
 				}
 			}
+			
+
 		</script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	</body>

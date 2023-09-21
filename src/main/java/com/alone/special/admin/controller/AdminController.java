@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alone.special.admin.domain.Singo;
 import com.alone.special.admin.service.AdminService;
+import com.alone.special.foodProduct.domain.FoodProduct;
+import com.alone.special.foodProduct.service.FoodProductService;
 import com.alone.special.hobby.domain.Board;
 import com.alone.special.hobby.domain.Reply;
 import com.alone.special.hobby.service.BoardService;
@@ -54,6 +57,8 @@ public class AdminController {
 	private ReviewService rService;
 	@Autowired
 	private ReplyService hrService;
+	@Autowired
+	private FoodProductService fService;
 
 	
 	
@@ -184,6 +189,19 @@ public class AdminController {
 			List<Board> sList = hService.selectBoardListByCategoryForAdmin(searchKeyword, pInfo);
 			mv.addObject("sList", sList).addObject("pInfo", pInfo)
 			.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageHBoardSearch");
+		} else if(selectedValue.equals("fBoard")) { // 음식
+			if(searchKeyword.equals("All")) {
+				Integer totalCount = fService.getListCount();
+				com.alone.special.foodProduct.domain.PageInfo pInfo = this.getPageInfoF(totalCount, currentPage);
+				List<FoodProduct> fList = fService.selectProductInfoList(pInfo);
+				mv.addObject("fList", fList).addObject("pInfo", pInfo).setViewName("/admin/manageFBoard");
+			}else {
+				Integer totalCount = fService.getListCountByCategory(searchKeyword);
+				com.alone.special.foodProduct.domain.PageInfo pInfo = this.getPageInfoF(totalCount, currentPage);
+				List<FoodProduct> sList = fService.selectProductInfoListByCategory(searchKeyword, pInfo);
+				mv.addObject("sList", sList).addObject("pInfo", pInfo)
+				.addObject("searchKeyword", searchKeyword).setViewName("/admin/manageFBoardSearch");
+			}
 		}
 		return mv;
 	}
@@ -218,11 +236,10 @@ public class AdminController {
 			List<Review> sList = aService.getAllReviews(pInfo);
 			mv.addObject("sList", sList).addObject("pInfo", pInfo).setViewName("/admin/manageSReview");
 		} else if(selectedValue.equals("fBoard")) { // 음식 추천
-			//fList
-		} else if(selectedValue.equals("fReview")) { // 음식 리뷰
-			//fList
-		} else if(selectedValue.equals("rBorad")) { // 식당 추천
-			//fList
+			Integer totalCount = fService.getListCount();
+			com.alone.special.foodProduct.domain.PageInfo pInfo = this.getPageInfoF(totalCount, currentPage);
+			List<FoodProduct> fList = fService.selectProductInfoList(pInfo);
+			mv.addObject("fList", fList).addObject("pInfo", pInfo).setViewName("/admin/manageFBoard");
 		}
 		
 		return mv;
@@ -255,13 +272,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/singo.do", method=RequestMethod.POST)
-	public String insertSingo(
+	public ModelAndView insertSingo(ModelAndView mv,
 			@RequestParam("reason") String reason,
 			@RequestParam("productTitle") String productTitle,
 			@RequestParam("name") String name,
 			@RequestParam("url") String url,
-			@RequestParam("content") String content) {
-		String resultVal = "";
+			@RequestParam("singocontents") String content) {
 		try {
 			//파라값들 받아서  singo 클래스에 넣어서 보내기-ajax로 받아서 String으로 리턴?
 			Singo singo = new Singo();
@@ -273,14 +289,16 @@ public class AdminController {
 
 			int result = aService.insertSingo(singo);
 			if(result > 0) {
-				resultVal = "success";
+				mv.setViewName("common/singoSuccess");
 			} else {
-				resultVal = "fail";
+				mv.addObject("msg", "신고가 완료되지 않았습니다.");
+				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
-			resultVal = "fail";
+			mv.addObject("msg", "신고가 완료되지 않았습니다.");
+			mv.setViewName("common/errorPage");
 		}
-		return resultVal;
+		return mv;
 	}
 	
 	@RequestMapping(value="/singo/list.do", method=RequestMethod.GET)
@@ -406,6 +424,25 @@ public class AdminController {
 		return page;
 	}
 	
+	public com.alone.special.foodProduct.domain.PageInfo getPageInfoF(int totalCount,int currentPage) {
+		com.alone.special.foodProduct.domain.PageInfo page =null;
+		int recordCountPerPage = 10;
+		int naviCountPerPage = 10;
+		int naviTotalCount;
+		int startNavi;
+		int endNavi;
+		naviTotalCount =(int)((double)totalCount/recordCountPerPage + 0.9);
+		startNavi = (((int)((double)currentPage/naviCountPerPage+0.9))-1)*naviCountPerPage+1;
+		endNavi = startNavi + naviCountPerPage - 1;
+		//endNavi는 startNavi에 무조건 naviCountPerPage에 값을 더하므로 실제 최대값 보다 무조건 클 수 있다.
+		if(endNavi > naviTotalCount) {
+			endNavi = naviTotalCount;
+		}
+		page = new com.alone.special.foodProduct.domain.PageInfo(currentPage, totalCount, naviTotalCount, recordCountPerPage, naviCountPerPage, startNavi, endNavi);
+				
+		return page;
+	}
+	
 	private ReviewPageInfo getReviewPageInfo(int totalCount, Integer currentPage) {
 		   ReviewPageInfo rpi =null;
 	 	int recordCountPerPage = 10;
@@ -463,5 +500,10 @@ public class AdminController {
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
+	}
+	
+	@RequestMapping(value="/admin/companyHistory.do", method=RequestMethod.GET)
+	public String showCompanyHistory() {
+		return "admin/companyHistory";
 	}
 }
