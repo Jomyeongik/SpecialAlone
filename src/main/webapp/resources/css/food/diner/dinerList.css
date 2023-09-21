@@ -18,11 +18,7 @@ img {
 	width: 100%;
 	height: 100%;
 }
-.dinerListImage{
-    width: 100%;
-	height: 100%;
-	padding: 15px;
-}
+
 .diner-list {
 	display: flex;
 	height: 300px;
@@ -54,12 +50,12 @@ img {
 }
 
 .dinerListImage {
-	width: 20%;
+	width: 30%;
 	border-bottom: 1px solid black;
 	
 }
 .dinerListInfo {
-	width: 60%;
+	width: 50%;
 	border-bottom: 1px solid black;
 }
 .pagination {

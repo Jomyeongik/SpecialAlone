@@ -128,7 +128,7 @@
       
 
       function productRegister(){    	
-    	  var url = "/foodProduct/foodProduct/register.do";
+    	  var url = "register.do";
     	  window.location.href = url;
       }
 		</script>			
