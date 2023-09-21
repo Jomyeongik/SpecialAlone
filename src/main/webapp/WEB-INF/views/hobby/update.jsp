@@ -58,7 +58,7 @@
                         <tbody>
                            <tr>
                               <td colspan="2" class="hobby_insert_table_content">
-                                 <textarea name="hBoardContent" id="" cols="50" rows="30">${ board.hBoardContent }</textarea>
+                                 <textarea name="hBoardContent" id="">${ board.hBoardContent }</textarea>
                               </td>
                            </tr>
                         </tbody>

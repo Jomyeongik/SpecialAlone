@@ -70,13 +70,10 @@
                         <div class="hobby_category_row"></div>
                         <div class="hobby_category_row">
                            <form action="/hobby/category/insert.do" method="post" enctype="multipart/form-data">
-                              <div class="hobby_category_insertBTN">
-                                 <input type="submit" value="V">
-                              </div>
                               <div class="hobby_category_image">
                                  <input type="file" name="uploadFile" id="">
                               </div>
-                              <div class="hobby_category_title">
+                              <div class="hobby_category_titleBox">
                                  <input type="text" name="hCategoryName" id="" placeholder="카테고리를 입력해주세요.">
                                  <select name="hCategoryTag" id="">
                                     <option value="">태그</option>
@@ -88,6 +85,9 @@
                                     <option value="exercise">운동</option>
                                     <option value="art">예술</option>
                                  </select>
+                              </div>
+                              <div class="hobby_category_insertBTN">
+                                 <input type="submit" value="V">
                               </div>
                            </form>
                         </div>
@@ -102,12 +102,12 @@
                            <form action="/hobby/category/delete.do" method="post">
                               <input type="hidden" name="hCategoryName" value="${category.hCategoryName}">
                               <div class="hobby_category_image">
-                              <a href="/hobby/board/list.do?category=${category.hCategoryName}">
-                                 <img src="../../../resources/hobby/cUploadFiles/${category.hCategoryFilename}" alt="" width="300px" height="300px">
-                              </a>
+                                 <a href="/hobby/board/list.do?category=${category.hCategoryName}">
+                                    <img src="../../../resources/images/hobby/cUploadFiles/${category.hCategoryFilename}" alt="">
+                                 </a>
                               </div>
-                              <div class="hobby_category_title">
-                              ${category.hCategoryName}
+                              <div class="hobby_category_titleBox">
+                                 <span class="hobby_category_title">${category.hCategoryName}</span>
                               </div>
                               <input type="submit" value="X" class="deleteBTN">
                            </form>

@@ -5,10 +5,10 @@
 <mapper namespace="BoardMapper">
 
   <resultMap type="Board" id="boardResultMap">
-   <id   property="hBoardNo"        column="H_BOARD_NO" />
+   <id   property="hBoardNo"        		column="H_BOARD_NO" />
    <result property="refCategoryName"     column="REF_CATEGORY_NAME" />
    <result property="hBoardCategory"      column="H_BOARD_CATEGORY" />
-   <result property="hBoardWriter"     column="H_BOARD_WRITER" />
+   <result property="hBoardWriter"     		column="H_BOARD_WRITER" />
    <result property="hBoardTitle"         column="H_BOARD_TITLE" />
    <result property="hBoardContent"       column="H_BOARD_CONTENT" />
    <result property="hBoardReplyNum"      column="H_BOARD_REPLY_NUM" />
@@ -19,7 +19,7 @@
    <result property="hGroupApplyPersonNum" column="H_GROUP_APPLY_PERSON_NUM" />
    <result property="hBoardCreateDate"    column="H_BOARD_CREATE_DATE" />
    <result property="hBoardUpdateDate"    column="H_BOARD_UPDATE_DATE" />
-   <result property="hBoardStatus"     column="H_BOARD_STATUS" />
+   <result property="hBoardStatus"     		column="H_BOARD_STATUS" />
    <result property="hBoardFilename"      column="H_BOARD_FILENAME" />
    <result property="hBoardFilerename"    column="H_BOARD_FILERENAME" />
    <result property="hBoardFilepath"      column="H_BOARD_FILEPATH" />

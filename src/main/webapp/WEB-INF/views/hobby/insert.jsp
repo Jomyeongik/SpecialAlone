@@ -53,7 +53,7 @@
                         <tbody>
                            <tr>
                               <td colspan="2" class="hobby_insert_table_content">
-                                 <textarea name="hBoardContent" id="" cols="50" rows="30" placeholder="내용을 입력해주세요."></textarea>
+                                 <textarea name="hBoardContent" id="" placeholder="내용을 입력해주세요."></textarea>
                               </td>
                            </tr>
                         </tbody>

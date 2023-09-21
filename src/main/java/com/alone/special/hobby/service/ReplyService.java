@@ -16,4 +16,6 @@ public interface ReplyService {
 
 	int getReplyCount(Integer hBoardNo);
 
+	int deleteReplyByBoardNo(Integer hBoardNo);
+
 }

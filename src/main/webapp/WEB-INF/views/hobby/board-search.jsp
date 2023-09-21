@@ -31,11 +31,7 @@
                   </section>
                   <section class="hobby_board_bigNav">
                      <div class="hobby_board_memberInfo">
-                        <a href="">Today 200회</a>
-                        <br>
                         <a href="/hobby/board/searchBySession.do?category=${ refCategoryName }&hBoardWriter=${ hBoardWriter }">내가 쓴 글 보기</a>
-                        <br>
-                        <a href="#">내가 쓴 댓글 보기</a>
                      </div>
                      <div class="hobby_board_insertBTN">
                         <a href="/hobby/board/insert.do?category=${ refCategoryName }">
@@ -93,39 +89,39 @@
                </section>
                <section class="hobby_board_center">
                   <section class="hobby_board_center_top"></section>
-                  <table>
-                     <thead>
-                        <tr>
-                           <th>카테고리</th>
-                           <th>제목</th>
-                           <th>작성자</th>
-                           <th>작성일</th>
-                           <th>댓글/인원</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <c:forEach var="board" items="${ sList }">
+                     <table>
+                        <thead>
                            <tr>
-                              <input type="hidden" name="hBoardNo" value="${ board.hBoardNo }">
-                              <td>${ board.hBoardCategory }</td>
-                              <c:url var="detailUrl" value="/hobby/board/detail.do">
-                                 <c:param name="category" value="${ refCategoryName }"></c:param>
-                                 <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
-                              </c:url>
-                              <td><a href="${ detailUrl }">${ board.hBoardTitle }</a></td>
-                              <td>${ board.hBoardWriter }</td>
-                              <td>
-                                 <fmt:formatDate pattern="yyyy-MM-dd" value="${ board.hBoardCreateDate }"/>
-                              </td>
-                              <td>
-                                 <c:if test="${ board.hBoardCategory != '소모임' && board.hBoardCategory != '소모임모집' }">${ board.hBoardReplyNum }</c:if>
-                                 <c:if test="${ board.hBoardCategory == '소모임' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
-                                 <c:if test="${ board.hBoardCategory == '소모임모집' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
-                              </td>
+                              <th>카테고리</th>
+                              <th>제목</th>
+                              <th>작성자</th>
+                              <th>작성일</th>
+                              <th>댓글/신청인원</th>
                            </tr>
-                        </c:forEach>
-                     </tbody>
-                  </table>
+                        </thead>
+                        <tbody>
+                           <c:forEach var="board" items="${ sList }">
+                              <tr>
+                                 <input type="hidden" name="hBoardNo" value="${ board.hBoardNo }">
+                                 <td>${ board.hBoardCategory }</td>
+                                 <c:url var="detailUrl" value="/hobby/board/detail.do">
+                                    <c:param name="category" value="${ refCategoryName }"></c:param>
+                                    <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
+                                 </c:url>
+                                 <td><a href="${ detailUrl }">${ board.hBoardTitle }</a></td>
+                                 <td>${ board.hBoardWriter }</td>
+                                 <td>
+                                    <fmt:formatDate pattern="yyyy-MM-dd" value="${ board.hBoardCreateDate }"/>
+                                 </td>
+                                 <td>
+                                    <c:if test="${ board.hBoardCategory != '소모임' && board.hBoardCategory != '소모임모집' }">${ board.hBoardReplyNum }</c:if>
+                                    <c:if test="${ board.hBoardCategory == '소모임' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
+                                    <c:if test="${ board.hBoardCategory == '소모임모집' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
+                                 </td>
+                              </tr>
+                           </c:forEach>
+                        </tbody>
+                     </table>
                   <section class="hobby_board_center_bottom">
                      <section class="hobby_board_listNav">
                         ${ navi }

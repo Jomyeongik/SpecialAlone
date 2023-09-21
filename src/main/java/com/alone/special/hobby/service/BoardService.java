@@ -47,4 +47,6 @@ public interface BoardService {
 
 	List<Board> searchBoardsBySession(PageInfo pInfo, Map<String, String> paramMap);
 
+	List<Board> selectBoardListByCategory(Category category);
+
 }

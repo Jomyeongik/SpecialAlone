@@ -16,7 +16,7 @@
   </resultMap>
   
   <insert id="insertReply">
-  	INSERT INTO H_REPLY_TBL VALUES (SEQ_H_REPLY_NO.NEXTVAL, #{ refBoardNo }, #{ hReplyContent }, 'admin', DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+  	INSERT INTO H_REPLY_TBL VALUES (SEQ_H_REPLY_NO.NEXTVAL, #{ refBoardNo }, #{ hReplyContent }, #{ hReplyWriter }, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
   </insert>
   
   <update id="updateReply">
@@ -25,7 +25,6 @@
   
   <update id="deleteReply">
   	UPDATE H_REPLY_TBL SET H_REPLY_STATUS = 'N' WHERE H_REPLY_NO = #{ hReplyNo }
-  	<!-- AND H_REPLY_WRITER = #{ hReplyWriter } -->
   </update>
   
   <select id="selectReplyList" resultMap="replyResultMap">
@@ -51,4 +50,8 @@
   <select id="getHReplyListByKeyword" resultMap="replyResultMap">
   	SELECT * FROM H_REPLY_TBL WHERE H_REPLY_STATUS = 'Y'AND H_REPLY_WRITER LIKE '%'||#{ searchKeyword }||'%'
   </select>
+  
+  <delete id="deleteReplyByBoardNo">
+  	DELETE FROM H_REPLY_TBL WHERE H_REPLY_NO = #{ hBoardNo }
+  </delete>
 </mapper>

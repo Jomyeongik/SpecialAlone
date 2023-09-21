@@ -135,4 +135,10 @@ public class BoardServiceImpl implements BoardService {
 		return searchList;
 	}
 
+	@Override
+	public List<Board> selectBoardListByCategory(Category category) {
+		List<Board> searchList = bStore.selectBoardListByCategory(session, category);
+		return searchList;
+	}
+
 }

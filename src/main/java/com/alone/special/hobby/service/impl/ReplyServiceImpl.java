@@ -47,5 +47,11 @@ public class ReplyServiceImpl implements ReplyService{
 		int replyTotalCount = rStore.getReplyCount(session, hBoardNo);
 		return replyTotalCount;
 	}
+
+	@Override
+	public int deleteReplyByBoardNo(Integer hBoardNo) {
+		int result = rStore.deleteReplyByBoardNo(session, hBoardNo);
+		return result;
+	}
 	
 }
