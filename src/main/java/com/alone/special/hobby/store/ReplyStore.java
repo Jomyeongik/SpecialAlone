@@ -18,4 +18,6 @@ public interface ReplyStore {
 
 	int getReplyCount(SqlSession session, Integer hBoardNo);
 
+	int deleteReplyByBoardNo(SqlSession session, Integer hBoardNo);
+
 }

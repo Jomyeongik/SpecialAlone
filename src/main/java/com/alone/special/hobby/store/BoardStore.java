@@ -49,4 +49,6 @@ public interface BoardStore {
 
 	List<Board> searchBoardsBySession(SqlSession session, PageInfo pInfo, Map<String, String> paramMap);
 
+	List<Board> selectBoardListByCategory(SqlSession session, Category category);
+
 }

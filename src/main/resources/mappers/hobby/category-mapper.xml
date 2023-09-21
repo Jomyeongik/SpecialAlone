@@ -27,7 +27,6 @@
   </select>
   
   <select id="searchByKeyword" resultMap="categoryResultMap">
-  	<!-- SELECT * FROM H_CATEGORY_TBL WHERE H_CATEGORY_NAME = #{ hCategoryName } -->
   	SELECT * FROM H_CATEGORY_TBL WHERE H_CATEGORY_NAME LIKE '%' || #{ hCategoryName } || '%'
   </select>
   

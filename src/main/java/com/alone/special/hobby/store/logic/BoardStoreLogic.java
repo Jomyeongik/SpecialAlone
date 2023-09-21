@@ -147,5 +147,11 @@ public class BoardStoreLogic implements BoardStore {
 		List<Board> searchList = session.selectList("BoardMapper.searchBoardsBySession", paramMap, rowBounds);
 		return searchList;
 	}
+
+	@Override
+	public List<Board> selectBoardListByCategory(SqlSession session, Category category) {
+		List<Board> bList = session.selectList("BoardMapper.selectBoardListByCategoryForAdmin", category);
+		return bList;
+	}
 	
 }

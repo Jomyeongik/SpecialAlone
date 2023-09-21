@@ -41,4 +41,10 @@ public class ReplyStoreLogic implements ReplyStore {
 		return replyTotalCount;
 	}
 
+	@Override
+	public int deleteReplyByBoardNo(SqlSession session, Integer hBoardNo) {
+		int result = session.delete("ReplyMapper.deleteReplyByBoardNo", hBoardNo);
+		return result;
+	}
+
 }

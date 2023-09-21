@@ -12,11 +12,6 @@
       <link rel="stylesheet" href="/resources/css/footer.css">
       <link rel="stylesheet" href="/resources/css/hobby/board.css">
       <title>Special Alone</title>
-      <!-- react -->
-      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-      <!-- babel -->
-      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
    </head>
    <body>
       <div class="container">
@@ -31,11 +26,7 @@
                   </section>
                   <section class="hobby_board_bigNav">
                      <div class="hobby_board_memberInfo">
-                        <a href="#">Today 200회</a>
-                        <br>
                         <a href="/hobby/board/searchBySession.do?category=${ refCategoryName }&hBoardWriter=${ hBoardWriter }">내가 쓴 글 보기</a>
-                        <br>
-                        <a href="#">내가 쓴 댓글 보기</a>
                      </div>
                      <div class="hobby_board_insertBTN">
                         <a href="/hobby/board/insert.do?category=${ refCategoryName }">
@@ -93,57 +84,57 @@
                </section>
                <section class="hobby_board_center">
                   <section class="hobby_board_center_top"></section>
-                  <table>
-                     <thead>
-                        <tr>
-                           <th>카테고리</th>
-                           <th>제목</th>
-                           <th>작성자</th>
-                           <th>작성일</th>
-                           <th>댓글/인원</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <c:forEach var="board" items="${ bList }">
+                     <table>
+                        <thead>
                            <tr>
-                              <input type="hidden" name="hBoardNo" value="${ board.hBoardNo }">
-                              <td>${ board.hBoardCategory }</td>
-                              <c:url var="detailUrl" value="/hobby/board/detail.do">
-                                 <c:param name="category" value="${ refCategoryName }"></c:param>
-                                 <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
-                              </c:url>
-                              <td><a href="${ detailUrl }">${ board.hBoardTitle }</a></td>
-                              <td>${ board.hBoardWriter }</td>
-                              <td>
-                                 <fmt:formatDate pattern="yyyy-MM-dd" value="${ board.hBoardCreateDate }"/>
-                              </td>
-                              <td>
-                                 <c:if test="${ board.hBoardCategory != '소모임' && board.hBoardCategory != '소모임모집' }">${ board.hBoardReplyNum }</c:if>
-                                 <c:if test="${ board.hBoardCategory == '소모임' || board.hBoardCategory == '소모임모집' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
-                              </td>
+                              <th>카테고리</th>
+                              <th>제목</th>
+                              <th>작성자</th>
+                              <th>작성일</th>
+                              <th>댓글/신청인원</th>
                            </tr>
-                        </c:forEach>
-                     </tbody>
-                  </table>
+                        </thead>
+                        <tbody>
+                           <c:forEach var="board" items="${ bList }">
+                              <tr>
+                                 <input type="hidden" name="hBoardNo" value="${ board.hBoardNo }">
+                                 <td>${ board.hBoardCategory }</td>
+                                 <c:url var="detailUrl" value="/hobby/board/detail.do">
+                                    <c:param name="category" value="${ refCategoryName }"></c:param>
+                                    <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
+                                 </c:url>
+                                 <td><a href="${ detailUrl }">${ board.hBoardTitle }</a></td>
+                                 <td>${ board.hBoardWriter }</td>
+                                 <td>
+                                    <fmt:formatDate pattern="yyyy-MM-dd" value="${ board.hBoardCreateDate }"/>
+                                 </td>
+                                 <td>
+                                    <c:if test="${ board.hBoardCategory != '소모임' && board.hBoardCategory != '소모임모집' }">${ board.hBoardReplyNum }</c:if>
+                                    <c:if test="${ board.hBoardCategory == '소모임' || board.hBoardCategory == '소모임모집' }">${ board.hGroupApplyPersonNum} / ${ board.hGroupPersonNum }</c:if>
+                                 </td>
+                              </tr>
+                           </c:forEach>
+                        </tbody>
+                     </table>
                   <section class="hobby_board_center_bottom">
                      <section class="hobby_board_listNav">
                         <c:if test="${ pInfo.startNavi != 1 }">
                            <c:url var="prevUrl" value="/hobby/board/list.do?category=${ refCategoryName }">
                               <c:param name="page" value="${ pInfo.startNavi -1 }"></c:param>
                            </c:url>
-                           <a href="${ prevUrl }">[이전]</a>
+                           <a href="${ prevUrl }"> < </a>
                         </c:if>
                         <c:forEach begin="${ pInfo.startNavi }" end="${ pInfo.endNavi }" var="p">
                            <c:url var="pageUrl" value="/hobby/board/list.do?category=${ refCategoryName }">
                               <c:param name="page" value="${ p }"></c:param>
                            </c:url>
-                           <a href="${ pageUrl }">${ p }</a>&nbsp;
+                           <a href="${ pageUrl }">${ p }</a>
                         </c:forEach>
                         <c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
                            <c:url var="nextUrl" value="/hobby/board/list.do?category=${ refCategoryName }">							
                               <c:param name="page" value="${ pInfo.endNavi +1 }"></c:param>
                            </c:url>
-                           <a href="${ nextUrl }">[다음]</a>
+                           <a href="${ nextUrl }"> > </a>
                         </c:if>
                      </section>
                   </section>

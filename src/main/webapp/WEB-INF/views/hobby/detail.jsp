@@ -27,11 +27,7 @@
                   </section>
                   <section class="hobby_detail_bigNav">
                      <div class="hobby_detail_memberInfo">
-                        <a href="">Today 200회</a>
-                        <br>
                         <a href="/hobby/board/searchBySession.do?category=${ refCategoryName }&hBoardWriter=${ hBoardWriter }">내가 쓴 글 보기</a>
-                        <br>
-                        <a href="#">내가 쓴 댓글 보기</a>
                      </div>
                      <div class="hobby_detail_insertBTN">
                         <a href="/hobby/board/insert.do?category=${ refCategoryName }">
@@ -123,7 +119,7 @@
                   </table>
                   <section class="hobby_detail_center_bottom">
                      <div>
-                        <a href="../resources/hobby/bUploadFiles/${ board.hBoardFilerename }" download>${ board.hBoardFilename }</a>
+                        <a href="../resources/images/hobby/bUploadFiles/${ board.hBoardFilerename }" download>${ board.hBoardFilename }</a>
                      </div>
                      <div class="hobby_detail_listBTN">
                         <input type="button" value="    List    " onClick="javascript:history.go(-1);">
@@ -138,11 +134,11 @@
                            <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
                         </c:url>
                         <div>
-                           <c:if test="${ board.hBoardWriter eq userId }">
+                           <c:if test="${ board.hBoardWriter eq userId && board.hGroupPersonNum ne board.hGroupApplyPersonNum }">
                               <button type="button" onclick="updateBoard('${ updateUrl}');">수정</button>
                               <button type="button" onclick="deleteBoard('${ boardDelUrl }');">삭제</button>
                            </c:if>
-                           <c:if test="${ board.hBoardWriter ne userId && board.hBoardCategory == '소모임모집'}">
+                           <c:if test="${ board.hBoardWriter ne userId && board.hBoardCategory == '소모임모집' && userId ne null &&board.hGroupPersonNum ne board.hGroupApplyPersonNum }">
                               <button type="button" onclick="openPopup();">신청</button>
                            </c:if>
                         </div>
@@ -180,11 +176,12 @@
                               </tr>
                               <tr style="display: none;">
                                  <form action="/hobby/reply/update.do" method="post">
-                                    <input type="hidden" name="refCategoryName" value="${ refCategoryName }">
-                                    <input type="hidden" name="hReplyNo" value="${ reply.hReplyNo }">
-                                    <input type="hidden" name="refBoardNo" value="${ reply.refBoardNo }">
+                                    <input type="hidden" name="refCategoryName"  value="${ refCategoryName }">
+                                    <input type="hidden" name="hReplyNo"         value="${ reply.hReplyNo }">
+                                    <input type="hidden" name="hReplyWriter"     value="${ reply.hReplyWriter }">
+                                    <input type="hidden" name="refBoardNo"       value="${ reply.refBoardNo }">
                                     <td colspan="4"><input type="text" name="hReplyContent" value="${ reply.hReplyContent }"></td>
-                                    <td><input type="submit" value="등록"></td>
+                                    <td><input type="submit" value="수정하기"></td>
                                  </form>
                               </tr>
                            </c:forEach>
@@ -212,8 +209,8 @@
             location.href = url;
          }
          function openPopup() {
-            var width = 300;
-            var height = 400;
+            var width = 400;
+            var height = 450;
             var left = (window.innerWidth - width) / 2;
             var top = (window.innerHeight - height) / 2;
             var noticeWin = window.open("/hobby/board/popup.do?category=${ refCategoryName }&hBoardNo=${ board.hBoardNo }", "", "width=" + width + ", height=" + height + ", left=" + left + ", top=" + top);

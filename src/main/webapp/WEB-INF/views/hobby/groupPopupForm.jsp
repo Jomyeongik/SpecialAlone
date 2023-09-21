@@ -13,13 +13,20 @@
          .box {
             border: 2px double skyblue;
             border-radius: 10px;
-            padding: 10px;
+            padding: 30px;
+            margin: 30px;
          }
          ul {
             list-style-type: none;
          }
          ul li {
-            margin: 10px 15px;
+            margin: 10px 10px;
+         }
+         button {
+            margin: 5px;
+         }
+         h1 {
+            text-align: center;
          }
       </style>
    </head>
@@ -43,11 +50,11 @@
             <li>모임원 : ${ board.hGroupApplyPerson }</li>
          </ul>
          <c:url var="doApplyUrl" value="/hobby/board/doApply.do">
-            <c:param name="category" value="${ refCategoryName }"></c:param>
+            <c:param name="category" value="${ board.refCategoryName }"></c:param>
             <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
          </c:url>
          <c:url var="undoApplyUrl" value="/hobby/board/undoApply.do">
-            <c:param name="category" value="${ refCategoryName }"></c:param>
+            <c:param name="category" value="${ board.refCategoryName }"></c:param>
             <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
          </c:url>
          <button type="button" onclick="applyGroup('${ doApplyUrl}');">신청하기</button>
@@ -63,6 +70,8 @@
          }
          function cancelGroup(url) {
             location.href = url;
+            // alert("취소가 완료되었습니다.");
+            // window.close();
          }
          function autoCreateBoard() {
             var url = document.getElementById("autoCloseAndExecute").getAttribute("autoCreateUrl");
