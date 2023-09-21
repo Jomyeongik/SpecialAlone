@@ -150,15 +150,15 @@ private ReviewPageInfo getReviewPageInfo(Integer currentPage, int totalCount) {
 		    		String productFilename = (String)sMap.get("fileName");
 		    		long productFilelength = (long)sMap.get("fileLength");
 		    		product.setsFileName(productFilename);
-		    		product.setsFileReName((String)sMap.get("fileReName"));
-		    		product.setsFilePath((String)sMap.get("filePath"));
+		    		product.setsFileReName((String)sMap.get("fileRename"));
+		    		product.setsFilePath((String)sMap.get("savePath"));
 		    		product.setsFileLength(productFilelength);
 		    				
 		    	}
 		    	int result =productservice.updateProduct(product);
 		    	if(result>0) {
 		    		
-		    		mv.setViewName("redirect:/sProduct/sdetail.do?sProductId="+product.getsProductId()); 
+		    		mv.setViewName("redirect:/product/sdetail.do?sProductId="+product.getsProductId()); 
 		    			
 		    	}else {
 		    		mv.setViewName("sProduct/insertproduct");

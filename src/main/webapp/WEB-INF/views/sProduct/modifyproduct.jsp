@@ -34,8 +34,8 @@
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div class="container">
 		<h2>상품 수정</h2>
-		<form action="/product/insertproduct.do" method="POST" enctype="multipart/form-data">
-				<input type="hidden" name="sProductId" value="${Product.sProductId }">
+		<form action="/product/update.do" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="sProductId" value="${Product.sProductId }">
 <!-- 		기존 업로드 파일 체크할 때 사용 -->
 			<input type="hidden" name="sFileName" 	 value="${Product.sFileName }">
 			<input type="hidden" name="sFileReName" value="${Product.sFileReName }">
@@ -56,8 +56,6 @@
 				<label for="productImage">상품 이미지:</label> <input id="productImage" type="file" name="uploadFile" class="file" data-show-upload="false" data-show-caption="true" >
 			</div>
 			<button type="submit" class="btn btn-primary">등록</button>
-			<a href="/product/update.do" class="btn btn-primary">수정</a>
-			<a href="/porduct/delete.do" class="btn btn-warning">삭제</a>
 			<button type="reset" class="btn btn-warning">리셋</button>
 		</form>
 	</div>

@@ -12,6 +12,8 @@
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/detail.css">
+ 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>	
@@ -22,6 +24,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.3.0/js/fileinput.min.js" type="text/javascript"></script>
 
 <style>
+.image-container {
+    display: flex;
+    align-items: center; 
+    margin-top: 20px; 
+}
+
+.image-content,
+.description-content {
+position: relative;
+    float: right;
+    width: 300px;
+    margin-left:700px;
+    font-size: 12px;}
+
+.image-content img {
+    max-width: 400px; 
+    height: auto;
+    object-fit: cover;
+}
+
+.image-description {
+    font-size: 16px; 
+}
 .ad-container {
   position: fixed;
   top: 50%;
@@ -36,8 +61,8 @@
 }
  .pagination {
         text-align: center;
-        margin-top:1900px;
-        margin-right:px;
+        position : relative;
+        margin-top:10%;
     }
 
     .pagination a {
@@ -114,8 +139,7 @@ height:180px;
     padding-left: 20px;
 }
  .image img {
-    width:  100%;	
-    height:80%;
+ 	width:600px;
     object-fit: cover; /* Maintain aspect ratio and cover the entire container */
 }
 
@@ -124,6 +148,7 @@ margin-top:50px;
 float:left;
 width:60%;
 display:flex;
+
 }
 .right{
 width:20%;
@@ -143,7 +168,7 @@ margin-top :10%;
     left:80%;
 }
 .imagedetail{
-position:absolute;
+position:relative;
 margin-left:30%;
 margin-top:0%;
 }
@@ -184,7 +209,7 @@ top:50px;
     color: #f1c40f; 
     }
  #reviewcontainer{
- 	margin-bottom:50%;
+ 	margin-bottom:100%;
  	width:100%;
  }
  #reviewnone{
@@ -205,41 +230,12 @@ top:50px;
 	</div>
 	</div>
 	</div>
-			<div class="pagination">
-    <c:choose>
-        <c:when test="${empty rInfo}">
-            <span class="no-reviews">리뷰가 없습니다!</span>
-        </c:when>
-        <c:otherwise>
-            <c:url var="prevUrl" value="/product/sdetail.do">
-                <c:param name="page" value="${rInfo.startNavi - 1 }"></c:param>
-            </c:url>
-            <c:if test="${rInfo.startNavi != 1 }">
-                <a href="${prevUrl }">[이전]</a>
-            </c:if>
-            
-	<c:forEach begin="${rInfo.startNavi >= 0 ? rInfo.startNavi : 0}" end="${rInfo.endNavi}" var="p">
-                <c:url var="pageUrl" value="/product/sdetail.do">
-                    <c:param name="page" value="${p }"></c:param>
-                </c:url>
-                <a href="${pageUrl }">${p }</a>&nbsp;
-            </c:forEach>
-            
-            <c:url var="nextUrl" value="/product/sdetail.do">
-                <c:param name="page" value="${rInfo.endNavi + 1 }"></c:param>
-            </c:url>
-            <c:if test="${rInfo.endNavi != rInfo.naviTotalCount }">
-                <a href="${nextUrl }">[다음]</a>
-            </c:if>
-        </c:otherwise>
-    </c:choose>
-</div>
+	
 	<div class="middle row">
-	<div class="image" style="max-width: 400px; ">
-	<img alt="방호상품" src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}">
+	<div class="image-container" >
+	<img alt="방호상품" style="position:absolute;left:400px;top:200px;height:410px;width:410px;z-index:6;" src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}">
 	</div>
-	<hr>
-	<div class="imagedetail ">
+	<div class="description-content">
 	<ol>
 	<br><br><br>
 	<li><h1>${Product.sProductName }</h1></li>
@@ -251,18 +247,19 @@ top:50px;
 	<li>${Product.sDescription }</li>
 	<hr>
 	<li>
+	</li>
+	</ol>
+    </div>
+	<hr>
 	<c:if test="${User.userId eq 'admin' }">
 	<input type="hidden" value="${Product.sProductId }">
 		<a href="/product/update.do?sProductId=${Product.sProductId }" class="btn btn-light">수정</a>
-		<a href="/product/delete.do?sProductId=${Product.sProductId }" class="btn btn-light">삭제</a>		
+		<a href="/product/delete.do?sProductId=${Product.sProductId }" id="deleteButton"class="btn btn-light">삭제</a>		
 	</c:if>
-	</li>
-	</ol>
-	</div>
 	<div class="row form-group " id="reviewcontainer">
 	<div class="col-md-12">
-<strong ><span style="font-size:22px; font-weight:bold;">리뷰 쓰기</span></strong>
-<form action="/review/insertReview.do" method="POST" enctype="multipart/form-data">
+	<strong ><span style="font-size:22px; font-weight:bold;">리뷰 쓰기</span></strong>
+	<form action="/review/insertReview.do" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="sProductId" value="${Product.sProductId}">
     <input type="hidden" name="sUserNo" value="${User.userNo}">
     <table id="reviewtable" class="table table-striped" style="text-align: center; border: 1px #dddddd">
@@ -337,7 +334,7 @@ top:50px;
 								        <br>
 								        <c:if test="${Review.sFileReName ne null }">
 								            <div class="image-with-text">
-								                <img src="${pageContext.request.contextPath}/resources/images/${Review.sFileReName}" width="300px" height="300px">
+								                <img src="${pageContext.request.contextPath}/resources/images/${Review.sFileReName}" width="250px" height="250px">
 								                <span>${Review.sReviewContent}</span>
 								            </div>
 								        </c:if>
@@ -360,6 +357,35 @@ top:50px;
                     <p id="reviewnone">리뷰가 없습니다!</p>
     </c:otherwise>
 </c:choose>
+		<div class="pagination">
+    <c:choose>
+        <c:when test="${empty rInfo}">
+            <span class="no-reviews">리뷰가 없습니다!</span>
+        </c:when>
+        <c:otherwise>
+            <c:url var="prevUrl" value="/product/sdetail.do">
+                <c:param name="page" value="${rInfo.startNavi - 1 }"></c:param>
+            </c:url>
+            <c:if test="${rInfo.startNavi != 1 }">
+                <a href="${prevUrl }">[이전]</a>
+            </c:if>
+            
+	<c:forEach begin="${rInfo.startNavi >= 0 ? rInfo.startNavi : 0}" end="${rInfo.endNavi}" var="p">
+                <c:url var="pageUrl" value="/product/sdetail.do">
+                    <c:param name="page" value="${p }"></c:param>
+                </c:url>
+                <a href="${pageUrl }">${p }</a>&nbsp;
+            </c:forEach>
+            
+            <c:url var="nextUrl" value="/product/sdetail.do">
+                <c:param name="page" value="${rInfo.endNavi + 1 }"></c:param>
+            </c:url>
+            <c:if test="${rInfo.endNavi != rInfo.naviTotalCount }">
+                <a href="${nextUrl }">[다음]</a>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
+</div>
 				</div>
 		
 	</div>
@@ -367,6 +393,7 @@ top:50px;
 	</div>
 	
 	</div>
+	
 	<aside class="ad-container">
   <a href="https://kh-academy.co.kr/main/main.kh"><img src="${pageContext.request.contextPath}/resources/images/advertise.png" alt="Advertisement"></a>
 </aside>		
@@ -421,23 +448,40 @@ top:50px;
 		    sProductAverageRating: ${Product.sProductAverageRating}
 		};
 
-		function addToRecentlyViewedProducts(product) {
-		    var recentlyViewedProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts')) || [];
+	function addToRecentlyViewedProducts(product) {
+	    var recentlyViewedProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts')) || [];
 
-		    if (!recentlyViewedProducts.some(p => p.sProductId === product.sProductId)) {
-		        recentlyViewedProducts.unshift(product); 
+	    var existingProductIndex = recentlyViewedProducts.findIndex(p => p.sProductId === product.sProductId);
 
-		    
-		        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
-		    }
-		}
+	    if (existingProductIndex === -1) {
+	        recentlyViewedProducts.unshift(product);
+	        if (recentlyViewedProducts.length > 5) {
+	            recentlyViewedProducts.pop(); 
+	        }
+
+	        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+	    } else {
+	        
+	        var existingProduct = recentlyViewedProducts.splice(existingProductIndex, 1)[0];
+	        recentlyViewedProducts.unshift(existingProduct);
+
+	        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+	    }
+	}
+		
 
 		function displayRecentlyViewedProducts() {
 			var recentlyViewedProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts')) || [];
 		    var recentProductsList = document.getElementById('recentProductsList');
 
 		    var productListHTML = '';
-		    recentlyViewedProducts.forEach(function (item) {
+		    var itemCount = Math.min(5, recentlyViewedProducts.length);
+		    for (var i = 0; i < itemCount; i++) {
+		        var item = recentlyViewedProducts[i];
+
+		    // for (var i = 0; i < Math.min(5, recentlyViewedProducts.length); i++) {
+		   // recentlyViewedProducts.forEach(function (item) {
+		   // var item = recentlyViewedProducts[i];
 // 		    	let fileName = 11;
 // 		    	productListHTML += `<div class='col-md-3'>${fileName}</div>` 
 		        productListHTML += 
@@ -451,7 +495,8 @@ top:50px;
 		                    </div>\
 		                </div>\
 		            </div>';
-		    });
+		   }
+		    //});
 
 		    recentProductsList.innerHTML = productListHTML;
 		}
@@ -557,6 +602,24 @@ top:50px;
                 alert("리뷰 내용을 써주세요.");
             }
         });
+        
+        function removeFromRecentlyViewed(productId) {
+		    var recentlyViewedProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts')) || [];
+		    var index = recentlyViewedProducts.findIndex(function (item) {
+		        return item.sProductId === productId;
+		    });
+
+		    if (index !== -1) {
+		        recentlyViewedProducts.splice(index, 1);
+		        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+		        displayRecentlyViewedProducts();
+		    }
+		}
+		var deleteButton = document.getElementById('deleteButton'); 
+		deleteButton.addEventListener('click', function () {
+		    var productId = item.sProductId; 
+		    removeFromRecentlyViewed(productId);
+		});
  		</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

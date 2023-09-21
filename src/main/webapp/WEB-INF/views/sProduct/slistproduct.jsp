@@ -43,8 +43,7 @@
 <aside class="ad-container">
   <a href="https://kh-academy.co.kr/main/main.kh"><img src="${pageContext.request.contextPath}/resources/images/advertise.png" alt="Advertisement"></a>
 </aside>		
-
- <div class="container">
+<div class="container ">
  <h1>상품 리스트</h1>
 <div class="row middle">
 	
@@ -85,7 +84,7 @@
         <a href="${nextUrl }">[다음]</a>
     </c:if>
 </div>
-</div>
+    </div>
              <div id="main_right"></div>
   	
   	</main>
@@ -113,12 +112,20 @@
 	    return stars;
 	}
  
+
+  
 		function displayRecentlyViewedProducts() {
 			var recentlyViewedProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts')) || [];
 		    var recentProductsList = document.getElementById('recentProductsList');
 
 		    var productListHTML = '';
-		    recentlyViewedProducts.forEach(function (item) {
+		    var itemCount = Math.min(5, recentlyViewedProducts.length);
+		    for (var i = 0; i < itemCount; i++) {
+		        var item = recentlyViewedProducts[i];
+
+		    //recentlyViewedProducts.forEach(function (item) {
+		    			    //var item = recentlyViewedProducts[i];
+
 //		    	let fileName = 11;
 //		    	productListHTML += `<div class='col-md-3'>${fileName}</div>` 
 		        productListHTML += 
@@ -132,10 +139,11 @@
 		                    </div>\
 		                </div>\
 		            </div>';
-		    });
-
+		    }
+		    //});
+		
 		    recentProductsList.innerHTML = productListHTML;
-		    
+		}    
 		    document.addEventListener("DOMContentLoaded", function () {
 			    var starRatingElements = document.querySelectorAll(".star-rating");
 
@@ -146,14 +154,35 @@
 
 			    });
 			});
-		}
+		    
+		    function addToRecentlyViewedProducts(product) {
+			    var recentlyViewedProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts')) || [];
+
+			    var existingProductIndex = recentlyViewedProducts.findIndex(p => p.sProductId === product.sProductId);
+
+			    if (existingProductIndex === -1) {
+			        recentlyViewedProducts.unshift(product);
+			        if (recentlyViewedProducts.length > 5) {
+			            recentlyViewedProducts.pop(); 
+			        }
+
+			        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+			    } else {
+			        
+			        var existingProduct = recentlyViewedProducts.splice(existingProductIndex, 1)[0];
+			        recentlyViewedProducts.unshift(existingProduct);
+
+			        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+			    }
+			}
+
 
 		window.addEventListener('load', function () {
 		    displayRecentlyViewedProducts();
 		});
 
 
-	  
+		
 
 	
       
