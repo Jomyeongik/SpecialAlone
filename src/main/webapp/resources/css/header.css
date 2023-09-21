@@ -3,8 +3,6 @@ header {
    height: 60px;
 }
 
-<<<<<<< HEAD
-
 header a {
 	text-decoration: none;
 	padding: 19px;
@@ -12,19 +10,10 @@ header a {
 
 
 header ul {
-=======
-a {
-	text-decoration: none;
-	padding: 19px;
-}
-
-ul {
->>>>>>> refs/remotes/origin/230921khj
 	list-style: none;
 }
 
 .nav_left {
-<<<<<<< HEAD
 	font-size: 26px;
 	width: 20%;
 	height: 60px;
@@ -33,15 +22,6 @@ ul {
 	align-items: center;
 	float: left;
 	background-color: floralwhite;
-=======
-	width: 20%; */
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	float: left;
-	border: 1px solid black;
->>>>>>> refs/remotes/origin/230921khj
 }
 .nav_center {
 	width: 60%;
@@ -51,10 +31,6 @@ ul {
 	align-items: center;
 	float: left;
 	display: flex;
-<<<<<<< HEAD
-=======
-	border: 1px solid black;
->>>>>>> refs/remotes/origin/230921khj
 }
 .nav_right {
 	font-size: 18px;
@@ -107,7 +83,7 @@ ul {
 	text-align: center;
 	display: flex;
 	justify-content: center;
-	z-index: 1;
+	z-index: 9999;
 }
 
 

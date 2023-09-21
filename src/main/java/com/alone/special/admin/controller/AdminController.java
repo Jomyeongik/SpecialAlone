@@ -501,6 +501,7 @@ public class AdminController {
 		}
 		return mv;
 	}
+	
 	@RequestMapping(value="/admin/companyHistory.do", method=RequestMethod.GET)
 	public String showCompanyHistory() {
 		return "admin/companyHistory";

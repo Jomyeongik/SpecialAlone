@@ -19,7 +19,7 @@
 
 				<c:if test="${userId eq 'admin' }">
 					<ul>					
-						<li><a href="#">관리자</a></li>
+						<li><a href="/member/list.do">관리자</a></li>
 					</ul>
 					</c:if>
 					<c:if test="${userId ne 'admin' }">

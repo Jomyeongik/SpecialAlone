@@ -9,8 +9,8 @@ public class ProductPageInfo {
 	private int totalCount;
 	private int naviTotalCount;
 	public ProductPageInfo() {};
-	public ProductPageInfo(int currentPage, int totalCount, int naviTotalCount, int recordCountPerPage, int naviCountPerPage,
-			int startNavi, int endNavi) {
+	public ProductPageInfo(int currentPage, int recordCountPerPage, int naviCountPerPage, int startNavi, int endNavi,
+			int totalCount, int naviTotalCount) {
 		super();
 		this.currentPage = currentPage;
 		this.recordCountPerPage = recordCountPerPage;

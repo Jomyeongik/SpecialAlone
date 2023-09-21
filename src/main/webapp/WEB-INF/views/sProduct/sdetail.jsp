@@ -64,8 +64,8 @@
 	<c:if test="${User.userId eq 'admin' }">
 	<input type="hidden" value="${Product.sProductId }">
 		<a href="/product/update.do?sProductId=${Product.sProductId }" class="btn btn-light">수정</a>
-	</c:if>
 		<a href="/product/delete.do?sProductId=${Product.sProductId }" id="deleteButton"class="btn btn-light">삭제</a>		
+	</c:if>
 	<div class="row form-group " id="reviewcontainer">
 	<div class="col-md-12">
 	<strong ><span style="font-size:22px; font-weight:bold;">리뷰 쓰기</span></strong>
