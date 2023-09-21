@@ -30,7 +30,7 @@ main section {
 }
 .in_addr {
     margin-bottom: 10px;
-    width: 73%;
+    width: 72%;
     padding: 15px;
     box-sizing: border-box;
     border-radius: 15px;
@@ -62,8 +62,9 @@ h2 {
 }
 
 #btn {
+	margin-top: 20px;
+	font-size: 15px;
     background-color: #1BBC9B;
-    margin-bottom: 15px;
     color: white;
     width: 30%;
     padding: 15px;
@@ -77,6 +78,7 @@ h2 {
 	}
 }
 .button {
+	font-size: 15px;
   display: inline-block;
   width: 25%;
   padding: 10px 23px; /* 원하는 패딩 값으로 조절하세요 */
@@ -94,4 +96,9 @@ h2 {
     background-color: #0056b3; /* 호버 시 배경색 변경 */
     color: #fff; /* 호버 시 텍스트 색상 변경 */
   }
+}
+.container {
+	font-family: 'Nanum Gothic Coding', cursive;
+	font-weight: bold;
+	font-size: 20px;
 }

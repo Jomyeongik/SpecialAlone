@@ -66,7 +66,6 @@ public class UserController {
 		boolean userEmailValid = service.userEmailValid(userEmail);
 		return userEmailValid ? "valid" : "invalid";
 	}
-	
 	// 회원정보 페이지
 	@RequestMapping(value="/user/mypage.do", method=RequestMethod.POST)
 	public ModelAndView mypageForm(ModelAndView mv, HttpSession session) {

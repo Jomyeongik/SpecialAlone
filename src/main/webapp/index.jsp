@@ -13,6 +13,9 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/styles.css">
+    	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<title>Special Alone</title>
 	</head>
 	
@@ -23,24 +26,32 @@
 		<!-- main -->
 		<main>
 			<section class="index_background">
-				<img src="/resources/image/1920x1080test.jpg" alt="test">
-			</section>
-			<section class="index_front">
-				<section class="index_center">
-					<div class="index_center_title">Special Alone</div>
-					<div class="index_center_content">더 특별한 혼자가 되기를 바랍니다!</div>
-				</section>
-				<section class="index_right">
-					<div class="index_right_title">
+				<div id="index">
+					<div id="slide">
+						<ul>
+							<li><a href="#"><img id="slide_image" src="/resources/images/user_images/slide-image1.png" alt="슬라이드1"></a></li>
+							<li><a href="#"><img id="slide_image" src="/resources/images/user_images/slide-image2.png" alt="슬라이드2"></a></li>
+							<li><a href="#"><img id="slide_image" src="/resources/images/user_images/slide-image3.png" alt="슬라이드3"></a></li>
+							<li><a href="#"><img id="slide_image" src="/resources/images/user_images/slide-image4.png" alt="슬라이드4"></a></li>
+						</ul>
 					</div>
-					<div class="index_right_nav">
-					<img src="" alt="">
 				</div>
-				</section>
 			</section>
 		</main>
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		</div>
+  		<script>
+  	        $(document).ready(function() {
+  	            $('#slide ul li').hide();
+  	            $('#slide ul li:first-child').show();
+	
+  	            setInterval(function() {
+  	                $('#slide ul li:first-child').fadeOut()
+  	                    .next().fadeIn().end(1000)
+  	                    .appendTo('#slide ul');
+  	            }, 3000);
+  	        });
+  	    </script>
 	</body>
 </html>

@@ -10,6 +10,9 @@
       	<link rel="stylesheet" href="/resources/css/header.css">
       	<link rel="stylesheet" href="/resources/css/footer.css">
       	<link rel="stylesheet" href="/resources/css/user/findUserId.css">
+      	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap">
 		<title>SpecialAlone 아이디 찾기</title>
 		<script>
 			function validateForm(){

@@ -10,6 +10,9 @@
       	<link rel="stylesheet" href="/resources/css/header.css">
       	<link rel="stylesheet" href="/resources/css/footer.css">
       	<link rel="stylesheet" href="/resources/css/user/register.css">
+      	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap">
       	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<title>SpecialAlone 회원가입</title>
 	</head>

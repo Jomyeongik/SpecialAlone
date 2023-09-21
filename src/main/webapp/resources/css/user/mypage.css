@@ -20,6 +20,7 @@ main section {
 	max-width: 400px;
 }
 .in {
+	font-size: 15px;
     margin-bottom: 10px;
     width: 100%;
     padding: 15px;
@@ -29,8 +30,8 @@ main section {
     background-color: lavender;
 }
 .in_addr {
-    margin-bottom: 10px;
-    width: 73%;
+    margin-bottom: 15px;
+    width: 72%;
     padding: 15px;
     box-sizing: border-box;
     border-radius: 15px;
@@ -51,6 +52,7 @@ h2 {
 	color: red;
 }
 #btn {
+	margin-top: 5px;
     background-color: #1BBC9B;
     margin-bottom: 15px;
     color: white;
@@ -83,4 +85,9 @@ h2 {
     background-color: #0056b3; /* 호버 시 배경색 변경 */
     color: #fff; /* 호버 시 텍스트 색상 변경 */
   }
+}
+.container {
+	font-family: 'Nanum Gothic Coding', cursive;
+	font-weight: bold;
+	font-size: 20px;
 }
