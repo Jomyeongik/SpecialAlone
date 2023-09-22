@@ -163,16 +163,18 @@
                                  <td>${ reply.hReplyWriter }</td>
                                  <td>${ reply.hReplyContent }</td>
                                  <td><fmt:formatDate pattern="yyyy-MM-dd" value="${ reply.hReplyCreateDate }"/></td>
-                                 <td><a href="javascript:void(0);" onclick="showModifyForm(this, '${ reply.hReplyContent }');">수정</a></td> <!-- javascript:void(0); : 기본 기능 없애기 , 문자열은 홑따옴표로-->
-                                 <td>
-                                    <c:url var="delUrl" value="/hobby/reply/delete.do">
-                                       <c:param name="category"      value="${ refCategoryName }"></c:param>
-                                       <c:param name="hReplyNo" 	   value="${ reply.hReplyNo }"></c:param>
-                                       <c:param name="hReplyWriter"   value="${ reply.hReplyWriter }"></c:param>	<!-- 본인 것만 지우게 하기 위해 작성자 추가 -->
-                                       <c:param name="refBoardNo"    value="${ reply.refBoardNo }"></c:param>		<!-- 성공하면 detail로 가기위한 boardNo 세팅 -->
-                                    </c:url>
-                                    <a href="javascript:void(0);" onclick="deleteReply('${ delUrl }');">삭제</a>
-                                 </td>
+                                 <c:if test="${ (userId == 'admin') || (reply.hReplyWriter eq userId) }">
+	                                 <td><a href="javascript:void(0);" onclick="showModifyForm(this, '${ reply.hReplyContent }');">수정</a></td> <!-- javascript:void(0); : 기본 기능 없애기 , 문자열은 홑따옴표로-->
+	                                 <td>
+	                                    <c:url var="delUrl" value="/hobby/reply/delete.do">
+	                                       <c:param name="category"      value="${ refCategoryName }"></c:param>
+	                                       <c:param name="hReplyNo" 	   value="${ reply.hReplyNo }"></c:param>
+	                                       <c:param name="hReplyWriter"   value="${ reply.hReplyWriter }"></c:param>	<!-- 본인 것만 지우게 하기 위해 작성자 추가 -->
+	                                       <c:param name="refBoardNo"    value="${ reply.refBoardNo }"></c:param>		<!-- 성공하면 detail로 가기위한 boardNo 세팅 -->
+	                                    </c:url>
+	                                    <a href="javascript:void(0);" onclick="deleteReply('${ delUrl }');">삭제</a>
+	                                 </td>
+                                 </c:if>
                               </tr>
                               <tr style="display: none;">
                                  <form action="/hobby/reply/update.do" method="post">
