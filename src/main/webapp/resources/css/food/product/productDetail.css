@@ -81,14 +81,13 @@ img {
 }
 
 #product_detail_container {
-	border: 1px solid black;
+
 	height: 300px;
 	display: flex;
 }
 
-#product_recommendation {
-	
-	width: 60%;
+#product_recommendation {	
+	width: 70%;
 	padding-right: 300px;
 }
 
@@ -99,7 +98,7 @@ img {
 
 #product_nutrient_info {
 	border: 1px solid black;
-	height: 200px;
+	height: 100px;
 }
   #toReviewBtn{
     align-items: center;
@@ -120,3 +119,4 @@ img {
     display: flex;
     justify-content: space-evenly;
 }
+

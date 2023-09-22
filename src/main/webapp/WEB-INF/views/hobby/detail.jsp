@@ -124,7 +124,7 @@
                      <div class="hobby_detail_listBTN">
                         <input type="button" value="    List    " onClick="javascript:history.go(-1);">
                      </div>
-                     <c:if test="${ board.hBoardCategory != '소모임'}">
+                     <c:if test="${ (userId == 'admin') || (board.hBoardCategory != '소모임') }">
                         <c:url var="updateUrl" value="/hobby/board/update.do">
                            <c:param name="category" value="${ refCategoryName }"></c:param>
                            <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
@@ -134,16 +134,16 @@
                            <c:param name="hBoardNo" value="${ board.hBoardNo }"></c:param>
                         </c:url>
                         <div>
-                           <c:if test="${ board.hBoardWriter eq userId && board.hGroupPersonNum ne board.hGroupApplyPersonNum }">
+                           <c:if test="${ (userId == 'admin') || ((board.hBoardWriter eq userId) && (board.hBoardCategory == '소모임모집' && board.hGroupPersonNum ne board.hGroupApplyPersonNum)) || (board.hBoardWriter eq userId) }">
                               <button type="button" onclick="updateBoard('${ updateUrl}');">수정</button>
                               <button type="button" onclick="deleteBoard('${ boardDelUrl }');">삭제</button>
                            </c:if>
-                           <c:if test="${ board.hBoardWriter ne userId && board.hBoardCategory == '소모임모집' && userId ne null &&board.hGroupPersonNum ne board.hGroupApplyPersonNum }">
+                           <c:if test="${ (userId != 'admin') && (board.hBoardWriter ne userId) && (board.hBoardCategory == '소모임모집') && (userId ne null) && (board.hGroupPersonNum ne board.hGroupApplyPersonNum) }">
                               <button type="button" onclick="openPopup();">신청</button>
                            </c:if>
                         </div>
                      </c:if>
-                     <c:if test="${ board.hBoardCategory == '소모임'}"><div></div></c:if>
+                     <c:if test="${ (userId != 'admin') && (board.hBoardCategory == '소모임') }"><div></div></c:if>
                   </section>
                   <section class="hobby_detail_reply_tableBox">
                      <table class="hobby_detail_reply_table">

@@ -20,7 +20,7 @@
 		<main>
 			<section>
                 <h1>식당 리뷰</h1><br><hr><br>                 
-                <h2>${diner.fDinerType }</h2>
+                <h3>${diner.fDinerType }</h3>
                 <h3>${diner.fDinerName }</h3>
                 <br>       
                 <br><br>

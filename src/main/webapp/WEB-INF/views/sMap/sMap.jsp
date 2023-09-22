@@ -256,7 +256,7 @@
 	<input type="hidden" name="userId"value="${User.userId }" >
 		<form method="POST" action="/comment/select.do" class="form-inline mt-3">
 			<select name="searchCondition" class="form-control mx-1 mt-2">
-				<option value="Writer'">작성자</option>
+				<option value="writer">작성자</option>
 				<option value="content" >내용</option>
 			</select>
 			<input type="text" name="searchKeyword" class="form-control mx-1 mt-2 col-10" placeholder="내용을 입력하세요.">

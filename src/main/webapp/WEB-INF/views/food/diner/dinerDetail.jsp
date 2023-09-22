@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/resources/css/footer.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/food/button.css">
 <link rel="stylesheet" href="/resources/css/food/diner/dinerDetail.css">
 </head>
 	<body>
@@ -42,19 +43,19 @@
                     </div>
                 </div>
                 <br><br>
-                <hr>
                 <br><br>
                 <div id="product_detail_container">
                     <div id="product_recommendation">
-                        <h2>${diner.fDinerName }</h2><br><br>
+                        <h2>${diner.fDinerName }</h2><br>
                         <span>평균별점: ${roundedRevStar }</span>                        
                     </div>
                     <div id="product_starRev">
-                        <h2>대표리뷰</h2> <br><br>
+                        <h2>대표리뷰</h2> <br>
                         <p>제목: ${dRevList[0].fDinerRevTitle }</p><br>
-                        <p>내용: ${dRevList[1].fDinerRevContent }</p>
+                        <p>내용: ${dRevList[0].fDinerRevContent }</p>
                         <!-- 리뷰 가지고오기 -->
-                        <button onclick="toReviewList(${diner.fDinerId})">리뷰로 이동</button>
+                        <br>
+                        <button onclick="toReviewList(${diner.fDinerId})" id="submit-button" class="custom-btn btn-11">리뷰로 이동</button>
                     </div>
                 </div>
                 <br><br>

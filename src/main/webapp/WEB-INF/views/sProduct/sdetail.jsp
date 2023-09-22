@@ -61,7 +61,7 @@
 	</ol>
     </div>
 	<hr>
-	<c:if test="${User.userId eq 'admin' }">
+	<c:if test="${sessionScope.userId eq 'admin' }">
 	<input type="hidden" value="${Product.sProductId }">
 		<a href="/product/update.do?sProductId=${Product.sProductId }" class="btn btn-light">수정</a>
 		<a href="/product/delete.do?sProductId=${Product.sProductId }" id="deleteButton"class="btn btn-light">삭제</a>		

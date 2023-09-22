@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/resources/css/header.css">
         <link rel="stylesheet" href="/resources/css/reset.css">
         <link rel="stylesheet" href="/resources/css/food/product/star.css">
+        <link rel="stylesheet" href="/resources/css/food/button.css">
         <link rel="stylesheet" href="/resources/css/food/product/productRevList.css">
         
 </head>
@@ -89,35 +90,32 @@
 		        <div class="review-input">
 					<form id="reviewForm" action="/foodProduct/submitReview.do" method="post">
 						<input type="hidden" id="refFProductId" name="refFProductId" value="${foodProduct.fProductId }">
-				        <fieldset class="rate">
-				            <input type="radio" id="rating10" name="fProductOneRevStar" value="5"><label for="rating10" title="5점"></label>
-				            <input type="radio" id="rating9" name="fProductOneRevStar" value="4.5"><label class="half" for="rating9" title="4.5점"></label>
-				            <input type="radio" id="rating8" name="fProductOneRevStar" value="4"><label for="rating8" title="4점"></label>
-				            <input type="radio" id="rating7" name="fProductOneRevStar" value="3.5"><label class="half" for="rating7" title="3.5점"></label>
-				            <input type="radio" id="rating6" name="fProductOneRevStar" value="3"><label for="rating6" title="3점"></label>
-				            <input type="radio" id="rating5" name="fProductOneRevStar" value="2.5"><label class="half" for="rating5" title="2.5점"></label>
-				            <input type="radio" id="rating4" name="fProductOneRevStar" value="2"><label for="rating4" title="2점"></label>
-				            <input type="radio" id="rating3" name="fProductOneRevStar" value="1.5"><label class="half" for="rating3" title="1.5점"></label>
-				            <input type="radio" id="rating2" name="fProductOneRevStar" value="1"><label for="rating2" title="1점"></label>
-				            <input type="radio" id="rating1" name="fProductOneRevStar" value="0.5"><label class="half" for="rating1" title="0.5점"></label>
-				        </fieldset>
-				        <br> 
+						<div id="star">
+					        <fieldset class="rate">
+					            <input type="radio" id="rating10" name="fProductOneRevStar" value="5"><label for="rating10" title="5점"></label>
+					            <input type="radio" id="rating9" name="fProductOneRevStar" value="4.5"><label class="half" for="rating9" title="4.5점"></label>
+					            <input type="radio" id="rating8" name="fProductOneRevStar" value="4"><label for="rating8" title="4점"></label>
+					            <input type="radio" id="rating7" name="fProductOneRevStar" value="3.5"><label class="half" for="rating7" title="3.5점"></label>
+					            <input type="radio" id="rating6" name="fProductOneRevStar" value="3"><label for="rating6" title="3점"></label>
+					            <input type="radio" id="rating5" name="fProductOneRevStar" value="2.5"><label class="half" for="rating5" title="2.5점"></label>
+					            <input type="radio" id="rating4" name="fProductOneRevStar" value="2"><label for="rating4" title="2점"></label>
+					            <input type="radio" id="rating3" name="fProductOneRevStar" value="1.5"><label class="half" for="rating3" title="1.5점"></label>
+					            <input type="radio" id="rating2" name="fProductOneRevStar" value="1"><label for="rating2" title="1점"></label>
+					            <input type="radio" id="rating1" name="fProductOneRevStar" value="0.5"><label class="half" for="rating1" title="0.5점"></label>
+					        </fieldset>
+					    </div> 
+                   <div class="input_box">
+                        <div class="input_title">
+                            <label>작성란</label> 
+                        </div>
 					    <input type="text" name="fProductOneRevContent" placeholder="한줄 리뷰를 작성해주세요!" style="width: 500px;">
-					    <input type="submit" value="댓글등록">
+					    <button id="submit-button" class="custom-btn btn-11">제출</button>
+                    </div>				        
 					</form>
 		        </div>						
 			</div>
 			<br>
-			<br>
-			<br>
 			<table>
-				<colgroup>
-					<col width="5%">
-					<col width="10%">
-					<col width="60%">
-					<col width="10%">
-					<col width="15%">
-				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -166,6 +164,14 @@
 		        alert("본인 작성리뷰만 삭제 가능합니다!");
 		    }			
 	}
+	
+    document.addEventListener('DOMContentLoaded', function () {
+        var submitButton = document.getElementById('submit-button');
+
+        submitButton.addEventListener('click', function () {
+            window.location.href = '/foodProduct/submitReview.do';
+        });
+    }); 	
 	</script>	
 </body>
 </html>

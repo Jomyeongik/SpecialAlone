@@ -214,15 +214,21 @@ public class BoardController {
 	@RequestMapping(value="/update.do", method = RequestMethod.POST)
 	public ModelAndView boardUpdate(ModelAndView mv
 			, @ModelAttribute Board board
+			, @RequestParam("hBoardNo") Integer hBoardNo
 			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
 			, @RequestParam("setTime") String setTime
 			, HttpSession session
 			, HttpServletRequest request) {
 		
 		try {
+			String encodedCategory = URLEncoder.encode(board.getRefCategoryName(), "UTF-8");
+			String url = "hobby/board/detail.do?category=" + encodedCategory + "&hBoardNo=" + board.gethBoardNo();
+			
 			String userId = (String)session.getAttribute("userId");
-			String boardWriter = board.gethBoardWriter();
-			if((boardWriter != null && boardWriter.equals(userId)) || userId.equals("admin")) {
+			Board boardOne = bService.selectBoardByNo(hBoardNo);
+			
+			String boardWriter = boardOne.gethBoardWriter();
+			if( (userId.equals("admin")) || (boardWriter != null && boardWriter.equals(userId)) ) {
 				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 					String fileRename = board.gethBoardFilerename();
 					if(fileRename != null) {
@@ -245,8 +251,7 @@ public class BoardController {
 					board.sethGroupTime(examDateTime);
 				}
 				
-				String encodedCategory = URLEncoder.encode(board.getRefCategoryName(), "UTF-8");
-				String url = "hobby/board/detail.do?category=" + encodedCategory + "&hBoardNo=" + board.gethBoardNo();
+				
 				
 				int result = bService.updateBoard(board);
 				if(result > 0) {
@@ -258,13 +263,14 @@ public class BoardController {
 				}
 			} else {
 				mv.addObject("msg", "자신의 게시글만 수정 가능합니다.");
-				mv.addObject("url", "/board/update.kh?boardNo="+board.gethBoardNo());
+				mv.addObject("url", url);
 				mv.setViewName("common/errorPage");
 			}
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			mv.addObject("msg", "관리자에게 문의하세요.");
-			mv.addObject("url", "/hobby/board/update.do?boardNo="+board.gethBoardNo());
+			mv.addObject("url", "/hobby/board/update.do?hBoardNo="+board.gethBoardNo());
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
@@ -283,15 +289,21 @@ public class BoardController {
 	@RequestMapping(value="/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteBoard(ModelAndView mv
 			, @ModelAttribute Board board
+			, @RequestParam("hBoardNo") Integer hBoardNo
+			, @RequestParam("category") String refCategoryName
 			, HttpSession session) {
 		
 		String url = "";
 		try {
-			url = "/hobby/board/list.do?category="+board.getRefCategoryName();
+			String encodedCategory = URLEncoder.encode(refCategoryName, "UTF-8");
+			url = "/hobby/board/list.do?category="+encodedCategory;
 			
 			String userId = (String)session.getAttribute("userId");
-			String boardWriter = board.gethBoardWriter();
-			if((boardWriter != null && boardWriter.equals(userId)) || userId.equals("admin")) {
+			
+			Board boardOne = bService.selectBoardByNo(hBoardNo);
+			
+			String boardWriter = boardOne.gethBoardWriter();
+			if( (userId.equals("admin")) || (boardWriter != null && boardWriter.equals(userId)) ) {
 				int result = bService.deleteBoard(board);
 				if(result > 0) {
 					mv.setViewName("redirect:"+url);
@@ -308,7 +320,7 @@ public class BoardController {
 				
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의하세요.");
-			mv.addObject("url", url);
+			mv.addObject("url", "/hobby/board/list.do?category="+refCategoryName);
 			mv.setViewName("common/errorPage");
 		}
 		return mv;

@@ -5,7 +5,6 @@
 .rate {
 	display: inline-block;
 	border: 0;
-	margin-right: 15px;
 }
 
 .rate>input {
@@ -43,3 +42,4 @@
 	input:checked ~ label {
 	color: #f73c32 !important;
 }
+

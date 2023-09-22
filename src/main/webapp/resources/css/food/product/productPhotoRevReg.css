@@ -1,15 +1,12 @@
-@charset "UTF-8";
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
 
 label {
 	display: block; /* 블록 요소로 설정하여 한 줄에 하나의 요소만 표시됩니다. */
-}
-
-.image_thumbnail {
-	border: 1px solid black;
-	width: 100px;
-	height: 100px;
-	margin: 10px;
-	/* display: inline-block; */
 }
 
 h1 {
@@ -18,8 +15,9 @@ h1 {
 }
 
 main {
-	margin-left: 20%;
-	margin-right: 20%;
+	width: 1150px;
+    margin: 0 auto;
+	font-family: 'SUITE-Regular';
 }
 
 .btn1 {
@@ -28,4 +26,40 @@ main {
 
 #btn-delete {
 	float: right;
+}
+.input_box{
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.input_title{
+    width: 139px;
+    padding-top: 12px;
+}
+
+textarea{
+    width: 100%; 
+    height: 200px; 
+    
+}
+#textarea_box{
+    width: 700px;
+    margin: 0 auto;
+}
+
+#submit-button {
+    display: block;
+    margin: 0 auto; 
+}
+#star{
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
+}
+input[type="text"] {
+    width: 50%;
 }

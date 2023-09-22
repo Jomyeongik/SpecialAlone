@@ -15,6 +15,10 @@ label {
       text-align: center;
       font-size: 2em;
   }
+  h2{
+  	text-align: center;
+  	font-size: 1.5em;
+  }
 main {
 	width: 1150px;
     margin: 0 auto;
@@ -108,17 +112,7 @@ main {
   #starRating{
       float: right;
   }
-  table{
-      border: 1px solid black;
-      width: 100%;
-      text-align: center;
-  }
-  tr th{
-      border: 1px solid black;
-  }
-  tr td{
-      border: 1px solid black;
-  }
+
   
  #fProductName{
     font-size: 2em;
@@ -141,3 +135,95 @@ main {
 .pagination ul li:last-child {
     margin-right: 0; /* 마지막 항목에 오른쪽 여백 제거 */
 }
+.input_box{
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.input_title{
+    width: 139px;
+    padding-top: 12px;
+}
+#star{
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
+}
+table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  text-align: left;
+}
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: rgb(200, 76, 76);
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: right;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  
+  }

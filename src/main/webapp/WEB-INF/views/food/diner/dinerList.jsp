@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/food/diner/dinerList.css">
+<link rel="stylesheet" href="/resources/css/food/nav.css">	        
 </head>
 <body>
 	<div class="container">
@@ -18,16 +19,15 @@
 
 		<!-- main -->
 		<nav class="nav_region">
-			<ul>
-				<li><a href="/diner/list.do">전체</a></li>
-				<li><a href="/diner/list.do?region=Seoul">서울</a></li>
-				<li><a href="/diner/list.do?region=Incheon">경기</a></li>
-				<li><a href="/diner/list.do?region=Gyeonggi">인천</a></li>
+			<ul class="menu align-center expanded text-center SMN_effect-13">
+				<li><a href="/diner/list.do" data-hover="전체">전체</a></li>
+				<li><a href="/diner/list.do?region=Seoul" data-hover="서울">서울</a></li>
+				<li><a href="/diner/list.do?region=Incheon" data-hover="인천">인천</a></li>
+				<li><a href="/diner/list.do?region=Gyeonggi" data-hover="경기">경기</a></li>
 			</ul>
 		</nav>
 		<main>
 			<section>
-				<h1>추천식당 목록</h1>
 				<br>
 				<br><br><br>                   
                 <c:choose>
@@ -38,8 +38,12 @@
 			            ${dinerSetList[0].diner.fDinerType}
 			        </c:otherwise>
 			    </c:choose>
-                <br>
                 <span>전체 상품 수 : ${pInfo.totalCount }</span> 
+				<h1>추천식당 목록</h1>
+                <br>
+                 <c:if test="${userId eq 'admin' }">
+					<button onclick="dinerRegister();" id="product_diner_button">상품등록</button>
+                </c:if>
 				<hr>
 				<br> <br>
 
@@ -56,16 +60,18 @@
 						<div class="dinerListInfo">
 							<p id="dinerName">${dinerSet.diner.fDinerName}</p>
 							<br>
-							<h3>${dinerSet.diner.fDinerAddress}</h3>
+							<h2>${dinerSet.diner.fDinerAddress}</h2>
 							<br>
 							<p>
-								대표메뉴 <br> <br> 간단설명 : ${dinerSet.diner.fDinerNote}
+								<br> <br> ${dinerSet.diner.fDinerNote}
 							</p>
 						</div>
 						<!-- 영업시간 영역 -->
-						<div class="dinerListImage">
+						<div class="dinerListTime">
+								<br><br><br>
+							<p id="dinerBTime">영업시간</p> 
 							<p>
-								영업시간 <br> ${dinerSet.diner.fDinerBHour}<br> <br>
+								<br><br> ${dinerSet.diner.fDinerBHour}<br> <br>
 							</p>
 						</div>
 					</div>
@@ -84,7 +90,7 @@
 					</c:if>
 					<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
 					    <c:url var="pageUrl" value="/diner/list.do">
-					        <c:param name="region" value="${p}"></c:param>
+					        <c:param name="page" value="${p}"></c:param>
 					        <c:if test="${not empty category}">
 					            <c:param name="region" value="${region}" />
 					        </c:if>
@@ -120,7 +126,12 @@
 	    	        var url = "/user/login.do";
 	    	        window.location.href = url;
 	    	    }
-	    	}		
+	    	}
+	      
+	      function dinerRegister(){    	
+	    	  var url = "register.do";
+	    	  window.location.href = url;
+	      }	      
 		</script>
 </body>
 </html>

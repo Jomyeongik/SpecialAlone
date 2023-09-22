@@ -46,21 +46,21 @@
                 <br><br>
                 <div id="product_detail_container">
                     <div id="product_recommendation">
-                        <span>상세정보</span> <br><br>
-                        <br><br><br>
+                        <h1>상세정보</h1> <br><br>
+                        <br>
                         <p>${foodProduct.fProductDetail }</p>
                         <br><br><br><br><br><br><br>
                     </div>
                     <div id="product_starRev">
                         
-                            <span>평균별점 : ${roundedRevStar}/5.0</span><br><br>
+                            <h1>평균별점 : ${roundedRevStar}/5.0</h1><br><br>
                             <span>한줄평 및 별점</span>
                             <br><br>                        
-                            <p>1.${fPOneRevList[0].fProductOneRevWriter} :</p>
-                            <p>${fPOneRevList[0].fProductOneRevStar}</p><br><br> 
-                            <p>2.${fPOneRevList[1].fProductOneRevWriter} :</p>
-                            <p>${fPOneRevList[1].fProductOneRevStar}</p><br><br>
-                            <p>3.${fPOneRevList[2].fProductOneRevWriter} :</p>
+                            <p>1.${fPOneRevList[0].fProductOneRevWriter} : ${fPOneRevList[0].fProductOneRevContent}</p>
+                            <p>${fPOneRevList[0].fProductOneRevStar} </p><br> 
+                            <p>2.${fPOneRevList[1].fProductOneRevWriter} : ${fPOneRevList[1].fProductOneRevContent}</p>
+                            <p>${fPOneRevList[1].fProductOneRevStar}</p><br>
+                            <p>3.${fPOneRevList[2].fProductOneRevWriter} : ${fPOneRevList[2].fProductOneRevContent}</p>
                             <p>${fPOneRevList[2].fProductOneRevStar}</p><br><br>                                                  
                     </div>
                 </div>

@@ -32,7 +32,7 @@
   </update>
   <!-- 전체 게시물 -->
   <select id="selectAllBoardListForAdmin" resultMap="boardResultMap">
-      SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y'
   </select>
   <!-- 전체 게시물 갯수 -->
   <select id="getListCountForAdmin" resultType="_int">   
@@ -67,7 +67,8 @@
   </update>
   
   <update id="deleteBoard">
-   UPDATE H_BOARD_TBL SET H_BOARD_STATUS = 'N' WHERE H_BOARD_NO = #{ hBoardNo } AND H_BOARD_WRITER = #{ hBoardWriter }
+   UPDATE H_BOARD_TBL SET H_BOARD_STATUS = 'N' WHERE H_BOARD_NO = #{ hBoardNo }
+   <!-- AND H_BOARD_WRITER = #{ hBoardWriter } -->
   </update>
   
   <select id="getListCountByKeyword" resultType="_int">

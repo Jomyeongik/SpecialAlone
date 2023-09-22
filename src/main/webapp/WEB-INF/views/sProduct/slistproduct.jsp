@@ -13,12 +13,16 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 	<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css"> -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/productlist.css">
-	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <main>	   
+	<c:if test="${sessionScope.userId eq 'admin' }">
+	<a class="btn btn-primary" href="/product/insertproduct.do ">상품등록</a>
+	</c:if>
 	<div class="container">
 		<div class="left-ki">
 			<div class="recently-viewed-products-title">
@@ -48,7 +52,15 @@
 							</a>
 							<p>${Product.sProductName}</p>
 							<strong class="price-value" style="color:rgb(248, 120, 120); font-size:18px; font-weight:bold;">${Product.sPrice } 원</strong>
-							<div class="star-rating" data-rating="${Product.sProductAverageRating}"></div>
+							<div class="star-rating" data-rating="${Product.sProductAverageRating}">    
+							<i class="fas fa-star"></i>
+   							<i class="fas fa-star"></i>
+    						<i class="fas fa-star"></i>
+    						<i class="fas fa-star"></i>
+    						<i class="fas fa-star"></i>
+    						</div>
+
+
 							<a href="${detailUrl }"class="btn btn-detail">상세 정보 보기</a>
 						</div>
 	

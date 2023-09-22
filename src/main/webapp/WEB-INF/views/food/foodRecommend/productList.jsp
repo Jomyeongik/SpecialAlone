@@ -9,7 +9,8 @@
 		<link rel="stylesheet" href="/resources/css/footer.css">
         <link rel="stylesheet" href="/resources/css/header.css">
         <link rel="stylesheet" href="/resources/css/reset.css">
-        <link rel="stylesheet" href="/resources/css/food/product/productList.css">		
+        <link rel="stylesheet" href="/resources/css/food/product/productList.css">	
+        <link rel="stylesheet" href="/resources/css/food/nav.css">	        	
 	</head>
 	<body>
       <div class="container">

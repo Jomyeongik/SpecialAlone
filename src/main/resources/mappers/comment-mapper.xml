@@ -48,19 +48,21 @@
 	<select id="selectCommentByKeyword" resultMap="commentResultMap">
     SELECT *
     FROM S_COMMENT
-    <where>
-        <choose>
-            <when test="searchCondition == 'Writer'">
-          		 USER_ID '%'||#{searchKeyword}||'%'
-                ORDER BY S_CREATE_COMMENT DESC
-            </when>
-            <when test="searchCondition == 'content'">
-                S_COMMENT_CONTENT LIKE '%'||#{searchKeyword}||'%'
-                ORDER BY S_CREATE_COMMENT DESC
-            </when>
-        </choose>
-    </where>
+    <choose>
+        <when test="searchCondition == 'writer'">
+                   WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+        </when>
+        
+        <when test="searchCondition == 'content'">
+                 WHERE S_COMMENT_CONTENT LIKE '%'||#{searchKeyword}||'%'
+        </when>
+        <otherwise>
+        </otherwise>
+    </choose>
+    ORDER BY S_CREATE_COMMENT DESC
+
 </select>
+
 
 <select id="getSmapComment" resultMap="commentResultMap">
     SELECT * FROM S_COMMENT
