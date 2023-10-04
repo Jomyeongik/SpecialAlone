@@ -104,3 +104,81 @@
 66-6 추천식당 리뷰 이미지등록
 <img width="1440" alt="추천식당리뷰이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/60fc5c3c-ffed-404b-9e11-c2f2f414d79c">
 
+
+
+### 77. 취미 게시판
+
+로그인 안하면 상세 페이지 조회 불가
+<img width="1800" alt="스크린샷 2023-10-04 12 46 56" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/2d9e5fc5-46fe-4a14-9a0c-8d7d23ff0696">
+<img width="1800" alt="스크린샷 2023-10-04 12 47 26" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/8ff4f96c-19f1-4a4a-8d51-26cf129fe154">
+<img width="1800" alt="스크린샷 2023-10-04 12 47 37" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/ba15cc7d-1ed8-483a-bf96-834df37a5375">
+<img width="1800" alt="스크린샷 2023-10-04 12 47 47" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/ac7802bb-af01-481b-930f-c8c256e0653c">
+
+로그인 후 상세 페이지와 댓글
+<img width="1800" alt="스크린샷 2023-10-04 12 48 12" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/2ed79e22-6dd0-43f9-8751-f134055f1054">
+<img width="1800" alt="스크린샷 2023-10-04 12 48 28" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/8bd92ed9-47aa-43ee-9a03-e1f349609a06">
+<img width="1800" alt="스크린샷 2023-10-04 12 48 48" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/81b73dac-fb45-4167-801c-ffe08f1b8bf1">
+
+게시글 작성
+<img width="1800" alt="스크린샷 2023-10-04 12 49 01" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/1e47a7d2-c621-4282-a58f-da1824c16a0f">
+
+게시글 작성시 소모임 모집 옵션을 선택하면 정보를 기입할 수 있으며, 파일을 함께 게시할 수 있다.
+<img width="1800" alt="스크린샷 2023-10-04 12 49 11" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/5ef8f737-d574-4cad-b5f1-e5ac19e63337">
+<img width="1800" alt="스크린샷 2023-10-04 12 49 19" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/18ba873d-69bf-4ac4-8267-ffafd1fe2628">
+<img width="1800" alt="스크린샷 2023-10-04 15 37 43" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/c8d48a36-28a7-40c9-a5c7-9beaeeeca1e5">
+
+본인의 게시글을 수정, 삭제 버튼이 나타나며 파일도 함께 수정할 수 있다.
+<img width="1800" alt="스크린샷 2023-10-04 15 37 54" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/e01bcaa9-3b79-448f-8285-bf8b39e8658e">
+<img width="1800" alt="스크린샷 2023-10-04 15 38 09" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/5f2e0b15-41c6-41c6-b5e7-9122a92cfcc1">
+
+소모임 게시글은 작성자가 아니면 신청 버튼이 나타나고
+신청하기, 취소하기를 누르면 아이디와 신청인원에 값이 적용된다.
+<img width="1800" alt="스크린샷 2023-10-04 15 38 39" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/8984b20e-c15e-4d7b-99aa-cfc8c66010a6">
+<img width="1800" alt="스크린샷 2023-10-04 15 38 48" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/a9130242-db82-4236-8402-8f8236c4ea83">
+<img width="1800" alt="스크린샷 2023-10-04 15 38 58" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/9691afb9-bff3-43c9-b9c9-720a0d4f29cd">
+
+댓글을 작성하면 게시글의 댓글 수가 카운트 된다.
+<img width="1800" alt="스크린샷 2023-10-04 15 39 56" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/b62b0699-37b8-4437-ab13-ecbe29d3dd0d">
+<img width="1800" alt="스크린샷 2023-10-04 15 40 05" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/ed835731-ecf9-4380-89db-4525dc14fe8c">
+
+이미 신청한 사람이 있는 소모임모집 게시글에 또 신청을하면 ,와 함께 아이디가 적용되며 취소하기를 선택하면 ,와 함께 아이디가 사라진다.
+<img width="1800" alt="스크린샷 2023-10-04 15 40 15" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/f8c52e46-808d-4185-9a52-db69f48c41a9">
+<img width="1800" alt="스크린샷 2023-10-04 15 40 24" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/2de81b38-2abe-4f93-be02-d39c6a64ec7a">
+
+신청인원이 모두 차게되면 소모임 게시글이 자동 생성된다.
+<img width="1800" alt="스크린샷 2023-10-04 15 40 52" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/a804da80-9193-4c3f-9d29-16d81c2566b3">
+
+신청인원에 따른 값을 게시판에서 조회할 수 있다.
+<img width="1800" alt="스크린샷 2023-10-04 15 41 16" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/61754ded-9b0b-4298-8e14-cf1291f4ce21">
+
+생성된 소모임 게시글에는 정보가 기입되며, 신청인원이 아닌 회원은 소모임 게시글을 조회할 수 없다.
+<img width="1800" alt="스크린샷 2023-10-04 15 41 31" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/de00d676-cc77-422d-99e7-1ed77393611d">
+<img width="1800" alt="스크린샷 2023-10-04 15 41 55" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/f818eda3-40d0-48a0-96e2-f91432f42e73">
+
+내가 쓴 글 조회
+<img width="1800" alt="스크린샷 2023-10-04 15 42 25" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/c89398b0-b7c3-45ba-bc02-375e1f864f89">
+
+카테고리 값에 따른 조회
+<img width="1800" alt="스크린샷 2023-10-04 15 42 39" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/60816716-3598-4116-a6bd-6fbc9c216f86">
+
+카테고리 값에 따른 게시글이 없으면 조회가 되지 않는다.
+<img width="1800" alt="스크린샷 2023-10-04 15 42 51" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/e82fcd58-3f55-425c-bc3d-c7950c5460be">
+
+관리자는 소모임 게시글을 수정, 삭제할 수 있다. (만원이 된 소모임 모집 게시글과 생성된 소모임 글은 작성자도 수정, 삭제가 불가하다.)
+<img width="1800" alt="스크린샷 2023-10-04 15 43 21" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/8a103cab-0d81-4b72-84dd-d925aef10ce8">
+
+취미 목록에서 태그를 선택하면 태그에 따른 조회가 가능하다.
+<img width="1800" alt="스크린샷 2023-10-04 15 43 48" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/5c055c0d-70fc-45c7-afcd-9c8c131a2bce">
+
+검색으로도 조회가 가능하다.
+<img width="1800" alt="스크린샷 2023-10-04 15 44 08" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/0f830436-8537-4448-9757-9c250a141a7b">
+<img width="1800" alt="스크린샷 2023-10-04 15 44 19" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/939e8d7c-4dcd-478b-9352-9b25218ff3d5">
+
+관리자는 새로운 취미 목록을 등록할 수 있다. (등록 시에는 썸네일, 태그, 제목을 필수로 기입해야한다.)
+<img width="1800" alt="스크린샷 2023-10-04 15 44 37" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/5091fa7d-753a-4d41-b809-8f0da7bbf679">
+<img width="1800" alt="스크린샷 2023-10-04 15 45 09" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/4d43f7ca-0ddb-4d60-bd15-c9edb9b70187">
+<img width="1800" alt="스크린샷 2023-10-04 15 45 27" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/1122377f-503d-4715-aac4-3390feaae12b">
+<img width="1800" alt="스크린샷 2023-10-04 15 46 09" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/e2813bbd-b96b-4e40-a7dd-b82ff94f7f8b">
+
+관리자는 취미 목록을 삭제할 수 있다.
+<img width="1800" alt="스크린샷 2023-10-04 15 46 21" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/0719ca81-0ad8-401c-84cc-b8c5aceaf735">
