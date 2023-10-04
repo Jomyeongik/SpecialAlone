@@ -49,4 +49,49 @@
 
 ### 66. 음식추천게시판
 66-1 추천상품 리스트
-<img width="1440" alt="추천상품리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/2a1f0b7e-fe54-445b-9c05-43ab74156f8c">
+<img width="1440" alt="추천상품리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/23e1161d-bc9c-4ef9-9155-f0c3d05293d9">
+
+66-2 추천상품 상세
+<img width="1440" alt="추천상품상세" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/a4ad47f1-07ee-40c1-8fef-e5a06ddd377a">
+
+66-3 추천상품 정보등록
+<img width="1440" alt="추천상품정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/0945009c-e2d5-4b63-ad07-361fbb6908c8">
+
+66-4 추천상품 이미지등록
+<img width="1440" alt="추천상품이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/7395bea2-f1ad-4c6a-b088-f9500aa98146">
+
+66-5 추천상품 리뷰 리스트
+<img width="1440" alt="추천상품리뷰리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/70d2cb66-f541-4172-bede-9184e554fd69">
+
+66-6 추천상품 한줄리뷰
+<img width="1440" alt="추천상품한줄리뷰" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/06f5f1b2-785d-4c33-b706-a96d289e6138">
+
+66-7 포토리뷰 정보등록
+<img width="1440" alt="포토리뷰정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/583ea93b-3acb-4f99-b46d-caf566370a54">
+
+66-8 포토리뷰 이미지등록
+<img width="1440" alt="포토리뷰이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/6b822124-45dd-446c-9021-eecd6af291fb">
+
+### 66. 식당추천게시판
+66-1 추천식당 리스트
+<img width="1440" alt="추천식당리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/38506bdb-d5fb-429b-8de0-f3a248976bc6">
+
+66-2 추천식당 상세
+<img width="1440" alt="추천식당상세" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/1bdfe2e2-9d1d-4127-a000-83075e43a8a0">
+
+66-3 추천식당 정보등록
+<img width="1440" alt="추천식당정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/579d188a-0fac-4247-9fb9-902adf0899da">
+
+66-4 추천식당 이미지등록
+<img width="1440" alt="추천식당이미지등록1" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/7deeb17b-2a14-44d0-aac4-66af8861e7e4">
+<img width="1440" alt="추천식당이미지등록2" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/51aab8d5-900f-4053-82e3-82268f780b56">
+
+66-5 추천식당 리뷰목록
+<img width="1440" alt="추천식당리뷰목록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/b121578e-ef25-4d00-be4a-ecaf317ad57a">
+
+66-6 추천식당 리뷰 정보등록
+<img width="1440" alt="추천식당리뷰정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/fac8447d-21f9-4002-9f54-2aeaf989baeb">
+
+66-6 추천식당 리뷰 이미지등록
+<img width="1440" alt="추천식당리뷰이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/60fc5c3c-ffed-404b-9e11-c2f2f414d79c">
+
