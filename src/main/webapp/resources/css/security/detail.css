@@ -11,11 +11,13 @@
 position: relative;
     float: right;
     width: 300px;
-    margin-left:700px;
-    font-size: 12px;}
+    font-size: 12px;
+	margin-left:60%;	
+   }
+    
 
 .image-content img {
-    max-width: 400px; 
+    max-width: 350px; 
     height: auto;
     object-fit: cover;
 }
@@ -23,18 +25,8 @@ position: relative;
 .image-description {
     font-size: 16px; 
 }
-.ad-container {
-  position: fixed;
-  top: 50%;
-  left: 91%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-.ad-container img{
-	width:200px;
-	height:600px;
-	
-}
+
+
  .pagination {
         text-align: center;
         position : relative;
