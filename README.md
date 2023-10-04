@@ -106,6 +106,9 @@
 
 
 
+
+
+
 ### 77. 취미 게시판
 
 로그인 안하면 상세 페이지 조회 불가
@@ -127,12 +130,11 @@
 <img width="1800" alt="스크린샷 2023-10-04 12 49 19" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/18ba873d-69bf-4ac4-8267-ffafd1fe2628">
 <img width="1800" alt="스크린샷 2023-10-04 15 37 43" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/c8d48a36-28a7-40c9-a5c7-9beaeeeca1e5">
 
-본인의 게시글을 수정, 삭제 버튼이 나타나며 파일도 함께 수정할 수 있다.
+본인의 게시글은 수정, 삭제 버튼이 나타나며 파일도 함께 수정할 수 있다.
 <img width="1800" alt="스크린샷 2023-10-04 15 37 54" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/e01bcaa9-3b79-448f-8285-bf8b39e8658e">
 <img width="1800" alt="스크린샷 2023-10-04 15 38 09" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/5f2e0b15-41c6-41c6-b5e7-9122a92cfcc1">
 
-소모임 게시글은 작성자가 아니면 신청 버튼이 나타나고
-신청하기, 취소하기를 누르면 아이디와 신청인원에 값이 적용된다.
+소모임 게시글은 작성자가 아니면 신청 버튼이 나타나게 되며, 신청하기와 취소하기를 누르면 아이디와 신청인원에 값이 적용된다.
 <img width="1800" alt="스크린샷 2023-10-04 15 38 39" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/8984b20e-c15e-4d7b-99aa-cfc8c66010a6">
 <img width="1800" alt="스크린샷 2023-10-04 15 38 48" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/a9130242-db82-4236-8402-8f8236c4ea83">
 <img width="1800" alt="스크린샷 2023-10-04 15 38 58" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/9691afb9-bff3-43c9-b9c9-720a0d4f29cd">
@@ -141,7 +143,7 @@
 <img width="1800" alt="스크린샷 2023-10-04 15 39 56" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/b62b0699-37b8-4437-ab13-ecbe29d3dd0d">
 <img width="1800" alt="스크린샷 2023-10-04 15 40 05" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/ed835731-ecf9-4380-89db-4525dc14fe8c">
 
-이미 신청한 사람이 있는 소모임모집 게시글에 또 신청을하면 ,와 함께 아이디가 적용되며 취소하기를 선택하면 ,와 함께 아이디가 사라진다.
+이미 신청한 사람이 있는 소모임모집 게시글에 또 신청을하면 ','와 함께 아이디가 적용되며 취소하기를 선택하면 ','와 함께 아이디가 사라진다.
 <img width="1800" alt="스크린샷 2023-10-04 15 40 15" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/f8c52e46-808d-4185-9a52-db69f48c41a9">
 <img width="1800" alt="스크린샷 2023-10-04 15 40 24" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/2de81b38-2abe-4f93-be02-d39c6a64ec7a">
 
