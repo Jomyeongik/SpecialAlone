@@ -43,3 +43,10 @@
 마이페이지 | 개인정보 수정이 가능하다. 수정항목은 비밀번호, 이메일, 전화번호, 주소, 관심사이다.
 
 
+
+
+
+
+### 66. 음식추천게시판
+66-1 추천상품 리스트
+<img width="1440" alt="추천상품리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/2a1f0b7e-fe54-445b-9c05-43ab74156f8c">
