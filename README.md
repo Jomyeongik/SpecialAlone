@@ -184,3 +184,23 @@
 
 관리자는 취미 목록을 삭제할 수 있다.
 <img width="1800" alt="스크린샷 2023-10-04 15 46 21" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/0719ca81-0ad8-401c-84cc-b8c5aceaf735">
+### 88. 안전게시판
+관리자는 상품을 삽입할 수 있고, 수정,삭제 할 수 있다.
+<img width="1440" alt="안전상품삽입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/00f6254e-f30e-462e-83fd-99062b1e857f">
+<img width="1440" alt="안전상품상세수정삭제 src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/bd559065-984a-4a98-a430-520d18c85ab0">
+
+회원은 안전 상품 리스트를 별점 순으로 볼 수 있고, 상품 상세 페이지에 들어 갈 때마다, 최근 본 상품 목록에 추가되어 보여진다. 그리고 상품 전체,제목,내용으로 상품을 검색 할 수 있다.
+<img width="1440" alt="안전상품리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/60fc5c3c-ffed-404b-9e11-c2f2f414d79c">
+<img width="1440" alt="안전상품별점" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/288f851a-83cf-455b-888b-37ba11874bf2">
+
+회원은 안전 상품에 대한 리뷰를 등록하면서 별점을 줄 수 있고, 상품 리뷰 이미지를 삽입 할 수 있다. 그리고 자신이 쓴 리뷰는 수정 삭제가 가능하며, 남의 리뷰를 신고하여 관리자 게시글로 넘길 수 있고, 추천 할 수 있다.
+<img width="1440" alt="안전상품리뷰등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/b9b22069-2103-4de9-9eb7-44c3b7c41bda">
+
+### 88. 안전지도
+회원은 안전 지도를 볼 수 있고, 마커를 클릭하면, 등록된 info를 통하여 관련된 간략한 정보와 링크를 타고 관련 뉴스를 볼 수 있다.
+<img width="1440" alt="안전지도조회" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/723be4da-075e-463a-9467-83fd06e6e125">
+회원은 댓글을 등록,수정,삭제,조회(작성자,내용)할 수 있고, 남이 쓴 댓글을 추천 할 수 있다.
+<img width="1440" alt="안전지도댓글" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/892f9de1-27e1-4b98-87d4-61347293889d">
+
+
+
