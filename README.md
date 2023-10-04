@@ -216,4 +216,12 @@
 <img width="1440" alt="안전지도댓글" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/892f9de1-27e1-4b98-87d4-61347293889d">
 
 
-
+### 99. 이벤트게시판
+이벤트리스트를 카드 형식으로 시각화하여 보여준다.
+<img width="1440" alt="" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674172/fb17d3d1-e4f6-446f-8b17-80e5f7f63865">
+### 99. 뉴스룸
+파싱을 통하여 최신 뉴스를 업데이트하여 보여준다.
+<img width="1440" alt="" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674172/41dc9a48-d3dd-471f-9408-fc5dd018576d">
+### 99. 관리자 페이지
+카테고리별 db데이터를 보기 쉽게 나누어 조회,수정,삭제가 간편하다.
+<img width="1440" alt="" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674172/ce57ac18-b713-4983-aa9b-b516b9a3be07">
