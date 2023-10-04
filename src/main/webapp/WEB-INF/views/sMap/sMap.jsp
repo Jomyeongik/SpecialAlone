@@ -7,27 +7,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device=width, initial-scale=1 shrink-to-fit=no">
 	<title>맵</title>
- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
  	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/security/smap.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c7a14b510baba8f2aa2d6bdf15c8181a"></script>
 	
-	<style>
-    
-         
-        	</style>
+
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 
 <main>
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<
 <div id="map" style="width: 80%; height: 500px; margin-left:10%;"></div>
     
  
@@ -254,9 +252,9 @@
 
 	<section class="container">
 	<input type="hidden" name="userId"value="${User.userId }" >
-		<form method="POST" action="/comment/select.do" class="form-inline mt-3">
+		<form method="POST" action="/comment/select.do" class="form-inline mt-3" style="font-family:emoji;">
 			<select name="searchCondition" class="form-control mx-1 mt-2">
-				<option value="writer">작성자</option>
+				<option value="Writer'">작성자</option>
 				<option value="content" >내용</option>
 			</select>
 			<input type="text" name="searchKeyword" class="form-control mx-1 mt-2 col-10" placeholder="내용을 입력하세요.">
@@ -269,7 +267,7 @@
 		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 			</div>
-			<div class="card-body">
+			<div class="card-body" style="font-family:emoji;">
 				<h5 class="card-title; mx-3;">
 					댓글
 				</h5>&nbsp;
@@ -292,9 +290,11 @@
 						</c:if>
 					</div>
 					<div class="col-12 text-right">
+					<c:if test="${Comment.userId ne sessionScope.userId }">
 							<a class="fa fa-thumbs-o-up like-button" onclick="return confirm('추천하시겠습니까?')" data-comments="${Comment.sCommentNo}" >
    						 <span class="vote-count">${Comment.sRecommend}</span>
-							</a>					
+							</a>	
+							</c:if>				
 						<c:if test="${Comment.userId eq sessionScope.userId or User.userGrade eq '2' }">
 						<a onclick="return confirm('삭제하시겠습니까?')"href="/comment/commentdelete.do?sCommentNo=${Comment.sCommentNo }">삭제</a>
 						<a style="color:gray" data-toggle="modal" id="sCommentNo" data-commentno="${Comment.sCommentNo}" data-target="#editModal"href="/comment/updatecomment?sCommentNo=${Comment.sCommentNo }">수정</a>
@@ -312,7 +312,7 @@
 </c:choose>		
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"style="font-family:emoji;">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">댓글쓰기</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -335,7 +335,7 @@
 </div>
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"style="font-family:emoji;">
             <div class="modal-header">
                 <h5 class="modal-title edit-button" id="sCommentNo" data-scommentno="${Comment.sCommentNo }">댓글 수정</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
