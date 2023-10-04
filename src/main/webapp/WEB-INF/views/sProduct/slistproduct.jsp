@@ -25,7 +25,8 @@
 	</c:if>
 	<div class="container">
 		<div class="left-ki">
-			<div class="recently-viewed-products-title">
+		<br><br><br>
+			<div class="recently-viewed-products-title" style=" border-radius: 20px; background-color:beige">
 				<h3>최근 본 상품</h3>
 			</div>
 			<div class="recently-viewed-products">
@@ -38,19 +39,21 @@
 				<h1>상품 리스트</h1>
 			</div>
 			<div class="product-list-box">
+				<div class="icon" style="margin-left:35%;text-align:center;top:20%;background-color:silver;border-radius:20px;width:25%;">SECURITY</div>
 				<c:forEach var="Product" items="${pList}" varStatus="loop">
 					<c:if test="${loop.index % 3 == 0}">
 						<div class="product-card-row">
 					</c:if>
 	
-						<div class="product-card">
+						<div class="product-card" style="border:1px solid gray;">
 							<c:url var="detailUrl" value="/product/sdetail.do">
 								<c:param name="sProductId" value="${Product.sProductId }"></c:param>
 							</c:url>
 							<a href="${detailUrl }">
-								<img src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}" class="product-img" alt="상품이미지">
+								<img src="${pageContext.request.contextPath}/resources/images/${Product.sFileReName}" class="product-img" alt="상품이미지" style="width:150px;height:150px;">
 							</a>
 							<p>${Product.sProductName}</p>
+							<hr>
 							<strong class="price-value" style="color:rgb(248, 120, 120); font-size:18px; font-weight:bold;">${Product.sPrice } 원</strong>
 							<div class="star-rating" data-rating="${Product.sProductAverageRating}">    
 							<i class="fas fa-star"></i>
@@ -60,12 +63,12 @@
     						<i class="fas fa-star"></i>
     						</div>
 
-
 							<a href="${detailUrl }"class="btn btn-detail">상세 정보 보기</a>
 						</div>
 	
 					<c:if test="${loop.index % 3 == 2 or loop.last}">
 						</div>
+
 					</c:if>
 				</c:forEach>
 			</div>
@@ -147,7 +150,7 @@
 		var recentProductsList = document.getElementById('recentProductsList');
 
 		var productListHTML = '';
-		var itemCount = Math.min(2, recentlyViewedProducts.length);
+		var itemCount = Math.min(3, recentlyViewedProducts.length);
 		for (var i = 0; i < itemCount; i++) {
 			var item = recentlyViewedProducts[i];
 
@@ -157,11 +160,12 @@
 //		    	let fileName = 11;
 //		    	productListHTML += `<div class='col-md-3'>${fileName}</div>` 
 		productListHTML += 
-			'<div class="recent">\
-				<div class="card">\
-					<a href="/product/sdetail.do?sProductId='+item.sProductId+'"> <img src="${pageContext.request.contextPath}/resources/images/'+item.sFileReName+'" alt="${product.sProductName}"></a>\
+			'<div class="recent" >\
+				<div class="card" style="border:1px solid gray;">\
+					<a href="/product/sdetail.do?sProductId='+item.sProductId+'"> <img style="width:150px;heigt:150px;"src="${pageContext.request.contextPath}/resources/images/'+item.sFileReName+'" alt="${product.sProductName}"></a>\
 					<div class="card-body">\
 						<p class="card-title">'+item.sProductName+'</p>\
+						<hr>\
 						<div class="star-rating" data-rating="'+item.sProductAverageRating+'"></div>\
 						<strong><p class="card-text" style="color:red; font-size:15px; font-weight:bold;">'+item.sPrice+'원</p></strong>\
 					</div>\
@@ -190,7 +194,7 @@
 
 		if (existingProductIndex === -1) {
 			recentlyViewedProducts.unshift(product);
-			if (recentlyViewedProducts.length > 5) {
+			if (recentlyViewedProducts.length > 3) {
 				recentlyViewedProducts.pop(); 
 			}
 
