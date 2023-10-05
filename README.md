@@ -66,12 +66,23 @@
 이벤트게시판 | 리스트를 카드형식으로 시각화하여 보여준다.
 
 ## 🪑 기능 구현 화면
+### SpecialAlone 메인페이지
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/7a6cbb9e-3478-4d18-a85e-a1b96e6aa4f4">
 
 ### 1. 회원관리
 1-1 회원가입
 <img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/99fab30b-5404-4cd1-b3e4-ad615776a9f9">
 1-2 회원가입 (Ajax를 활용한 회원아이디와 회원이메일 유효성 체크)
 <img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/1ab996ee-7b43-442b-a551-93321b4377a2">
+1-3 회원가입 (카카오 주소Api 기능을 활용하여 주소입력)
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/6fa36e17-859d-4544-9991-b39ab681ed85">
+1-4 로그인 페이지
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/ae7840ec-d701-42fa-9af3-c10f5a17a9cc">
+1-5 아이디 찾기
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/749da1fd-88f7-48af-a300-4cb4babb1ac3">
+1-6 비밀번호 찾기
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/097ce8dc-f579-4dba-ae80-d9081d890915">
+1-7 마이페이지
 
 
 ### 2. 음식추천게시판
