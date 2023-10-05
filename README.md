@@ -66,63 +66,60 @@
 이벤트게시판 | 리스트를 카드형식으로 시각화하여 보여준다.
 
 
+### 1. 회원관리
+1-1 회원가입
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/99fab30b-5404-4cd1-b3e4-ad615776a9f9">
 
 
-
-### 66. 음식추천게시판
-66-1 추천상품 리스트
+### 2. 음식추천게시판
+2-1 추천상품 리스트
 <img width="1440" alt="추천상품리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/23e1161d-bc9c-4ef9-9155-f0c3d05293d9">
 
-66-2 추천상품 상세
+2-2 추천상품 상세
 <img width="1440" alt="추천상품상세" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/a4ad47f1-07ee-40c1-8fef-e5a06ddd377a">
 
-66-3 추천상품 정보등록
+2-3 추천상품 정보등록
 <img width="1440" alt="추천상품정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/0945009c-e2d5-4b63-ad07-361fbb6908c8">
 
-66-4 추천상품 이미지등록
+2-4 추천상품 이미지등록
 <img width="1440" alt="추천상품이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/7395bea2-f1ad-4c6a-b088-f9500aa98146">
 
-66-5 추천상품 리뷰 리스트
+2-5 추천상품 리뷰 리스트
 <img width="1440" alt="추천상품리뷰리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/70d2cb66-f541-4172-bede-9184e554fd69">
 
-66-6 추천상품 한줄리뷰
+2-6 추천상품 한줄리뷰
 <img width="1440" alt="추천상품한줄리뷰" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/06f5f1b2-785d-4c33-b706-a96d289e6138">
 
-66-7 포토리뷰 정보등록
+2-7 포토리뷰 정보등록
 <img width="1440" alt="포토리뷰정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/583ea93b-3acb-4f99-b46d-caf566370a54">
 
-66-8 포토리뷰 이미지등록
+2-8 포토리뷰 이미지등록
 <img width="1440" alt="포토리뷰이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/6b822124-45dd-446c-9021-eecd6af291fb">
 
-### 66. 식당추천게시판
-66-1 추천식당 리스트
+### 3. 식당추천게시판
+3-1 추천식당 리스트
 <img width="1440" alt="추천식당리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/38506bdb-d5fb-429b-8de0-f3a248976bc6">
 
-66-2 추천식당 상세
+3-2 추천식당 상세
 <img width="1440" alt="추천식당상세" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/1bdfe2e2-9d1d-4127-a000-83075e43a8a0">
 
-66-3 추천식당 정보등록
+3-3 추천식당 정보등록
 <img width="1440" alt="추천식당정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/579d188a-0fac-4247-9fb9-902adf0899da">
 
-66-4 추천식당 이미지등록
+3-4 추천식당 이미지등록
 <img width="1440" alt="추천식당이미지등록1" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/7deeb17b-2a14-44d0-aac4-66af8861e7e4">
 <img width="1440" alt="추천식당이미지등록2" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/51aab8d5-900f-4053-82e3-82268f780b56">
 
-66-5 추천식당 리뷰목록
+3-5 추천식당 리뷰목록
 <img width="1440" alt="추천식당리뷰목록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/b121578e-ef25-4d00-be4a-ecaf317ad57a">
 
-66-6 추천식당 리뷰 정보등록
+3-6 추천식당 리뷰 정보등록
 <img width="1440" alt="추천식당리뷰정보등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/fac8447d-21f9-4002-9f54-2aeaf989baeb">
 
-66-6 추천식당 리뷰 이미지등록
+3-6 추천식당 리뷰 이미지등록
 <img width="1440" alt="추천식당리뷰이미지등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/60fc5c3c-ffed-404b-9e11-c2f2f414d79c">
 
-
-
-
-
-
-### 77. 취미 게시판
+### 4. 취미 게시판
 
 로그인 안하면 상세 페이지 조회 불가
 <img width="1800" alt="스크린샷 2023-10-04 12 46 56" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674932/2d9e5fc5-46fe-4a14-9a0c-8d7d23ff0696">
@@ -209,19 +206,19 @@
 회원은 안전 상품에 대한 리뷰를 등록하면서 별점을 줄 수 있고, 상품 리뷰 이미지를 삽입 할 수 있다. 그리고 자신이 쓴 리뷰는 수정 삭제가 가능하며, 남의 리뷰를 신고하여 관리자 게시글로 넘길 수 있고, 추천 할 수 있다.
 <img width="1440" alt="안전상품리뷰등록" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/b9b22069-2103-4de9-9eb7-44c3b7c41bda">
 
-### 88. 안전지도
+### 5. 안전지도
 회원은 안전 지도를 볼 수 있고, 마커를 클릭하면, 등록된 info를 통하여 관련된 간략한 정보와 링크를 타고 관련 뉴스를 볼 수 있다.
 <img width="1440" alt="안전지도조회" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/723be4da-075e-463a-9467-83fd06e6e125">
 회원은 댓글을 등록,수정,삭제,조회(작성자,내용)할 수 있고, 남이 쓴 댓글을 추천 할 수 있다.
 <img width="1440" alt="안전지도댓글" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674147/892f9de1-27e1-4b98-87d4-61347293889d">
 
 
-### 99. 이벤트게시판
+### 6. 이벤트게시판
 이벤트리스트를 카드 형식으로 시각화하여 보여준다.
 <img width="1440" alt="" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674172/fb17d3d1-e4f6-446f-8b17-80e5f7f63865">
-### 99. 뉴스룸
+### 7. 뉴스룸
 파싱을 통하여 최신 뉴스를 업데이트하여 보여준다.
 <img width="1440" alt="" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674172/41dc9a48-d3dd-471f-9408-fc5dd018576d">
-### 99. 관리자 페이지
+### 8. 관리자 페이지
 카테고리별 db데이터를 보기 쉽게 나누어 조회,수정,삭제가 간편하다.
 <img width="1440" alt="" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674172/ce57ac18-b713-4983-aa9b-b516b9a3be07">
