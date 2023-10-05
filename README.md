@@ -83,9 +83,10 @@
 1-6 비밀번호 찾기
 <img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/097ce8dc-f579-4dba-ae80-d9081d890915">
 1-7 마이페이지
-
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/63bd6427-61e7-4cc0-8051-4532b49904fd">
 
 ### 2. 음식추천게시판
+
 2-1 추천상품 리스트
 <img width="1440" alt="추천상품리스트" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134674212/23e1161d-bc9c-4ef9-9155-f0c3d05293d9">
 
