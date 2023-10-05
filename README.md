@@ -69,6 +69,8 @@
 ### 1. 회원관리
 1-1 회원가입
 <img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/99fab30b-5404-4cd1-b3e4-ad615776a9f9">
+1-2 회원가입 (Ajax를 활용한 회원아이디와 회원이메일 유효성 체크)
+<img width="1440" alt="회원 가입" src="https://github.com/2305PublicDataWebApp/SpecialAlone/assets/134577399/1ab996ee-7b43-442b-a551-93321b4377a2">
 
 
 ### 2. 음식추천게시판
