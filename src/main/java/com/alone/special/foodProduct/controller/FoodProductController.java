@@ -47,31 +47,7 @@ public class FoodProductController {
 		return mv;
 	}
 
-	// 추천상품 정보수정 페이지 이동
-//	@RequestMapping(value="/foodProduct/modifyInfo.do", method=RequestMethod.GET)
-//	public ModelAndView showProductModifyForm(ModelAndView mv
-//			,@RequestParam("fProductId") int fProductId) {
-//		try {
-//			FoodProduct foodProduct = FPService.selectDetailInfoByFProductId(fProductId);			
-//			if(foodProduct != null) {
-//				System.out.println(foodProduct);
-//				mv.addObject("foodProduct", foodProduct);
-//				mv.setViewName("food/foodRecommend/productModify");
-//			}else {
-//				mv.addObject("msg", "추천상품 정보수정폼 이동이 완료되지 않았습니다");
-//				mv.addObject("error", "추천상품 정보수정폼 이동 실패");
-//				mv.addObject("url", "/foodProduct/list.do");
-//				mv.setViewName("common/errorPage");				
-//			}			
-//		} catch (Exception e) {			 
-//			mv.addObject("msg", "추천상품 정보수정폼 이동 에러");
-//	        System.out.println(e.getMessage());
-//	        mv.addObject("error", e.getMessage());
-//	        mv.addObject("url", "/foodProduct/list.do");
-//	        mv.setViewName("common/errorPage");			
-//		}
-//		return mv;
-//	}
+
 	
 	
 	// 추천상품 파일등록 페이지 이동
@@ -81,32 +57,7 @@ public class FoodProductController {
 		return mv;
 	}
 
-	// 추천상품 파일수정 페이지 이동
-//	@RequestMapping(value="/foodProduct/modifyFile.do", method=RequestMethod.GET)
-//	public ModelAndView showProductFileModifyForm(ModelAndView mv
-//			,@RequestParam("refFProductId") int refFProductId) {
-//		try {
-//			List<FoodProductFile> fPFileList = FPService.selectDetailFileByRefFProductId(refFProductId);
-//			if(fPFileList.size()>0) {
-//				mv.addObject("fPFileList", fPFileList);
-//				mv.setViewName("food/foodRecommend/productFileModify");
-//			}else {
-//				mv.addObject("msg", "추천상품 파일수정폼 이동이 완료되지 않았습니다");
-//				mv.addObject("error", "추천상품 파일수정폼 이동 실패");
-//				mv.addObject("url", "/foodProduct/list.do");
-//				mv.setViewName("common/errorPage");				
-//			}
-//			
-//		} catch (Exception e) {
-//			mv.addObject("msg", "추천상품 파일수정폼 이동 에러");
-//	        System.out.println(e.getMessage());
-//	        mv.addObject("error", e.getMessage());
-//	        mv.addObject("url", "/foodProduct/list.do");
-//	        mv.setViewName("common/errorPage");	
-//		}
-//		
-//		return mv;
-//	}	
+
 	// 포토리뷰 정보 등록 페이지 이동
 	@RequestMapping(value="/foodProduct/photoRevInfoRegister.do", method=RequestMethod.GET)
 	public ModelAndView showPhotoRevInfoRegisterForm(ModelAndView mv
@@ -279,33 +230,7 @@ public class FoodProductController {
 		return mv;
 	}
 
-	// 추천상품 정보수정
-	//	@RequestMapping(value="/foodProduct/modifyInfo.do", method=RequestMethod.POST)
-	//	public ModelAndView productInfoModify(ModelAndView mv
-	//			,@ModelAttribute FoodProduct fProduct
-	//			,HttpSession session
-	//			,HttpServletRequest request) {
-	//		int result = FPService.modifyProductInfo(fProduct);
-	//		try {
-	//			if(result>0) {
-	//				//성공
-	//				mv.setViewName("redirect:/foodProduct/modifyFile.do?refFProductId=" + fProduct.getfProductId());
-	//			}else {
-	//				//실패
-	//				mv.addObject("msg", "상품정보 수정이 완료되지 않았습니다");
-	//				mv.addObject("error", "상품정보 수정 실패");
-	//				mv.addObject("url", "/foodProduct/list.do");
-	//				mv.setViewName("common/errorPage");
-	//			}
-	//		} catch (Exception e) {
-	//			// 에러처리
-	//			mv.addObject("msg", "상품정보 수정 에러");
-	//			mv.addObject("error", e.getMessage());
-	//			mv.addObject("url", "/foodProduct/list.do");
-	//			mv.setViewName("common/errorPage");
-	//		}
-	//		return mv;
-	//	}	
+
 		// 추천상품 파일등록
 		@RequestMapping(value="/foodProduct/fileregister.do", method=RequestMethod.POST)
 		public ModelAndView productFileRegister(ModelAndView mv
@@ -371,76 +296,7 @@ public class FoodProductController {
 			return mv;
 		}
 
-	// 추천상품 파일 수정
-		//	@RequestMapping(value="/foodProduct/modifyFile.do", method=RequestMethod.POST)
-		//	public ModelAndView productFileModify(ModelAndView mv
-		//	        ,@RequestParam(name="updateImage1", defaultValue="false") boolean updateImage1
-		//	        ,@RequestParam(name="updateImage2", defaultValue="false") boolean updateImage2
-		//	        ,@RequestParam(name="updateImage3", defaultValue="false") boolean updateImage3
-		//	        ,@RequestParam(value="imagename1", required=false) MultipartFile image1
-		//	        ,@RequestParam(value="imagename2", required=false) MultipartFile image2
-		//	        ,@RequestParam(value="imagename3", required=false) MultipartFile image3
-		//	        ,@RequestParam(value="refFProductId") int refFProductId // refFProductId를 파라미터로 받습니다.
-		//	        ,HttpServletRequest request
-		//	        ,HttpSession session) {
-		//	    try {
-		//	        List<FoodProductFile> fList = new ArrayList<>();
-		//
-		//	        // 사용자가 체크한 파일만 업데이트
-		//	        if (updateImage1) {
-		//	            Map<String,Object> fMap1 = this.saveFile(request, image1);
-		//	            FoodProductFile fProductFile = new FoodProductFile();
-		//	            fProductFile.setRefFProductId(refFProductId);
-		//	            fProductFile.setfProductFileorder(1);
-		//	            fProductFile.setfProductFilename((String) fMap1.get("fileName"));
-		//	            fProductFile.setfProductFilerename((String) fMap1.get("fileRename"));
-		//	            fProductFile.setfProductFilepath((String) fMap1.get("filePath"));
-		//	            fList.add(fProductFile);
-		//	        }
-		//
-		//	        if (updateImage2) {
-		//	            Map<String,Object> fMap2 = this.saveFile(request, image2);
-		//	            FoodProductFile fProductFile = new FoodProductFile();
-		//	            fProductFile.setRefFProductId(refFProductId);
-		//	            fProductFile.setfProductFileorder(2);
-		//	            fProductFile.setfProductFilename((String) fMap2.get("fileName"));
-		//	            fProductFile.setfProductFilerename((String) fMap2.get("fileRename"));
-		//	            fProductFile.setfProductFilepath((String) fMap2.get("filePath"));
-		//	            fList.add(fProductFile);
-		//	        }
-		//
-		//	        if (updateImage3) {
-		//	            Map<String,Object> fMap3 = this.saveFile(request, image3);
-		//	            FoodProductFile fProductFile = new FoodProductFile();
-		//	            fProductFile.setRefFProductId(refFProductId);
-		//	            fProductFile.setfProductFileorder(3);
-		//	            fProductFile.setfProductFilename((String) fMap3.get("fileName"));
-		//	            fProductFile.setfProductFilerename((String) fMap3.get("fileRename"));
-		//	            fProductFile.setfProductFilepath((String) fMap3.get("filePath"));
-		//	            fList.add(fProductFile);
-		//	        }
-		//	        System.out.println(fList);
-		//	        int result = FPService.modifyProductFiles(fList);
-		//
-		//	        if(result > 0) {
-		//	            // 리스트로 이동
-		//	            mv.setViewName("redirect:/foodProduct/productdetail.do?refFProductId=" + refFProductId);
-		//	        } else {
-		//	            // 에러페이지
-		//	            mv.addObject("msg", "파일 수정이 완료되지 않았습니다");
-		//	            mv.addObject("error", "파일 수정 실패");
-		//	            mv.addObject("url", "/foodProduct/list.do");
-		//	            mv.setViewName("common/errorPage");
-		//	        }
-		//	    } catch (Exception e) {
-		//	        mv.addObject("msg", "파일 수정이 완료되지 않았습니다");
-		//	        mv.addObject("error", e.getMessage());
-		//	        mv.addObject("url", "/foodProduct/list.do");
-		//	        mv.setViewName("common/errorPage");
-		//	    }
-		//
-		//	    return mv;
-		//	}
+
 		
 			
 			// 포토리뷰 정보등록
@@ -586,76 +442,7 @@ public class FoodProductController {
 	
 	
 
-	// 추천상품 파일 수정
-//	@RequestMapping(value="/foodProduct/modifyFile.do", method=RequestMethod.POST)
-//	public ModelAndView productFileModify(ModelAndView mv
-//	        ,@RequestParam(name="updateImage1", defaultValue="false") boolean updateImage1
-//	        ,@RequestParam(name="updateImage2", defaultValue="false") boolean updateImage2
-//	        ,@RequestParam(name="updateImage3", defaultValue="false") boolean updateImage3
-//	        ,@RequestParam(value="imagename1", required=false) MultipartFile image1
-//	        ,@RequestParam(value="imagename2", required=false) MultipartFile image2
-//	        ,@RequestParam(value="imagename3", required=false) MultipartFile image3
-//	        ,@RequestParam(value="refFProductId") int refFProductId // refFProductId를 파라미터로 받습니다.
-//	        ,HttpServletRequest request
-//	        ,HttpSession session) {
-//	    try {
-//	        List<FoodProductFile> fList = new ArrayList<>();
-//
-//	        // 사용자가 체크한 파일만 업데이트
-//	        if (updateImage1) {
-//	            Map<String,Object> fMap1 = this.saveFile(request, image1);
-//	            FoodProductFile fProductFile = new FoodProductFile();
-//	            fProductFile.setRefFProductId(refFProductId);
-//	            fProductFile.setfProductFileorder(1);
-//	            fProductFile.setfProductFilename((String) fMap1.get("fileName"));
-//	            fProductFile.setfProductFilerename((String) fMap1.get("fileRename"));
-//	            fProductFile.setfProductFilepath((String) fMap1.get("filePath"));
-//	            fList.add(fProductFile);
-//	        }
-//
-//	        if (updateImage2) {
-//	            Map<String,Object> fMap2 = this.saveFile(request, image2);
-//	            FoodProductFile fProductFile = new FoodProductFile();
-//	            fProductFile.setRefFProductId(refFProductId);
-//	            fProductFile.setfProductFileorder(2);
-//	            fProductFile.setfProductFilename((String) fMap2.get("fileName"));
-//	            fProductFile.setfProductFilerename((String) fMap2.get("fileRename"));
-//	            fProductFile.setfProductFilepath((String) fMap2.get("filePath"));
-//	            fList.add(fProductFile);
-//	        }
-//
-//	        if (updateImage3) {
-//	            Map<String,Object> fMap3 = this.saveFile(request, image3);
-//	            FoodProductFile fProductFile = new FoodProductFile();
-//	            fProductFile.setRefFProductId(refFProductId);
-//	            fProductFile.setfProductFileorder(3);
-//	            fProductFile.setfProductFilename((String) fMap3.get("fileName"));
-//	            fProductFile.setfProductFilerename((String) fMap3.get("fileRename"));
-//	            fProductFile.setfProductFilepath((String) fMap3.get("filePath"));
-//	            fList.add(fProductFile);
-//	        }
-//	        System.out.println(fList);
-//	        int result = FPService.modifyProductFiles(fList);
-//
-//	        if(result > 0) {
-//	            // 리스트로 이동
-//	            mv.setViewName("redirect:/foodProduct/productdetail.do?refFProductId=" + refFProductId);
-//	        } else {
-//	            // 에러페이지
-//	            mv.addObject("msg", "파일 수정이 완료되지 않았습니다");
-//	            mv.addObject("error", "파일 수정 실패");
-//	            mv.addObject("url", "/foodProduct/list.do");
-//	            mv.setViewName("common/errorPage");
-//	        }
-//	    } catch (Exception e) {
-//	        mv.addObject("msg", "파일 수정이 완료되지 않았습니다");
-//	        mv.addObject("error", e.getMessage());
-//	        mv.addObject("url", "/foodProduct/list.do");
-//	        mv.setViewName("common/errorPage");
-//	    }
-//
-//	    return mv;
-//	}
+
 
 	
 	//포토리뷰 삭제
