@@ -77,15 +77,7 @@ public class FoodProductController {
 		mv.setViewName("food/foodRecommend/productPhotoRevFileReg");
 		return mv;
 	}		
-	// 상품 리뷰 리스트 이동
-//	@RequestMapping(value="/foodProduct/showrevlist.do", method=RequestMethod.GET)
-//	public ModelAndView showProductRevList(ModelAndView mv
-//			,@RequestParam("fProductId") int fProductRevId) {
-//		FoodProduct foodProduct = FPService.selectDetailInfoByFProductId(fProductRevId);
-//		mv.addObject("foodProduct", foodProduct);
-//		mv.setViewName("food/foodRecommend/productRevList");
-//		return mv;
-//	}		
+	
 	
 	// 추천상품 목록 조회
 	@RequestMapping(value = "/foodProduct/list.do", method = RequestMethod.GET)
